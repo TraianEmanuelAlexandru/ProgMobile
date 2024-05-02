@@ -15,8 +15,6 @@ import com.google.firebase.database.ValueEventListener
 class SignupActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignupBinding
- //   private lateinit var firebaseDatabase: FirebaseDatabase
- //   private lateinit var databaseReference: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
