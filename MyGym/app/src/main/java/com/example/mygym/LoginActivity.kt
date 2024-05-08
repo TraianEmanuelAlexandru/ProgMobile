@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mygym.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.example.mygym.adminsList
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -35,6 +36,7 @@ class LoginActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this, MainActivity::class.java)
+                            intent.putExtra("Email", email)
                             startActivity(intent)
                             finish()
                         } else {
@@ -52,3 +54,13 @@ class LoginActivity : AppCompatActivity() {
 
     }
 }
+
+/*
+*  if (adminsList.any { it.email == email }) {
+                                val intent = Intent(this, MainActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                Toast.makeText(this, "Non sei un admin", Toast.LENGTH_SHORT).show()
+                            }
+* */
