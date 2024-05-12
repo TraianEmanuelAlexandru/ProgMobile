@@ -28,7 +28,7 @@
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="75dp"
         android:clickable="true"
-        android:src="@android:drawable/ic_input_add"
+        android:src="@drawable/ic_add_user"
         android:contentDescription="Aggiungi utente"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
