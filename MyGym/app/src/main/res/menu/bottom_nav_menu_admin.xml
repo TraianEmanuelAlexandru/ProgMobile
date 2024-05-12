@@ -4,7 +4,7 @@
     <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:title="@string/nav_menu_admintitle_scheda" />
 
     <item
         android:id="@+id/navigation_home_admin"
@@ -12,6 +12,6 @@
         android:title="@string/title_home" />
     <item
         android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:icon="@drawable/ic_calendar"
+        android:title="@string/nav_menu_calendario_corsi" />
 </menu>
