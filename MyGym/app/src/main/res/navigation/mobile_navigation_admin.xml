@@ -21,6 +21,15 @@
         android:id="@+id/navigation_home_admin"
         android:name="com.example.mygym.ui.home.HomeAdminFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home_admin"/>
+        tools:layout="@layout/fragment_home_admin">
+        <action
+            android:id="@+id/action_navigation_home_admin_to_signupFragment"
+            app:destination="@id/signupFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.example.mygym.ui.signup.SignupFragment"
+        android:label="SignupFragment" />
+
 
 </navigation>

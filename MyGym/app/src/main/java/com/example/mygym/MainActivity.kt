@@ -1,8 +1,8 @@
 package com.example.mygym
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -10,12 +10,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.mygym.databinding.ActivityMainBinding
 import com.example.mygym.databinding.AdminActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var _binding: AdminActivityMainBinding
-    private val TAG = "MyActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         if (adminsList.any { it.email == email }) {
             _binding = AdminActivityMainBinding.inflate(layoutInflater)
             setContentView(_binding.root)
+
             val navView: BottomNavigationView = _binding.navViewAdmin
             val navController = findNavController(R.id.nav_host_fragment_activity_main_admin)
             val appBarConfiguration = AppBarConfiguration(
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
             setupActionBarWithNavController(navController, appBarConfiguration)
             navView.selectedItemId = R.id.navigation_home_admin
             navView.setupWithNavController(navController)
+
         } else  {
             binding = ActivityMainBinding.inflate(layoutInflater)
             setContentView(binding.root)
@@ -50,4 +52,6 @@ class MainActivity : AppCompatActivity() {
             navView.setupWithNavController(navController)
         }
     }
+
+
 }
