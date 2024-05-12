@@ -58,6 +58,7 @@ class LoginActivity : AppCompatActivity() {
 
                 if (adminsList.any { it.email == email }) {
                     val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("Email", email)
                     startActivity(intent)
                     finish()
                 }
