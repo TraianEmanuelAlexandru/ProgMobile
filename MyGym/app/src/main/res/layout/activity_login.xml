@@ -34,23 +34,40 @@
         android:backgroundTint="@android:color/transparent"
         android:text="LOGIN"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/signupRedirect"
+        app:layout_constraintBottom_toTopOf="@+id/loginOfflineButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginPassword" />
+
+    <Button
+        android:id="@+id/loginOfflineButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@android:color/transparent"
+        android:text="LOGIN OFFLINE"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/signupRedirect"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginButton" />
 
     <TextView
         android:id="@+id/signupRedirect"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Not yet registered? Sign up"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginButton" />
+        app:layout_constraintTop_toBottomOf="@id/loginOfflineButton" />
 
     <EditText
         android:id="@+id/loginPassword"

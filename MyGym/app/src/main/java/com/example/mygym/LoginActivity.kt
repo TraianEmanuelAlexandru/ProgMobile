@@ -21,6 +21,8 @@ class LoginActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
+
+
         binding.loginButton.setOnClickListener{
             val email = binding.loginEmail.text.toString()
             val password = binding.loginPassword.text.toString()
@@ -47,6 +49,20 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.loginOfflineButton.setOnClickListener{
+
+            val email = binding.loginEmail.text.toString()
+            val password = binding.loginPassword.text.toString()
+
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+
+                if (adminsList.any { it.email == email }) {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+        }
     }
 }
 

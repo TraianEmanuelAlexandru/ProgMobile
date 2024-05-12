@@ -45,18 +45,18 @@ class SignupFragment : Fragment() {
                 firebaseAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener {task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(context, "Signup successful", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(context, LoginActivity::class.java)
-                            startActivity(intent)
+                            Toast.makeText(context, "Utente aggiunto correttamente", Toast.LENGTH_SHORT).show()
 
                         } else {
-                            Toast.makeText(context, "Signup unsuccessful", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Errore nell'aggiunta utente", Toast.LENGTH_SHORT).show()
                         }
                     }
             } else {
                 Toast.makeText(context, "Enter email and password", Toast.LENGTH_SHORT).show()
             }
         }
+
+
 
         binding.loginRedirect.setOnClickListener{
             startActivity(Intent(context, LoginActivity::class.java))
