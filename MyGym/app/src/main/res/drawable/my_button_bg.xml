@@ -13,7 +13,7 @@
             android:bottomRightRadius="4dp"
             android:topLeftRadius="4dp"
             android:topRightRadius="4dp"
-            android:color="@color/black"/>
+            android:color="@color/white"/>
     </shape></item>
 
 </selector>
