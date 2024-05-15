@@ -25,30 +25,36 @@ class SignupActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
         binding.signupButton.setOnClickListener{
+            val nome = binding.signupNome.text.toString()
+            val cognome = binding.signupCognome.text.toString()
             val email = binding.signupEmail.text.toString()
             val password = binding.signupPassword.text.toString()
 
-            if (email.isNotEmpty() && password.isNotEmpty() ) {
-                firebaseAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this) {task ->
-                        if (task.isSuccessful) {
-                            Toast.makeText(this, "Signup successful", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this, LoginActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        } else {
-                            Toast.makeText(this, "Signup unsuccessful", Toast.LENGTH_SHORT).show()
-                        }
+            if (nome.isNotEmpty() && cognome.isNotEmpty() ) {
+                if (email.isNotEmpty() && password.isNotEmpty()) {
+                    if(email.contains("@gmail") && email.contains("@hotmail") && email.contains("@libero") && email.contains("@mail")) {
+                        firebaseAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(this) { task ->
+                                if (task.isSuccessful) {
+                                    Toast.makeText(this, "Signup successful", Toast.LENGTH_SHORT)
+                                        .show()
+                                    val intent = Intent(this, LoginActivity::class.java)
+                                    startActivity(intent)
+                                    finish()
+                                } else {
+                                    Toast.makeText(this, "Signup unsuccessful", Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                            }
+                    }else{
+                        Toast.makeText(this, "Email not valid", Toast.LENGTH_SHORT).show()
                     }
-            } else {
-                Toast.makeText(this, "Enter email and password", Toast.LENGTH_SHORT).show()
+                }else {
+                    Toast.makeText(this, "Enter email and password", Toast.LENGTH_SHORT).show()
+                }
+            }else {
+                Toast.makeText(this, "Enter nome and cognome", Toast.LENGTH_SHORT).show()
             }
         }
-
-        binding.loginRedirect.setOnClickListener{
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }
-
     }
 }
