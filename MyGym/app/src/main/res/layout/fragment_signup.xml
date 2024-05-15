@@ -9,47 +9,11 @@
     tools:context=".SignupActivity">
 
     <EditText
-        android:id="@+id/signupNome"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/edittext_border"
-        android:hint="Nome"
-        android:inputType="textEmailAddress"
-        android:padding="12dp"
-        android:textColor="@color/white"
-        android:textColorHint="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/signupCognome"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/edittext_border"
-        android:hint="Cognome"
-        android:inputType="textEmailAddress"
-        android:padding="12dp"
-        android:textColor="@color/white"
-        android:textColorHint="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupNome" />
-
-    <EditText
         android:id="@+id/signupEmail"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="180dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/edittext_border"
         android:hint="Email"
@@ -60,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupCognome" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/signupButton"

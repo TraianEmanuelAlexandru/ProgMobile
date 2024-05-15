@@ -25,14 +25,11 @@ class SignupActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
         binding.signupButton.setOnClickListener{
-            val nome = binding.signupNome.text.toString()
-            val cognome = binding.signupCognome.text.toString()
             val email = binding.signupEmail.text.toString()
             val password = binding.signupPassword.text.toString()
 
-            if (nome.isNotEmpty() && cognome.isNotEmpty() ) {
                 if (email.isNotEmpty() && password.isNotEmpty()) {
-                    if(email.contains("@gmail") && email.contains("@hotmail") && email.contains("@libero") && email.contains("@mail")) {
+                    if(email.contains("@gmail") || email.contains("@hotmail") || email.contains("@libero") ||  email.contains("@mail")) {
                         firebaseAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(this) { task ->
                                 if (task.isSuccessful) {
@@ -52,9 +49,6 @@ class SignupActivity : AppCompatActivity() {
                 }else {
                     Toast.makeText(this, "Enter email and password", Toast.LENGTH_SHORT).show()
                 }
-            }else {
-                Toast.makeText(this, "Enter nome and cognome", Toast.LENGTH_SHORT).show()
-            }
         }
     }
 }
