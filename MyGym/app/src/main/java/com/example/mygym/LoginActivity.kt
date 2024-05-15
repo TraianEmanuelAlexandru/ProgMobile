@@ -27,50 +27,41 @@ class LoginActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
+        binding.loginButton.setOnClickListener {
+            val email = binding.loginEmail.text.toString()
+            val password = binding.loginPassword.text.toString()
 
-        if(isConnected(this)) {
-            binding.loginOfflineButton.visibility = View.INVISIBLE
-            binding.loginButton.visibility = View.VISIBLE
-            binding.loginButton.setOnClickListener {
-                val email = binding.loginEmail.text.toString()
-                val password = binding.loginPassword.text.toString()
-
-                if (email.isNotEmpty() && password.isNotEmpty()) {
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                if(isConnected(this)) {
                     firebaseAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this) { task ->
                             if (task.isSuccessful) {
-                                Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT)
+                                    .show()
                                 val intent = Intent(this, MainActivity::class.java)
                                 intent.putExtra("Email", email)
                                 startActivity(intent)
                                 finish()
                             } else {
-                                Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT)
+                                    .show()
                             }
                         }
-                } else {
-                    Toast.makeText(this, "Enter email and password", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }else {
-            binding.loginButton.visibility = View.INVISIBLE
-            binding.loginOfflineButton.visibility = View.VISIBLE
-            binding.loginOfflineButton.setOnClickListener {
-
-                val email = binding.loginEmail.text.toString()
-                val password = binding.loginPassword.text.toString()
-
-                if (email.isNotEmpty() && password.isNotEmpty()) {
-
+                }else{
                     if (adminsList.any { it.email == email }) {
+                        Toast.makeText(this, "LoginOffline successful", Toast.LENGTH_SHORT)
+                            .show()
                         val intent = Intent(this, MainActivity::class.java)
                         intent.putExtra("Email", email)
                         startActivity(intent)
                         finish()
+                    }else {
+                        Toast.makeText(this, "LoginOffline failed", Toast.LENGTH_SHORT)
+                            .show()
                     }
-                }else {
-                    Toast.makeText(this, "Enter email and password", Toast.LENGTH_SHORT).show()
                 }
+            } else {
+                Toast.makeText(this, "Enter email and password", Toast.LENGTH_SHORT).show()
             }
         }
         binding.signupRedirect.setOnClickListener{
