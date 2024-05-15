@@ -45,7 +45,7 @@ class SignupFragment : Fragment() {
 
             if (nome.isNotEmpty() && cognome.isNotEmpty() ) {
                 if (email.isNotEmpty() && password.isNotEmpty()) {
-                    if(email.contains("@gmail") && email.contains("@hotmail") && email.contains("@libero") && email.contains("@mail")) {
+                    if(email.contains("@gmail") || email.contains("@hotmail") || email.contains("@libero") || email.contains("@mail")) {
                         firebaseAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
