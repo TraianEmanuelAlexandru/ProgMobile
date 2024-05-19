@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.example.mygym.R
 import com.example.mygym.databinding.FragmentHomeBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class HomeFragment : Fragment() {
 
@@ -33,6 +36,10 @@ class HomeFragment : Fragment() {
         val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
+        }
+        val floatingActionButtonQRcode : FloatingActionButton = binding.floatingActionButtonQRcode
+        floatingActionButtonQRcode.setOnClickListener{
+            view?.findNavController()!!.navigate(R.id.action_navigation_home_to_fragment_entryCard)
         }
         return root
     }

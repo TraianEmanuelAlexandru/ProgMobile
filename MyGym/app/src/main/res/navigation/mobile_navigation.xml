@@ -9,7 +9,13 @@
         android:id="@+id/navigation_home"
         android:name="com.example.mygym.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_fragment_entryCard"
+            app:destination="@id/fragment_entryCard"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -21,6 +27,13 @@
         android:id="@+id/navigation_notifications"
         android:name="com.example.mygym.ui.notifications.NotificationsFragment"
         android:label="@string/nav_menu_calendario_corsi"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_notifications" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_entryCard"
+        android:name="com.example.mygym.fragment_entryCard"
+        android:label="fragment_entry_card"
+        tools:layout="@layout/fragment_entrycard" />
 
 </navigation>
