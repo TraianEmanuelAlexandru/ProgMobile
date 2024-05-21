@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
                                 Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT)
                                     .show()
                                 val intent = Intent(this, MainActivity::class.java)
-                                intent.putExtra("Email", email)
+                                intent.putExtra("email", email)
                                 startActivity(intent)
                                 finish()
                             } else {
