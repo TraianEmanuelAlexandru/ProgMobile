@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MyGym</string>
     <string name="title_home">Home</string>
+    <string name="profile_key">ProfileKey</string>
     <string name="nav_menu_settings">Impostazioni</string>
     <string name="nav_menu_calendario_corsi">Calendario Corsi</string>
     <string name="nav_menu_admintitle_scheda">Schede Esercizi</string>

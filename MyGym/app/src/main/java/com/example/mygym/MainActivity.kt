@@ -23,10 +23,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         var email = intent.getStringExtra("email")
-        val sharedPref = this.getPreferences(MODE_PRIVATE)
-        val editor = sharedPref.edit()
-        editor.putString("email", email)
-        editor.apply()
 
         if (adminsList.any { it.email == email }) {
             _binding = AdminActivityMainBinding.inflate(layoutInflater)

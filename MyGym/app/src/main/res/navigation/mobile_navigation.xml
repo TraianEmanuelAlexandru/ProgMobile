@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_entryCard"
-        android:name="com.example.mygym.EntryCardFragment"
+        android:name="com.example.mygym.ui.entryCard.EntryCardFragment"
         android:label="fragment_entry_card"
         tools:layout="@layout/fragment_entrycard" />
 

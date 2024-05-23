@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -12,11 +11,6 @@
             <option value="$PROJECT_DIR$/MyGym/app" />
           </set>
         </option>
-        <option name="resolveExternalAnnotations" value="false" />
-      </GradleProjectSettings>
-      <GradleProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$/MyGym/app" />
-        <option name="gradleJvm" value="jbr-17" />
         <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>

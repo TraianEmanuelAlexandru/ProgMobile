@@ -1,18 +1,17 @@
-package com.example.mygym
+package com.example.mygym.ui.entryCard
 
 import android.content.Context.MODE_PRIVATE
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import com.example.mygym.R
 import com.example.mygym.databinding.FragmentEntrycardBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.zxing.BarcodeFormat
-import com.google.zxing.common.BitMatrix
-import com.google.zxing.qrcode.QRCodeWriter
 
 
 class EntryCardFragment : Fragment() {
@@ -33,19 +32,18 @@ class EntryCardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val sharedPref = this.activity?.getPreferences( MODE_PRIVATE)
+        val viewModel : EntryCardViewModel by viewModels()
+        val sharedPref = this.activity?.getSharedPreferences(getString(R.string.profile_key), MODE_PRIVATE)
         val data = sharedPref?.getString("email", "")
-        val qrCode = QRCodeWriter()
-        val qrCodice = qrCode.encode(data.toString(), BarcodeFormat.QR_CODE,400,400)
-        val height = qrCodice.height
-        val width = qrCodice.width
-        val bitMap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
-        for (x in 0..<width){
-            for (y in 0 ..<height){
-                bitMap.setPixel(x, y, chooseColor(x,y,qrCodice))
-            }
+
+        binding.buttonGeneraQrCode.setOnClickListener{
+            viewModel.generateQrCode(data)
         }
-        binding.QRcode.setImageBitmap(bitMap)
+
+        val imageBitMap_Observer = Observer<Bitmap>{newValue->
+            binding.QRcode.setImageBitmap(newValue)
+        }
+        viewModel.imageBitMap.observe(viewLifecycleOwner, imageBitMap_Observer)
     }
 
 
@@ -54,11 +52,5 @@ class EntryCardFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-}
-private fun chooseColor(x: Int, y: Int, bitMatrix: BitMatrix): Int {
-    if (bitMatrix.get(x,y))
-        return Color.BLACK
-    else return Color.WHITE
-
 }
 
