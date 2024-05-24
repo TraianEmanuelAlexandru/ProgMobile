@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/fragment_scheda_esercizi"
         android:icon="@drawable/ic_scheda_esercizi"
         android:title="@string/nav_menu_admintitle_scheda" />
 
@@ -12,7 +12,7 @@
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_home" />
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/fragment_calendario"
         android:icon="@drawable/ic_admin_calendar"
         android:title="@string/nav_menu_calendario_corsi" />
 </menu>

@@ -18,16 +18,16 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.mygym.ui.dashboard.DashboardFragment"
+        android:id="@+id/fragment_scheda_esercizi"
+        android:name="com.example.mygym.ui.schedaEsercizi.SchedaEserciziFragment"
         android:label="@string/nav_menu_usertitle_scheda"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_scheda_esercizi" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.mygym.ui.notifications.NotificationsFragment"
+        android:id="@+id/fragment_calendario"
+        android:name="com.example.mygym.ui.calendario.CalendarioFragment"
         android:label="@string/nav_menu_calendario_corsi"
-        tools:layout="@layout/fragment_notifications" >
+        tools:layout="@layout/fragment_calendario" >
 
     </fragment>
     <fragment
