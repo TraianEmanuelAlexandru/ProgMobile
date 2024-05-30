@@ -25,7 +25,7 @@
           <theme>@style/Theme.MyGym</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_dashboard.xml">
+      <layout url="file://$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_calendario.xml">
         <config>
           <theme>@style/Theme.MyGym</theme>
         </config>
@@ -45,12 +45,17 @@
           <theme>@style/Theme.MyGym</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_notifications.xml">
+      <layout url="file://$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_scheda_esercizi.xml">
         <config>
           <theme>@style/Theme.MyGym</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_signup.xml">
+        <config>
+          <theme>@style/Theme.MyGym</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/MyGym/app/src/main/res/layout/item_view_scheda.xml">
         <config>
           <theme>@style/Theme.MyGym</theme>
         </config>
@@ -86,23 +91,25 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caa5223b-da2f-4502-9e70-8974861e3a26" name="Changes" comment="Aggiunta QRCode come tessera, codificata dalla email personale">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ProgMobile.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/appInsightsSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/appInsightsSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+    <list default="true" id="caa5223b-da2f-4502-9e70-8974861e3a26" name="Changes" comment="modifica nomi relativi ai fragment e relativa navigazione">
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_script_runtime_1_9_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_script_runtime_1_9_01.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/navEditor.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/EntryCardFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/EntryCardFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/LoginActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/admin_activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/admin_activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_calendario.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_calendario.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_entrycard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_entrycard.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_home_admin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_home_admin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_scheda_esercizi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_scheda_esercizi.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_signup.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_signup.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/gradle/libs.versions.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +119,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[RZCX3279KVJ]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\ENZO\.android\avd\Pixel_6a_API_34.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/MyGym">
       <ProjectState />
@@ -137,7 +144,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="resourceFile" />
+        <option value="layoutResourceFile" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Data Class" />
+        <option value="Kotlin Interface" />
       </list>
     </option>
   </component>
@@ -160,10 +170,10 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///android-33/UnavailableSource" root0="FORCE_HIGHLIGHTING" />
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment/1.6.2/444adb8cd1e1d5d7d5bd92a679bcb91c8e422c55/fragment-1.6.2-sources.jar!/androidx/fragment/app/FragmentManager.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment/1.6.2/444adb8cd1e1d5d7d5bd92a679bcb91c8e422c55/fragment-1.6.2-sources.jar!/androidx/fragment/app/FragmentStateManager.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.4.1/cb2b657bad6c933cef09fa57bfe79fb6867d929e/core-3.4.1-sources.jar!/com/google/zxing/common/BitMatrix.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
@@ -181,13 +191,14 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/Users/ENZO/Desktop/UNIVPM_generale/AA23_24/Progetti/ProgMobile/MyGym/app/src/main/res/drawable&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ENZO/Desktop/UNIVPM_generale/AA23_24/Progetti/MyGym&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ENZO/Desktop/UNIVPM_generale/AA23_24/Progetti/ProgMobile/MyGym/app/src/main/java/com/example/mygym/ui&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -195,8 +206,19 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ENZO\Desktop\UNIVPM_generale\AA23_24\Progetti\ProgMobile\MyGym\app\src\main\java\com\example\mygym\ui" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ENZO\Desktop\UNIVPM_generale\AA23_24\Progetti\ProgMobile\MyGym\app" />
+      <recent name="C:\Users\ENZO\Desktop\UNIVPM_generale\AA23_24\Progetti\ProgMobile\MyGym\app\src\main\java\com\example\mygym\ui\schedaEsercizi" />
       <recent name="C:\Users\ENZO\Desktop\UNIVPM_generale\AA23_24\Progetti\ProgMobile\MyGym\app\src\main\res\drawable" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.example.mygym.ui.entryCard" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.example.mygym.ui.schedaEsercizi.item" />
     </key>
   </component>
   <component name="RunManager">
@@ -381,7 +403,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716334732310</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="visualizzazione QrCode Tramite bottone e creazione viewModel, salvataggio delle credenziali di accesso per l'autofill e loginOffline">
+      <option name="closed" value="true" />
+      <created>1716507363862</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1716507363862</updated>
+    </task>
+    <task id="LOCAL-00015" summary="modifica nomi relativi ai fragment e relativa navigazione">
+      <option name="closed" value="true" />
+      <created>1716509427682</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1716509427682</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -406,7 +444,9 @@
     <MESSAGE value="Modifica SignupFragment" />
     <MESSAGE value="Aggiunta schermata tessera" />
     <MESSAGE value="Aggiunta QRCode come tessera, codificata dalla email personale" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta QRCode come tessera, codificata dalla email personale" />
+    <MESSAGE value="visualizzazione QrCode Tramite bottone e creazione viewModel, salvataggio delle credenziali di accesso per l'autofill e loginOffline" />
+    <MESSAGE value="modifica nomi relativi ai fragment e relativa navigazione" />
+    <option name="LAST_COMMIT_MESSAGE" value="modifica nomi relativi ai fragment e relativa navigazione" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -417,21 +457,32 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/LoginActivity.kt</url>
-          <line>33</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt</url>
+          <line>68</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/LoginActivity.kt</url>
-          <line>34</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt</url>
+          <line>50</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/EntryCardFragment.kt</url>
-          <line>39</line>
-          <option name="timeStamp" value="12" />
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt</url>
+          <line>49</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.google.firebase.firestore.FirebaseFirestore" memberName="client" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="AndroidRunConfigurationType">
+        <watch expression="this.QRcode" custom="androidx.viewbinding.ViewBinding,com.example.mygym.EntryCardFragment" />
+        <watch expression="this.QRcode" custom="androidx.viewbinding.ViewBinding,com.example.mygym.EntryCardFragment" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

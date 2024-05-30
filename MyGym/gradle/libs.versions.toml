@@ -17,6 +17,7 @@ firebaseDatabase = "20.3.1"
 activity = "1.8.0"
 firebaseAuthKtx = "22.3.1"
 uiGraphicsAndroid = "1.6.7"
+firebaseFirestoreKtx = "25.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -35,6 +36,7 @@ firebase-database = { group = "com.google.firebase", name = "firebase-database",
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
 androidx-ui-graphics-android = { group = "androidx.compose.ui", name = "ui-graphics-android", version.ref = "uiGraphicsAndroid" }
+firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

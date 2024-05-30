@@ -54,10 +54,14 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.firebase.auth.ktx)
     implementation(libs.androidx.ui.graphics.android)
+    implementation(libs.firebase.firestore.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.google.zxing:core:3.4.1")
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
-
+    implementation("com.squareup.retrofit2:retrofit:+")
+    implementation("com.squareup.retrofit2:converter-moshi:+")
+    implementation ("com.squareup.moshi:moshi:+")
+    implementation ("com.squareup.moshi:moshi-kotlin:+")
 }

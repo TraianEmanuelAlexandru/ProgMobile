@@ -6,8 +6,10 @@ import androidx.lifecycle.ViewModel
 
 class SchedaEserciziViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+    private val _numeroGiornate = MutableLiveData<Int>(0)
+    val numeroGiornate: LiveData<Int>  =  _numeroGiornate
+
+    fun incrementNumber(){
+        _numeroGiornate.value = _numeroGiornate.value!! + 1
     }
-    val text: LiveData<String> = _text
 }
