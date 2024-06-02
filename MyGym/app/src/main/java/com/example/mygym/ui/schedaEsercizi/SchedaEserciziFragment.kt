@@ -29,6 +29,8 @@ class SchedaEserciziFragment : Fragment() {
     lateinit var dbRef :DatabaseReference
     private val binding get() = _binding!!
 
+    val database = initializeDatabase()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,19 +39,29 @@ class SchedaEserciziFragment : Fragment() {
         val schedaEserciziViewModel : SchedaEserciziViewModel by viewModels()
         _binding = FragmentSchedaEserciziBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
         dbRef = FirebaseDatabase.getInstance().getReference("Esercizio")
         val db = FirebaseFirestore.getInstance()
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://mygym-c1d3c-default-rtdb.europe-west1.firebasedatabase.app/")
-            .build()
 
-        val databaseService =retrofit.create(DatabaseService::class.java)
 
+        //val esercizio = Giorno.Esercizio("1" ,"leg_press",3, 12, 30,"email")
         binding.editTextInserireEmail.setOnClickListener{
             val email = binding.editTextInserireEmail.text.toString()
             if (email != null) {
+                val listaGiorni = db.collection("scheda_utente")
+                    .document(email)
+                    .get()as List<Giorno>
+                for(G in listaGiorni){
+                    //G.esercizi.
+                    val listaEsercizi = db.collection("Giorno")
+                        .document(G.toString())
+                        .get()as List<Giorno.Esercizio>
+                    for (E in listaEsercizi){
+                       // E.
+                    }
 
+                }
 
                 /*val idEsercizio = dbRef.push().key!!
                 val esercizio = Esercizio(idEsercizio,"leg_press", 3, 12, 30, email)
@@ -77,11 +89,28 @@ class SchedaEserciziFragment : Fragment() {
         }
 
         return root
+
+
     }
+
 
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    suspend fun listAll(){
+        val db =  initializeDatabase()
+        db.listAll()
+
+    }
+    public fun initializeDatabase(): DatabaseService{
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://mygym-c1d3c-default-rtdb.europe-west1.firebasedatabase.app/")
+            .build()
+
+        val databaseService = retrofit.create(DatabaseService::class.java)
+        return databaseService
     }
 }

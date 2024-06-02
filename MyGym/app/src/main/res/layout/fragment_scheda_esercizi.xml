@@ -14,7 +14,7 @@
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="25dp"
         android:background="@color/red"
-        android:backgroundTint="#0000FF"
+        android:backgroundTint="@color/red"
         android:clickable="true"
         android:contentDescription="Aggiungi Giornata"
         android:src="@drawable/ic_action_name"
