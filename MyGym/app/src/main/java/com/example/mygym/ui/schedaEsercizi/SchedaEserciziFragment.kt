@@ -23,13 +23,11 @@ import retrofit2.Retrofit
 class SchedaEserciziFragment : Fragment() {
 
     private var _binding: FragmentSchedaEserciziBinding? = null
-    lateinit var dbRef :DatabaseReference
+    //lateinit var dbRef :DatabaseReference
     //lateinit var testArr: ResponseBody
     lateinit var testArr: JSONArray
     private lateinit var esercizioList: MutableList<Esercizio>
     private val binding get() = _binding!!
-
-    val database = initializeDatabase()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,15 +38,15 @@ class SchedaEserciziFragment : Fragment() {
         _binding = FragmentSchedaEserciziBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        dbRef = FirebaseDatabase.getInstance().getReference("Esercizio")
-        val db = FirebaseFirestore.getInstance()
+        //dbRef = FirebaseDatabase.getInstance().getReference("Esercizio")
+        initializeDatabase()
 
 
 
         //val esercizio = Giorno.Esercizio("1" ,"leg_press",3, 12, 30,"email")
         binding.editTextInserireEmail.setOnClickListener{
             val email = binding.editTextInserireEmail.text.toString()
-            if (email != null) {
+            /*if (email != null) {
                 val listaGiorni = db.collection("scheda_utente")
                     .document(email)
                     .get()as List<Giorno>
@@ -56,42 +54,12 @@ class SchedaEserciziFragment : Fragment() {
                     //G.esercizi.
                     val listaEsercizi = db.collection("Giorno")
                         .document(G.toString())
-                        .get()as List<Giorno.Esercizio>
+                        .get()as List<Esercizio>
                     for (E in listaEsercizi){
                        // E.
                     }
 
-                }
-
-                val client = OkHttpClient()
-
-                val request = Request.Builder()
-                    .url("https://exercisedb.p.rapidapi.com/exercises?limit=10")
-                    .get()
-                    .addHeader("X-RapidAPI-Key", "84ab417584msh7f427ba81894f50p137679jsn46005b4710f3")
-                    .addHeader("X-RapidAPI-Host", "exercisedb.p.rapidapi.com")
-                    .build()
-
-                /* val response = client.newCall(request).execute() */
-                client.newCall(request).execute().use { response ->
-                   val myResponse = response.body().toString()
-                    testArr = JSONArray(myResponse)
-                    for (i in 0 until testArr.length()) {
-                        var jsonObject1: JSONObject
-                        jsonObject1 = testArr.getJSONObject(i)
-                        val esercizio = Esercizio(
-                            jsonObject1.optString("id"),
-                            jsonObject1.optString("nome"),
-                            jsonObject1.optString("bodyPart"),
-                            jsonObject1.optString("equipment"),
-                            jsonObject1.optString("gifUrl"),
-                            jsonObject1.optString("target"),
-                            jsonObject1.optJSONArray("secondaryMuscles"),
-                            jsonObject1.optJSONArray("instructions")
-                        )
-                        esercizioList.add(esercizio)
-                    }
-                }
+                }*/
 
 
 
@@ -104,7 +72,7 @@ class SchedaEserciziFragment : Fragment() {
                         Toast.makeText(activity, "Error ${err.message}", Toast.LENGTH_SHORT).show()
 
                     }*/
-            }
+            //}
         }
 
 
@@ -132,17 +100,53 @@ class SchedaEserciziFragment : Fragment() {
         _binding = null
     }
 
+    /*
     suspend fun listAll(){
         val db =  initializeDatabase()
         db.listAll()
 
     }
-    public fun initializeDatabase(): DatabaseService{
-        val retrofit = Retrofit.Builder()
+    */
+    public fun initializeDatabase(){
+        /*val retrofit = Retrofit.Builder()
             .baseUrl("https://mygym-c1d3c-default-rtdb.europe-west1.firebasedatabase.app/")
             .build()
 
         val databaseService = retrofit.create(DatabaseService::class.java)
-        return databaseService
+        return databaseService*/
+        val db = FirebaseFirestore.getInstance()
+
+
+        val client = OkHttpClient()
+
+        val request = Request.Builder()
+            .url("https://exercisedb.p.rapidapi.com/exercises?limit=10")
+            .get()
+            .addHeader("X-RapidAPI-Key", "84ab417584msh7f427ba81894f50p137679jsn46005b4710f3")
+            .addHeader("X-RapidAPI-Host", "exercisedb.p.rapidapi.com")
+            .build()
+
+        /* val response = client.newCall(request).execute() */
+        client.newCall(request).execute().use { response ->
+            val myResponse = response.body().toString()
+            testArr = JSONArray(myResponse)
+            for (i in 0 until testArr.length()) {
+                var jsonObject1: JSONObject
+                jsonObject1 = testArr.getJSONObject(i)
+                val esercizio = Esercizio(
+                    jsonObject1.optString("id"),
+                    jsonObject1.optString("nome"),
+                    jsonObject1.optString("bodyPart"),
+                    jsonObject1.optString("equipment"),
+                    jsonObject1.optString("gifUrl"),
+                    jsonObject1.optString("target"),
+                    jsonObject1.optJSONArray("secondaryMuscles"),
+                    jsonObject1.optJSONArray("instructions")
+                )
+                db.collection("EserciziDaAPI")
+                    .add(esercizio)
+                esercizioList.add(esercizio)
+            }
+        }
     }
 }

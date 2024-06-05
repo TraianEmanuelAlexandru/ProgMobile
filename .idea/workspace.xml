@@ -93,8 +93,11 @@
   <component name="ChangeListManager">
     <list default="true" id="caa5223b-da2f-4502-9e70-8974861e3a26" name="Changes" comment="inserimento interface">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/DatabaseService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/DatabaseService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/Giorno.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/Giorno.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_scheda_esercizi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_scheda_esercizi.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/signup/SignupFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/signup/SignupFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_signup.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_signup.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,8 +134,8 @@
         <option value="resourceFile" />
         <option value="layoutResourceFile" />
         <option value="Kotlin Class" />
-        <option value="Kotlin Data Class" />
         <option value="Kotlin Interface" />
+        <option value="Kotlin Data Class" />
       </list>
     </option>
   </component>
@@ -423,7 +426,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717341465114</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="inserimento interface">
+      <option name="closed" value="true" />
+      <created>1717347394391</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1717347394391</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -459,7 +470,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/signup/SignupFragment.kt</url>
-          <line>40</line>
+          <line>42</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
@@ -469,13 +480,26 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt</url>
-          <line>50</line>
-          <option name="timeStamp" value="14" />
+          <line>41</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt</url>
-          <line>49</line>
-          <option name="timeStamp" value="16" />
+          <line>121</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt</url>
+          <line>129</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt</url>
+          <line>130</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

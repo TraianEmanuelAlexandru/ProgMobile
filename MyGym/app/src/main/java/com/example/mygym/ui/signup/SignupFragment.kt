@@ -9,15 +9,19 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentResultListener
 import com.example.mygym.LoginActivity
+import com.example.mygym.Utente
 import com.example.mygym.databinding.FragmentSignupBinding
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
-
-
+import com.google.firebase.firestore.FirebaseFirestore
+import java.time.LocalDate
+import java.util.Date
 
 
 class SignupFragment : Fragment() {
     private var _binding: FragmentSignupBinding? = null
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -25,11 +29,8 @@ class SignupFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentSignupBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-
         return root
     }
 
@@ -37,9 +38,11 @@ class SignupFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         firebaseAuth = FirebaseAuth.getInstance()
+
         binding.signupButton.setOnClickListener{
             val email = binding.signupEmail.text.toString()
             val password = binding.signupPassword.text.toString()
+            val rb = binding.radioGroup.checkedRadioButton
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 if(email.contains("@gmail") || email.contains("@hotmail") || email.contains("@libero") || email.contains("@mail")) {
@@ -51,6 +54,8 @@ class SignupFragment : Fragment() {
                                     "Utente aggiunto correttamente",
                                     Toast.LENGTH_SHORT
                                 ).show()
+                                var utente = Utente(email, LocalDate.now(), LocalDate.from(LocalDate.now()).plusMonths())
+                                firestore.collection("Utenti").add(utente)
 
                             } else {
                                 Toast.makeText(
