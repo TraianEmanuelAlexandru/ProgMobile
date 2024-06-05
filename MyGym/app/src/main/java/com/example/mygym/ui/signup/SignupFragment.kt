@@ -42,7 +42,7 @@ class SignupFragment : Fragment() {
         binding.signupButton.setOnClickListener{
             val email = binding.signupEmail.text.toString()
             val password = binding.signupPassword.text.toString()
-            val rb = binding.radioGroup.checkedRadioButton
+            val rb = binding.radioGroup
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 if(email.contains("@gmail") || email.contains("@hotmail") || email.contains("@libero") || email.contains("@mail")) {
@@ -54,7 +54,7 @@ class SignupFragment : Fragment() {
                                     "Utente aggiunto correttamente",
                                     Toast.LENGTH_SHORT
                                 ).show()
-                                var utente = Utente(email, LocalDate.now(), LocalDate.from(LocalDate.now()).plusMonths())
+                                var utente = Utente(email, LocalDate.now(), LocalDate.from(LocalDate.now()).plusMonths(1))
                                 firestore.collection("Utenti").add(utente)
 
                             } else {
