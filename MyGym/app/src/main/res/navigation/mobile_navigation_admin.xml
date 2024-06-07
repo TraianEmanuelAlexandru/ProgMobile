@@ -32,6 +32,10 @@
         android:id="@+id/signupFragment"
         android:name="com.example.mygym.ui.signup.SignupFragment"
         android:label="SignupFragment" />
+    <fragment
+        android:id="@+id/qrCodeScannerFragment"
+        android:name="com.example.mygym.ui.signup.QrCodeScannerFragment"
+        android:label="QrCodeScannerFragment" />
 
 
 </navigation>

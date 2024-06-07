@@ -1,21 +1,16 @@
 package com.example.mygym.ui.signup
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentResultListener
-import com.example.mygym.LoginActivity
 import com.example.mygym.Utente
 import com.example.mygym.databinding.FragmentSignupBinding
-import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.time.LocalDate
-import java.util.Date
 
 
 class SignupFragment : Fragment() {
@@ -38,48 +33,69 @@ class SignupFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         firebaseAuth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
 
-        binding.signupButton.setOnClickListener{
+        binding.signupButton.setOnClickListener {
             val email = binding.signupEmail.text.toString()
             val password = binding.signupPassword.text.toString()
-            val rb = binding.radioGroup
-
+            val rb = binding.radioGroup.checkedRadioButtonId
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                if(email.contains("@gmail") || email.contains("@hotmail") || email.contains("@libero") || email.contains("@mail")) {
-                    firebaseAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                Toast.makeText(
-                                    context,
-                                    "Utente aggiunto correttamente",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                var utente = Utente(email, LocalDate.now(), LocalDate.from(LocalDate.now()).plusMonths(1))
-                                firestore.collection("Utenti").add(utente)
-
-                            } else {
-                                Toast.makeText(
-                                    context,
-                                    "Errore nell'aggiunta utente",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                if (rb != -1){
+                    if (email.contains("@gmail") || email.contains("@hotmail") || email.contains("@libero") || email.contains("@mail")) {
+                        var durataIscrizione = buttonChoice(rb)
+                        firebaseAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    Toast.makeText(
+                                        context,
+                                        "Utente aggiunto correttamente",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    var utente = Utente(
+                                        email,
+                                        LocalDate.now(),
+                                        LocalDate.from(LocalDate.now()).plusMonths(durataIscrizione.toLong())
+                                    )
+                                    firestore.collection("Utenti").add(utente)
+                                    binding.signupEmail.text.clear()
+                                    binding.signupPassword.text.clear()
+                                    binding.radioGroup.clearCheck()
+                                } else {
+                                    Toast.makeText(
+                                        context,
+                                        "Errore nell'aggiunta utente",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
                             }
-                        }
-                }else{
-                    Toast.makeText(context, "Email non valida", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "Email non valida", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(context, "Scegli la durata dell'iscrizione!", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(context, "Enter email and password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Inserisci email e password", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
-
-
-
     }
 
 
-
-
+//funzione per la gestione del radio group che ritorna la durata dell'iscrizione
+fun buttonChoice(radiobuttonId: Int): Int{
+    var result: Int
+    var rb_3month = binding.rb3month.id
+    var rb_4month = binding.rb4month.id
+    var rb_6month = binding.rb6month.id
+    when(radiobuttonId){
+        rb_3month-> result = 3
+        rb_4month-> result = 4
+        rb_6month-> result = 6
+        else-> result= 12
+    }
+    return result
+}
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

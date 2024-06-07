@@ -88,8 +88,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
         binding.signupRedirect.setOnClickListener{
-            startActivity(Intent(this, SignupActivity::class.java))
-            finish()
+
         }
     }
 }

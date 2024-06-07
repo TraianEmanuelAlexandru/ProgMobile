@@ -45,6 +45,12 @@
           <theme>@style/Theme.MyGym</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_qrcode_scanner.xml">
+        <config>
+          <state>portrait</state>
+          <theme>@style/Theme.MyGym</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_scheda_esercizi.xml">
         <config>
           <theme>@style/Theme.MyGym</theme>
@@ -91,13 +97,25 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caa5223b-da2f-4502-9e70-8974861e3a26" name="Changes" comment="inserimento interface">
+    <list default="true" id="caa5223b-da2f-4502-9e70-8974861e3a26" name="Changes" comment="inserimento utente nel database">
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/DatabaseService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/DatabaseService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/Giorno.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/Giorno.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/LoginActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/SignupActivity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/home/HomeAdminFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/home/HomeAdminFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/signup/SignupFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/signup/SignupFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/signup/SignupViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/signup/SignupViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/activity_signup.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/admin_activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/admin_activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_home_admin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_home_admin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_signup.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_signup.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/navigation/mobile_navigation_admin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/navigation/mobile_navigation_admin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/gradle/libs.versions.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,10 +150,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="resourceFile" />
-        <option value="layoutResourceFile" />
         <option value="Kotlin Class" />
         <option value="Kotlin Interface" />
         <option value="Kotlin Data Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -164,7 +182,7 @@
     <setting file="file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -199,11 +217,13 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ENZO\Desktop\UNIVPM_generale\AA23_24\Progetti\ProgMobile\MyGym\app\src\main\java\com\example\mygym\ui" />
+      <recent name="C:\Users\ENZO\Desktop\UNIVPM_generale\AA23_24\Progetti\ProgMobile\MyGym\app\src\main\res\drawable" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ENZO\Desktop\UNIVPM_generale\AA23_24\Progetti\ProgMobile\MyGym\app\src\main\res\drawable\icon" />
+      <recent name="C:\Users\ENZO\Desktop\UNIVPM_generale\AA23_24\Progetti\ProgMobile\MyGym\app\src\main\res\drawable" />
       <recent name="C:\Users\ENZO\Desktop\UNIVPM_generale\AA23_24\Progetti\ProgMobile\MyGym\app" />
       <recent name="C:\Users\ENZO\Desktop\UNIVPM_generale\AA23_24\Progetti\ProgMobile\MyGym\app\src\main\java\com\example\mygym\ui\schedaEsercizi" />
-      <recent name="C:\Users\ENZO\Desktop\UNIVPM_generale\AA23_24\Progetti\ProgMobile\MyGym\app\src\main\res\drawable" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.example.mygym.ui.entryCard" />
@@ -434,7 +454,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717347394391</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="inserimento utente nel database">
+      <option name="closed" value="true" />
+      <created>1717610981232</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1717610981232</updated>
+    </task>
+    <task id="LOCAL-00020" summary="inserimento utente nel database">
+      <option name="closed" value="true" />
+      <created>1717611044682</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1717611044682</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -463,16 +499,12 @@
     <MESSAGE value="modifica nomi relativi ai fragment e relativa navigazione" />
     <MESSAGE value="modifica schermata fragment e modifiche generali alla struttura" />
     <MESSAGE value="inserimento interface" />
-    <option name="LAST_COMMIT_MESSAGE" value="inserimento interface" />
+    <MESSAGE value="inserimento utente nel database" />
+    <option name="LAST_COMMIT_MESSAGE" value="inserimento utente nel database" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/signup/SignupFragment.kt</url>
-          <line>42</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt</url>
           <line>80</line>
@@ -480,7 +512,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt</url>
-          <line>41</line>
+          <line>42</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
@@ -500,6 +532,36 @@
           <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedaEserciziFragment.kt</url>
           <line>130</line>
           <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/signup/SignupFragment.kt</url>
+          <line>50</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/signup/SignupFragment.kt</url>
+          <line>43</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/signup/SignupFragment.kt</url>
+          <line>58</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/home/HomeAdminFragment.kt</url>
+          <line>79</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/home/HomeAdminFragment.kt</url>
+          <line>74</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/home/HomeAdminFragment.kt</url>
+          <line>54</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
