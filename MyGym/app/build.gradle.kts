@@ -56,6 +56,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics.android)
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.play.services.mlkit.barcode.scanning)
+    implementation(libs.androidx.camera.view)
+    implementation(libs.androidx.camera.mlkit.vision)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

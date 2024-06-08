@@ -52,9 +52,10 @@ class HomeAdminFragment : Fragment()  {
 
         val qrCodeScanButton = binding.buttonScanQrCode
         qrCodeScanButton.setOnClickListener{
-            if (checkPermissionFotocamera() ){
-                view?.findNavController()!!.navigate(R.id.action_navigation_home_admin_to_signupFragment)
+            if (checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED ){
+                view?.findNavController()!!.navigate(R.id.action_navigation_home_admin_to_qrCodeScanner)
             }else{
+                richiestaPermessoCamera()
             }
         }
 
@@ -76,14 +77,6 @@ class HomeAdminFragment : Fragment()  {
         requestPermissionLauncher.launch(permesso)
     }
 
-    private fun checkPermissionFotocamera(): Boolean {
-        if (checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED ) {
-            return true
-        }else{
-            richiestaPermessoCamera()
-            return false
-        }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
