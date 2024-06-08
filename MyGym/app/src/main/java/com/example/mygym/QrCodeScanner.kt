@@ -1,55 +1,112 @@
 package com.example.mygym
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.camera.core.ImageAnalysis.COORDINATE_SYSTEM_VIEW_REFERENCED
-import androidx.camera.mlkit.vision.MlKitAnalyzer
-import androidx.camera.view.CameraController
-import androidx.core.content.ContextCompat
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.mygym.databinding.FragmentQrCodeScannerBinding
-import com.google.mlkit.vision.barcode.BarcodeScannerOptions
-import com.google.mlkit.vision.barcode.BarcodeScanning
-import com.google.mlkit.vision.barcode.common.Barcode
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
+import java.time.LocalDate
+import com.google.firebase.firestore.toObject
+import java.util.Date
 
 
 class QrCodeScanner : Fragment() {
     private var _binding : FragmentQrCodeScannerBinding? = null
     private val binding get() = _binding!!
-    private lateinit var cameraController: CameraController
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding =FragmentQrCodeScannerBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivity(intent)
-
-        /*val options = BarcodeScannerOptions.Builder()
-            .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
-            .build()
-        val barcodeScanner = BarcodeScanning.getClient(options)
-
-        cameraController.setImageAnalysisAnalyzer(
-            ContextCompat.getMainExecutor(requireContext()),
-            MlKitAnalyzer(
-                listOf(barcodeScanner),
-                COORDINATE_SYSTEM_VIEW_REFERENCED,
-                ContextCompat.getMainExecutor(requireContext())
-            ) { result: MlKitAnalyzer.Result? ->
-            }
-        )*/
-
+        val intent = Intent("com.google.zxing.client.android.SCAN")
+        intent.putExtra("SCAN_MODE", "QR_CODE_MODE")
+        firestore = FirebaseFirestore.getInstance()
+        register.launch(intent)
 
         return root
+    }
+    val register = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+        val verifyEmail = it.data?.getStringExtra("SCAN_RESULT")
+        //Prendo l'utente dal database
+        firestore.collection("Utenti").document(verifyEmail.toString()).get()
+            .addOnSuccessListener{ document->
+                val scadenza = document.getDate("dataScadenza")
+                val presente = document.getBoolean("presente")!!
+                if (scadenza!!.after(Date())) {
+                    Log.d("QRCODESCANNER", "utente fuori")
+                    Snackbar.make(
+                        binding.root,
+                        "ACCESSO NEGATO - ISCRIZIONE SCADUTA",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
+                /// Terza verifica----Utente non già all'interno della palestra
+                else if (presente) {
+                    Log.d("QRCODESCANNER", "utente in uscita")
+
+                    Snackbar.make(
+                        binding.root,
+                        "USCITA CONSENTITA - GRAZIE E ARRIVEDERCI",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                    //Quarta verifica---- Accesso Consentito e segnalazione presenza
+                    firestore.collection("Utenti").document(verifyEmail.toString()).update("presente", false)
+                } else {
+                    Log.d("QRCODESCANNER", "utente dentro")
+
+                    Snackbar.make(
+                        binding.root,
+                        "ACCESSO CONSENTITO - ISCRIZIONE VALIDA",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                    firestore.collection("Utenti").document(verifyEmail.toString()).update("presente", true)
+                }
+            }
+        //Prima verifica ---- Utente Iscritto
+        /*if (utente != null) {
+            //Seconda verifica----Iscrizione non Scaduta
+            if (LocalDate.now() >= utente.dataScadenza) {
+                Snackbar.make(
+                    binding.root,
+                    "ACCESSO NEGATO - ISCRIZIONE SCADUTA",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            /// Terza verifica----Utente non già all'interno della palestra
+            } else
+                if (utente.isIn) {
+                    Snackbar.make(
+                        binding.root,
+                        "USCITA CONSENTITA - GRAZIE E ARRIVEDERCI",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+            //Quarta verifica---- Accesso Consentito e segnalazione presenza
+            } else {
+                Snackbar.make(
+                    binding.root,
+                    "ACCESSO CONSENTITO - ISCRIZIONE VALIDA",
+                    Snackbar.LENGTH_LONG
+                ).show()
+                utente.isIn = true
+                firestore.collection("Utenti").document(verifyEmail.toString()).update("isIn", true)
+            }
+        }else{
+            Snackbar.make(
+                binding.root,
+                "UTENTE NON ISCRITTO",
+                Snackbar.LENGTH_LONG
+            ).show()
+        }*/
     }
 }

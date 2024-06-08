@@ -1,16 +1,12 @@
 package com.example.mygym.ui.home
 
 import android.content.pm.PackageManager
-import android.hardware.Camera
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -19,9 +15,6 @@ import com.example.mygym.R
 import com.example.mygym.databinding.FragmentHomeAdminBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import com.google.mlkit.vision.barcode.BarcodeScannerOptions
-import java.util.jar.Manifest
-
 
 class HomeAdminFragment : Fragment()  {
     private var _binding: FragmentHomeAdminBinding? = null

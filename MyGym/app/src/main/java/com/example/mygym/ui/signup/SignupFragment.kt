@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.mygym.Utente
 import com.example.mygym.databinding.FragmentSignupBinding
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.time.LocalDate
@@ -52,11 +53,11 @@ class SignupFragment : Fragment() {
                                         Toast.LENGTH_SHORT
                                     ).show()
                                     var utente = Utente(
-                                        email,
                                         LocalDate.now(),
-                                        LocalDate.from(LocalDate.now()).plusMonths(durataIscrizione.toLong())
+                                        LocalDate.now().plusMonths(durataIscrizione.toLong()),
+                                        false
                                     )
-                                    firestore.collection("Utenti").add(utente)
+                                    firestore.collection("Utenti").document(email).set(utente)
                                     binding.signupEmail.text.clear()
                                     binding.signupPassword.text.clear()
                                     binding.radioGroup.clearCheck()
