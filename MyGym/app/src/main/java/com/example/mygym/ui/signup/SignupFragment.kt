@@ -5,13 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.mygym.Utente
 import com.example.mygym.databinding.FragmentSignupBinding
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.time.Instant
 import java.time.LocalDate
+import java.time.ZoneOffset
+import java.util.Date
 
 
 class SignupFragment : Fragment() {
@@ -29,7 +33,6 @@ class SignupFragment : Fragment() {
         val root: View = binding.root
         return root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -52,9 +55,10 @@ class SignupFragment : Fragment() {
                                         "Utente aggiunto correttamente",
                                         Toast.LENGTH_SHORT
                                     ).show()
-                                    var utente = Utente(
-                                        LocalDate.now(),
-                                        LocalDate.now().plusMonths(durataIscrizione.toLong()),
+                                    val dataFineIscrizione = LocalDate.now().atStartOfDay().plusMonths(durataIscrizione.toLong()).toInstant(ZoneOffset.UTC)
+                                    val utente = Utente(
+                                        Timestamp.now(),
+                                        Timestamp(dataFineIscrizione),
                                         false
                                     )
                                     firestore.collection("Utenti").document(email).set(utente)

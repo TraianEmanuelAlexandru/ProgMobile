@@ -4,8 +4,8 @@ import com.google.firebase.Timestamp
 import java.time.LocalDate
 
 data class Utente(
-    var dataIscrizione: LocalDate,
-    var dataScadenza: LocalDate,
+    var dataIscrizione: Timestamp,
+    var dataScadenza: Timestamp,
     var presente: Boolean
 )
 

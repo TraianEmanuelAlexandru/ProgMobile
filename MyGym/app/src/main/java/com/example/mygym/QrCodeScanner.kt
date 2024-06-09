@@ -11,11 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.example.mygym.databinding.FragmentQrCodeScannerBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Timestamp
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import java.time.LocalDate
-import com.google.firebase.firestore.toObject
-import java.util.Date
 
 
 class QrCodeScanner : Fragment() {
@@ -30,6 +26,7 @@ class QrCodeScanner : Fragment() {
     ): View {
         _binding =FragmentQrCodeScannerBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
         val intent = Intent("com.google.zxing.client.android.SCAN")
         intent.putExtra("SCAN_MODE", "QR_CODE_MODE")
         firestore = FirebaseFirestore.getInstance()
@@ -44,7 +41,7 @@ class QrCodeScanner : Fragment() {
             .addOnSuccessListener{ document->
                 val scadenza = document.getDate("dataScadenza")
                 val presente = document.getBoolean("presente")!!
-                if (scadenza!!.after(Date())) {
+                if (scadenza!!.before(Timestamp.now().toDate())) {
                     Log.d("QRCODESCANNER", "utente fuori")
                     Snackbar.make(
                         binding.root,
@@ -73,40 +70,12 @@ class QrCodeScanner : Fragment() {
                     ).show()
                     firestore.collection("Utenti").document(verifyEmail.toString()).update("presente", true)
                 }
-            }
-        //Prima verifica ---- Utente Iscritto
-        /*if (utente != null) {
-            //Seconda verifica----Iscrizione non Scaduta
-            if (LocalDate.now() >= utente.dataScadenza) {
+            }.addOnFailureListener{
                 Snackbar.make(
                     binding.root,
-                    "ACCESSO NEGATO - ISCRIZIONE SCADUTA",
+                    "ACCESSO NEGATO - EMAIL NON VALIDA",
                     Snackbar.LENGTH_LONG
                 ).show()
-            /// Terza verifica----Utente non già all'interno della palestra
-            } else
-                if (utente.isIn) {
-                    Snackbar.make(
-                        binding.root,
-                        "USCITA CONSENTITA - GRAZIE E ARRIVEDERCI",
-                        Snackbar.LENGTH_LONG
-                    ).show()
-            //Quarta verifica---- Accesso Consentito e segnalazione presenza
-            } else {
-                Snackbar.make(
-                    binding.root,
-                    "ACCESSO CONSENTITO - ISCRIZIONE VALIDA",
-                    Snackbar.LENGTH_LONG
-                ).show()
-                utente.isIn = true
-                firestore.collection("Utenti").document(verifyEmail.toString()).update("isIn", true)
             }
-        }else{
-            Snackbar.make(
-                binding.root,
-                "UTENTE NON ISCRITTO",
-                Snackbar.LENGTH_LONG
-            ).show()
-        }*/
     }
 }
