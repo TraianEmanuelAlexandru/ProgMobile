@@ -52,9 +52,8 @@ class HomeAdminFragment : Fragment()  {
         qrCodeScanButton.setOnClickListener{
             if (checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED ){
                 val intent = Intent("com.google.zxing.client.android.SCAN")
-                intent.putExtra("SCAN_MODE", "QR_CODE_MODE")
                 firestore = FirebaseFirestore.getInstance()
-                register.launch(intent)
+               register.launch(intent)
             }else{
                 richiestaPermessoCamera()
             }

@@ -102,14 +102,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caa5223b-da2f-4502-9e70-8974861e3a26" name="Changes" comment="sviluppo parte fotocamera lettura qrcode">
+    <list default="true" id="caa5223b-da2f-4502-9e70-8974861e3a26" name="Changes" comment="sviluppo lettura qrcode">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/QrCodeScanner.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/QrCodeScanner.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/Utente.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/Utente.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/QrCodeScanner.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/home/HomeAdminFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/home/HomeAdminFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/signup/SignupFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/signup/SignupFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_qr_code_scanner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_qr_code_scanner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_qr_code_scanner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/navigation/mobile_navigation_admin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/navigation/mobile_navigation_admin.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -496,7 +494,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717857909287</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="sviluppo lettura qrcode">
+      <option name="closed" value="true" />
+      <created>1717951560828</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1717951560828</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -528,7 +534,8 @@
     <MESSAGE value="inserimento utente nel database" />
     <MESSAGE value="permesso per accesso alla fotocamera lato operatore e inserimento fragment per la scansione qrcode" />
     <MESSAGE value="sviluppo parte fotocamera lettura qrcode" />
-    <option name="LAST_COMMIT_MESSAGE" value="sviluppo parte fotocamera lettura qrcode" />
+    <MESSAGE value="sviluppo lettura qrcode" />
+    <option name="LAST_COMMIT_MESSAGE" value="sviluppo lettura qrcode" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -563,7 +570,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/home/HomeAdminFragment.kt</url>
-          <line>122</line>
+          <line>124</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
