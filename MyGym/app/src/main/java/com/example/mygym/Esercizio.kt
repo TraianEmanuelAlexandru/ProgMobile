@@ -9,7 +9,7 @@ data class Esercizio(
     var equipment: String,
     var gifUrl: String,
     var target: String,
-    var secondaryMuscles: JSONArray,
-    var instructions: JSONArray
+    var secondaryMuscles: String,
+    var instructions: String
 )
 
