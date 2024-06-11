@@ -64,7 +64,7 @@ class HomeAdminFragment : Fragment()  {
     val register = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         val verifyEmail = it.data?.getStringExtra("SCAN_RESULT")
         //Prendo l'utente dal database
-        firestore.collection("Utenti").document(verifyEmail.toString()).get()
+        firestore.collection(getString(R.string.collectionUtenti)).document(verifyEmail.toString()).get()
             .addOnSuccessListener { document ->
                 val scadenza = document.getDate("dataScadenza")
                 val presente = document.getBoolean("presente")!!

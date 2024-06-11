@@ -5,12 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.work.Worker
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mygym.DatabaseService
 import com.example.mygym.Esercizio
-import com.example.mygym.Giorno
+import com.example.mygym.R
+import com.example.mygym.Utente
 import com.example.mygym.databinding.FragmentSchedaEserciziBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -25,17 +27,16 @@ import retrofit2.Retrofit
 class SchedaEserciziFragment : Fragment() {
 
     private var _binding: FragmentSchedaEserciziBinding? = null
-    lateinit var dbRef :DatabaseReference
-    //lateinit var testArr: ResponseBody
+    private lateinit var firestore: FirebaseFirestore
     lateinit var testArr: JSONArray
     lateinit var testArr2: JSONArray
     lateinit var testArr3: JSONArray
     private lateinit var secondaryMuscles: String
     private lateinit var instructions: String
-     lateinit var esercizioList: MutableList<Esercizio>
+    private lateinit var listaEsercizi: MutableList<Esercizio>
     private val binding get() = _binding!!
 
-    val database = initializeDatabase()
+    //val database = initializeDatabase()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,16 +46,26 @@ class SchedaEserciziFragment : Fragment() {
         val schedaEserciziViewModel : SchedaEserciziViewModel by viewModels()
         _binding = FragmentSchedaEserciziBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        firestore = FirebaseFirestore.getInstance()
 
-        dbRef = FirebaseDatabase.getInstance().getReference("Esercizio")
-        val db = FirebaseFirestore.getInstance()
+        val listaUtenti = mutableListOf<String>()
+        val recyclerView = binding.recyclerViewListaUtenti
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        firestore.collection("Utenti").get().addOnSuccessListener {
+            documents->
+            for (document in documents){
+                listaUtenti.add(document.id)
+            }
+            recyclerView.adapter = ListaUtentiAdapter(listaUtenti)
+        }.addOnFailureListener {
+            Toast.makeText(requireContext(), "DataBase Non raggiungibile", Toast.LENGTH_SHORT).show()
+        }
 
 
-
-        //val esercizio = Giorno.Esercizio("1" ,"leg_press",3, 12, 30,"email")
         binding.editTextInserireEmail.setOnClickListener{
-           val email = binding.editTextInserireEmail.text.toString()
-/*            if (email != null) {
+        /*   val email = binding.editTextInserireEmail.text.toString()
+            if (email != null) {
                 val listaGiorni = db.collection("scheda_utente")
                     .document(email)
                     .get()as List<Giorno>
@@ -76,10 +87,7 @@ class SchedaEserciziFragment : Fragment() {
                     }.addOnFailureListener{err->
                         Toast.makeText(activity, "Error ${err.message}", Toast.LENGTH_SHORT).show()
                     }*/
-            } */
-            val runnable = Worker()
-            val thread = Thread(runnable)
-            thread.start()
+            }   */
         }
 
 
@@ -93,6 +101,9 @@ class SchedaEserciziFragment : Fragment() {
                     else
                         Toast.makeText(activity, "Esercizio Non Inserito", Toast.LENGTH_SHORT).show()
                 }*/
+            val runnable = Worker()
+            val thread = Thread(runnable)
+            thread.start()
         }
 
         return root
@@ -106,8 +117,8 @@ class SchedaEserciziFragment : Fragment() {
         }
     }
 
-private fun GetEsercizi() {
-
+private fun GetEsercizi(){
+    listaEsercizi = mutableListOf()
     val client = OkHttpClient()
 
     val request = Request.Builder()
@@ -149,7 +160,7 @@ private fun GetEsercizi() {
             Log.d("Errore json", "$secondaryMuscles, $instructions, $id, $nome, $parti  ----------------------------------------------------------------------------")
             val esercizio = Esercizio(
                 jsonObject1.optString("id"),
-                jsonObject1.optString("nome"),
+                jsonObject1.optString("name"),
                 jsonObject1.optString("bodyPart"),
                 jsonObject1.optString("equipment"),
                 jsonObject1.optString("gifUrl"),
@@ -157,7 +168,14 @@ private fun GetEsercizi() {
                 secondaryMuscles,
                 instructions
             )
-            esercizioList.add(esercizio)
+
+
+            listaEsercizi.add(esercizio)
+            if (firestore.collection("Esercizi").whereEqualTo("name", esercizio.name).get().isSuccessful){
+                Log.d("Esercizi", "Esercizio Gia Presente----------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+            }else {
+                firestore.collection("Esercizi").add(esercizio)
+            }
         }
     }
 

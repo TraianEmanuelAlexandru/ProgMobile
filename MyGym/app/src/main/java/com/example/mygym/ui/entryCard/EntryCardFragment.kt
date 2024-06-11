@@ -11,12 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.mygym.R
 import com.example.mygym.databinding.FragmentEntrycardBinding
-import com.google.firebase.auth.FirebaseAuth
 
 
 class EntryCardFragment : Fragment() {
     private var _binding: FragmentEntrycardBinding? = null
-    private lateinit var firebaseAuth: FirebaseAuth
 
     private val binding get() = _binding!!
 
@@ -41,16 +39,9 @@ class EntryCardFragment : Fragment() {
         }
 
         val imageBitMap_Observer = Observer<Bitmap>{newValue->
-            binding.QRcode.setImageBitmap(newValue)
+            binding.QrCode.setImageBitmap(newValue)
         }
         viewModel.imageBitMap.observe(viewLifecycleOwner, imageBitMap_Observer)
-    }
-
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
 

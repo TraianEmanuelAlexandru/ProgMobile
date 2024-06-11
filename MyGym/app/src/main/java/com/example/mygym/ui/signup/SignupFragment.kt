@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.example.mygym.R
 import com.example.mygym.Utente
 import com.example.mygym.databinding.FragmentSignupBinding
 import com.google.firebase.Timestamp
@@ -57,11 +58,12 @@ class SignupFragment : Fragment() {
                                     ).show()
                                     val dataFineIscrizione = LocalDate.now().atStartOfDay().plusMonths(durataIscrizione.toLong()).toInstant(ZoneOffset.UTC)
                                     val utente = Utente(
+                                        email,
                                         Timestamp.now(),
                                         Timestamp(dataFineIscrizione),
                                         false
                                     )
-                                    firestore.collection("Utenti").document(email).set(utente)
+                                    firestore.collection(getString(R.string.collectionUtenti)).document(email).set(utente)
                                     binding.signupEmail.text.clear()
                                     binding.signupPassword.text.clear()
                                     binding.radioGroup.clearCheck()

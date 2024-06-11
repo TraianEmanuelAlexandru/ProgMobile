@@ -9,7 +9,7 @@
 
 
     <ImageView
-        android:id="@+id/QRcode"
+        android:id="@+id/QrCode"
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:layout_marginTop="80dp"
@@ -26,7 +26,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/QRcode" />
+        app:layout_constraintTop_toBottomOf="@+id/QrCode" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
