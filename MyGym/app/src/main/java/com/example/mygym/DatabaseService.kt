@@ -1,6 +1,6 @@
 package com.example.mygym
 
-import retrofit2.http.Body
+/*import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -15,4 +15,4 @@ interface DatabaseService {
     suspend fun search(@Query("filter") search: String): List<Esercizio>
     @POST("posts/new")
     suspend fun create(@Body esercizio : Esercizio): Esercizio
-}
+}*/

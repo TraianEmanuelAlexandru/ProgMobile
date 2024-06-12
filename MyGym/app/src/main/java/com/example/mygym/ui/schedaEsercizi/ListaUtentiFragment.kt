@@ -9,24 +9,20 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mygym.DatabaseService
 import com.example.mygym.Esercizio
 import com.example.mygym.R
-import com.example.mygym.Utente
-import com.example.mygym.databinding.FragmentSchedaEserciziBinding
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.example.mygym.databinding.FragmentListaUtentiBinding
+import com.example.mygym.ui.schedaEsercizi.ListaUtentiFragmentDirections
 import com.google.firebase.firestore.FirebaseFirestore
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
 import org.json.JSONObject
-import retrofit2.Retrofit
 
 
-class SchedaEserciziFragment : Fragment() {
+class ListaUtentiFragment : Fragment() {
 
-    private var _binding: FragmentSchedaEserciziBinding? = null
+    private var _binding: FragmentListaUtentiBinding? = null
     private lateinit var firestore: FirebaseFirestore
     lateinit var testArr: JSONArray
     lateinit var testArr2: JSONArray
@@ -43,16 +39,17 @@ class SchedaEserciziFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val schedaEserciziViewModel : SchedaEserciziViewModel by viewModels()
-        _binding = FragmentSchedaEserciziBinding.inflate(inflater, container, false)
+        val listaUtentiViewModel : ListaUtentiViewModel by viewModels()
+        _binding = FragmentListaUtentiBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
         firestore = FirebaseFirestore.getInstance()
 
         val listaUtenti = mutableListOf<String>()
         val recyclerView = binding.recyclerViewListaUtenti
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        firestore.collection("Utenti").get().addOnSuccessListener {
+        firestore.collection(getString(R.string.collectionUtenti)).get().addOnSuccessListener {
             documents->
             for (document in documents){
                 listaUtenti.add(document.id)
@@ -89,7 +86,6 @@ class SchedaEserciziFragment : Fragment() {
                     }*/
             }   */
         }
-
 
 
         binding.buttonAggiungiGiornata.setOnClickListener{
@@ -130,7 +126,7 @@ private fun GetEsercizi(){
 
     /* val response = client.newCall(request).execute() */
     client.newCall(request).execute().use { response ->
-        val myResponse = response.body()!!.string()
+        val myResponse = response.body!!.string()
         testArr = JSONArray(myResponse)
         for (i in 0 until testArr.length()) {
             var jsonObject1: JSONObject
@@ -142,7 +138,7 @@ private fun GetEsercizi(){
                // jsonObject2 = testArr2.getJSONObject(j)
                 var muscoliSecondari: String = ""
 //                muscoliSecondari = testArr2.getString(j)
-                Log.d("error3", "${response.body()} ---------------------------------------")
+                Log.d("error3", "${response.body} ---------------------------------------")
                 muscoliSecondari += testArr2.getString(j)
                 secondaryMuscles = muscoliSecondari
             }
@@ -186,17 +182,17 @@ private fun GetEsercizi(){
         _binding = null
     }
 
-    suspend fun listAll(){
+    /*suspend fun listAll(){
         val db =  initializeDatabase()
         db.listAll()
 
     }
-    public fun initializeDatabase(): DatabaseService{
+     fun initializeDatabase(): DatabaseService{
         val retrofit = Retrofit.Builder()
             .baseUrl("https://mygym-c1d3c-default-rtdb.europe-west1.firebasedatabase.app/")
             .build()
 
         val databaseService = retrofit.create(DatabaseService::class.java)
         return databaseService
-    }
+    }*/
 }

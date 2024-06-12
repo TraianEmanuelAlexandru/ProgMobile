@@ -7,7 +7,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.mygym.databinding.ActivityMainBinding
 import com.example.mygym.databinding.AdminActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.Timestamp
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -25,11 +24,11 @@ class MainActivity : AppCompatActivity() {
             val navController = findNavController(R.id.nav_host_fragment_activity_main_admin)
             /*val appBarConfiguration = AppBarConfiguration(
                 setOf(
-                    R.id.navigation_home_admin, R.id.navigation_dashboard, R.id.navigation_notifications
+                    R.id.fragment_home_admin, R.id.navigation_dashboard, R.id.navigation_notifications
                 )
             )
             setupActionBarWithNavController(navController, appBarConfiguration)*/
-            navView.selectedItemId = R.id.navigation_home_admin
+            navView.selectedItemId = R.id.fragment_home_admin
             navView.setupWithNavController(navController)
         } else  {
             binding = ActivityMainBinding.inflate(layoutInflater)
@@ -38,11 +37,11 @@ class MainActivity : AppCompatActivity() {
             val navController = findNavController(R.id.nav_host_fragment_activity_main)
             /*val appBarConfiguration = AppBarConfiguration(
                 setOf(
-                    R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                    R.id.fragment_home, R.id.navigation_dashboard, R.id.navigation_notifications
                 )
             )
             setupActionBarWithNavController(navController, appBarConfiguration)*/
-            navView.selectedItemId = R.id.navigation_home
+            navView.selectedItemId = R.id.fragment_home
             navView.setupWithNavController(navController)
         }
     }

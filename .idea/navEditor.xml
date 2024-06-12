@@ -8,6 +8,18 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="fragment_calendario">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="256" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="fragment_entryCard">
                     <value>
                       <LayoutPositions>
@@ -20,7 +32,7 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="navigation_dashboard">
+                  <entry key="fragment_home">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -29,21 +41,9 @@
                             <option name="y" value="12" />
                           </Point>
                         </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="navigation_home">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="12" />
-                            <option name="y" value="368" />
-                          </Point>
-                        </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_navigation_home_to_fragment_entryCard">
+                            <entry key="action_fragment_home_to_fragment_entryCard">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -53,13 +53,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="navigation_notifications">
+                  <entry key="fragment_scheda_esercizi">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="256" />
-                            <option name="y" value="12" />
+                            <option name="x" value="20" />
+                            <option name="y" value="376" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -80,26 +80,14 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="3" />
-                            <option name="y" value="53" />
+                            <option name="x" value="-172" />
+                            <option name="y" value="151" />
                           </Point>
                         </option>
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="fragment_scheda_esercizi">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="226" />
-                            <option name="y" value="44" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="navigation_home_admin">
+                  <entry key="fragment_home_admin">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -110,11 +98,6 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_navigation_home_admin_to_qrCodeScanner">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
                             <entry key="action_navigation_home_admin_to_signupFragment">
                               <value>
                                 <LayoutPositions />
@@ -125,25 +108,37 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="qrCodeScanner">
+                  <entry key="fragment_lista_esercizi">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="130" />
-                            <option name="y" value="695" />
+                            <option name="x" value="256" />
+                            <option name="y" value="12" />
                           </Point>
                         </option>
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="signupFragment">
+                  <entry key="fragment_lista_utenti">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="237" />
-                            <option name="y" value="366" />
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="fragment_signup">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="256" />
+                            <option name="y" value="368" />
                           </Point>
                         </option>
                       </LayoutPositions>

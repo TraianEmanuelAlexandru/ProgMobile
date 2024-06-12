@@ -4,14 +4,14 @@
     <item
         android:id="@+id/fragment_scheda_esercizi"
         android:icon="@drawable/ic_scheda_esercizi"
-        android:title="@string/nav_menu_usertitle_scheda" />
+        android:title="@string/label_user_menu_lista_esercizi" />
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/fragment_home"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_home" />
     <item
         android:id="@+id/fragment_calendario"
         android:icon="@drawable/ic_calendar"
-        android:title="@string/nav_menu_calendario_corsi" />
+        android:title="@string/label_menu_calendario_corsi" />
 </menu>

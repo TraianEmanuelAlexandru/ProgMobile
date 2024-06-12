@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
         }
         val floatingActionButtonQRcode : FloatingActionButton = binding.floatingActionButtonQRcode
         floatingActionButtonQRcode.setOnClickListener{
-            view?.findNavController()!!.navigate(R.id.action_navigation_home_to_fragment_entryCard)
+            view?.findNavController()!!.navigate(R.id.action_fragment_home_to_fragment_entryCard)
         }
         return root
     }

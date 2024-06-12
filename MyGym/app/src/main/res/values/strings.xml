@@ -2,11 +2,17 @@
     <string name="app_name">MyGym</string>
     <string name="title_home">Home</string>
     <string name="profile_key">ProfileKey</string>
-    <string name="nav_menu_settings">Impostazioni</string>
-    <string name="nav_menu_calendario_corsi">Calendario Corsi</string>
-    <string name="nav_menu_admintitle_scheda">Schede Esercizi</string>
-    <string name="nav_menu_usertitle_scheda">Scheda Esercizi</string>
-    <string name="title_settings">Impostazioni</string>
+    <string name="settings">Impostazioni</string>
+
+    <string name="label_menu_calendario_corsi">Calendario Corsi</string>
+    <string name="label_admin_menu_lista_utenti">Lista Utenti</string>
+    <string name="label_admin_menu_lista_esercizi">Lista Esercizi Per Utente</string>
+    <string name="label_admin_menu_signup">Signup</string>
+    <string name="label_user_menu_lista_esercizi">Scheda Esercizi</string>
+    <string name="label_user_menu_entry_card">Entry Card</string>
+    <string name="argomento_lista_utente_to_esercizi">argomentListaEsercizi</string>
+
+
     <string name="collectionUtenti">Utenti</string>
     <string name="collectionEsercizi">Esercizi</string>
     <string name="collectionEserciziPerUtente">EserciziPerUtente</string>

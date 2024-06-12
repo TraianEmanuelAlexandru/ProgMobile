@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.gms.google-services")
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -60,11 +61,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation("androidx.fragment:fragment-ktx:+")
-    implementation("com.google.zxing:core:3.4.1")
-    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
-    implementation("com.squareup.retrofit2:retrofit:+")
-    implementation("com.squareup.retrofit2:converter-moshi:+")
-    implementation ("com.squareup.moshi:moshi:+")
-    implementation ("com.squareup.moshi:moshi-kotlin:+")
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.core)
+    implementation(libs.zxing.android.embedded)
+    implementation(libs.okhttp)
 }
