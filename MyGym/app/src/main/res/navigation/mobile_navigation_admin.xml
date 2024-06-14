@@ -68,6 +68,12 @@
             app:destination="@id/fragment_nuova_giornata"
             app:popUpTo="@id/fragment_lista_giorni"
             app:popUpToInclusive="true">
+            <argument
+                android:name="ArgomentoEmailDaListaGiorniToNuovaGiornata"
+                app:argType="string"/>
+            <argument
+                android:name="ArgomentoGiornoDaListaGiorniToNuovaGiornata"
+                app:argType="integer"/>
         </action>
     </fragment>
 
@@ -85,6 +91,15 @@
         android:id="@+id/fragment_nuova_giornata"
         android:name="com.example.mygym.ui.schedaEsercizi.listaGiorni.listaEsercizi.NuovaGiornataFragment"
         android:label="@string/label_admin_menu_nuova_giornata"
-        tools:layout="@layout/fragment_nuova_giornata" />
+        tools:layout="@layout/fragment_nuova_giornata">
+        <argument
+            android:name="ArgomentoEmailDaListaGiorniToNuovaGiornata"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="ArgomentoGiornoDaListaGiorniToNuovaGiornata"
+            app:argType="integer"
+            android:defaultValue="0"/>
+    </fragment>
 </navigation>
 

@@ -51,23 +51,11 @@ class ListaGiorniFragment : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Exception $it occurred", Toast.LENGTH_SHORT).show()
             }
-        binding.buttonAggiungiGiornata.setOnClickListener{
-            it.findNavController().navigate(R.id.fragment_nuova_giornata)
-            /*
-            val numeroGiornate = recyclerView.adapter?.itemCount
-            if (numeroGiornate != null) {
-                firestore.collection(getString(R.string.collectionUtenti))
-                    .document(emailUtente)
-                    .collection(getString(R.string.collectionEserciziPerGiorno))
-                    .add("Giornata $numeroGiornate")
-            }else{
-                firestore.collection(getString(R.string.collectionUtenti))
-                    .document(emailUtente)
-                    .collection(getString(R.string.collectionEserciziPerGiorno))
-                    .document("Giornata" + 1.toString())
-            }
 
-             */
+        binding.buttonAggiungiGiornata.setOnClickListener{
+            val numeroGiornata = recyclerView.adapter?.itemCount ?: 0
+            val action = ListaGiorniFragmentDirections.actionFragmentListaGiorniToFragmentNuovaGiornata(emailUtente, numeroGiornata+1)
+            it.findNavController().navigate(action)
         }
 
         return root
