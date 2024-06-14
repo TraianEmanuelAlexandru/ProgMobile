@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="3dp"
+    app:cardElevation="10dp"
+    app:cardPreventCornerOverlap="true"
+    app:contentPadding="3dp"
+    app:strokeColor="@color/black"
+    app:strokeWidth="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/itemTextNomeEsercizio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="NomeEserciziopiulungopossibilepercapirecomemetterlotuttointuiufuuvuhavuvrhuivruivuubevubbvuibreibiveruvube"
+            android:textColor="@color/red"
+            android:textSize="24dp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/itemTextBodyPart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="ParteDelCorpoCoinvolta"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16dp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toStartOf="@id/webView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemTextNomeEsercizio" />
+
+        <TextView
+            android:id="@+id/itemDefinitiveTextTarget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="Target:"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemTextBodyPart" />
+
+        <TextView
+            android:id="@+id/itemDefinitiveTextRepetitions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="Rep"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@id/itemDefinitiveTextSeries"
+            app:layout_constraintTop_toBottomOf="@id/itemTextTarget" />
+
+        <TextView
+            android:id="@+id/itemDefinitiveTextKg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="Peso"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toStartOf="@id/webView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/itemDefinitiveTextRepetitions"
+            app:layout_constraintTop_toBottomOf="@id/itemTextTarget" />
+
+        <TextView
+            android:id="@+id/itemDefinitiveTextSeries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="Serie"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemTextTarget" />
+
+        <TextView
+            android:id="@+id/itemTextTarget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="MuscoloCoinvolto"
+            android:textColor="@color/blu"
+            android:textSize="16dp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toStartOf="@id/webView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/itemDefinitiveTextTarget"
+            app:layout_constraintTop_toBottomOf="@id/itemTextBodyPart" />
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/zxing_transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/itemTextNomeEsercizio" />
+
+        <EditText
+            android:id="@+id/itemEditTextSerieNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="2"
+            app:layout_constraintEnd_toEndOf="@id/itemDefinitiveTextSeries"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemDefinitiveTextSeries" />
+
+        <EditText
+            android:id="@+id/itemEditTextRepNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="2"
+            app:layout_constraintEnd_toEndOf="@id/itemDefinitiveTextRepetitions"
+            app:layout_constraintStart_toStartOf="@id/itemDefinitiveTextRepetitions"
+            app:layout_constraintTop_toBottomOf="@id/itemDefinitiveTextRepetitions" />
+
+        <EditText
+            android:id="@+id/itemEditTextKgNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="2"
+
+            app:layout_constraintEnd_toEndOf="@id/itemDefinitiveTextKg"
+            app:layout_constraintStart_toStartOf="@id/itemDefinitiveTextKg"
+            app:layout_constraintTop_toBottomOf="@id/itemDefinitiveTextKg" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -4,7 +4,7 @@
     <item
         android:id="@+id/fragment_scheda_esercizi"
         android:icon="@drawable/ic_scheda_esercizi"
-        android:title="@string/label_user_menu_lista_esercizi" />
+        android:title="@string/label_user_menu_lista_giorni" />
 
     <item
         android:id="@+id/fragment_home"

@@ -18,6 +18,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
 import org.json.JSONObject
+import java.lang.Exception
 
 
 class ListaUtentiFragment : Fragment() {
@@ -49,15 +50,16 @@ class ListaUtentiFragment : Fragment() {
         val recyclerView = binding.recyclerViewListaUtenti
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        firestore.collection(getString(R.string.collectionUtenti)).get().addOnSuccessListener {
-            documents->
-            for (document in documents){
-                listaUtenti.add(document.id)
+        firestore.collection(getString(R.string.collectionUtenti)).get()
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        listaUtenti.add(document.id)
+                    }
+                    recyclerView.adapter = ListaUtentiAdapter(listaUtenti)
+                }.addOnFailureListener {
+                Toast.makeText(requireContext(), "DataBase Non raggiungibile", Toast.LENGTH_SHORT)
+                    .show()
             }
-            recyclerView.adapter = ListaUtentiAdapter(listaUtenti)
-        }.addOnFailureListener {
-            Toast.makeText(requireContext(), "DataBase Non raggiungibile", Toast.LENGTH_SHORT).show()
-        }
 
 
         binding.editTextInserireEmail.setOnClickListener{
@@ -118,13 +120,12 @@ private fun GetEsercizi(){
     val client = OkHttpClient()
 
     val request = Request.Builder()
-        .url("https://exercisedb.p.rapidapi.com/exercises?limit=10")
+        .url("https://exercisedb.p.rapidapi.com/exercises?limit=10000")
         .get()
-        .addHeader("X-RapidAPI-Key", "84ab417584msh7f427ba81894f50p137679jsn46005b4710f3")
+        .addHeader("X-RapidAPI-Key", "875aca7181msh5f520c9bfd79637p160357jsn0ddae58e07e1")
         .addHeader("X-RapidAPI-Host", "exercisedb.p.rapidapi.com")
         .build()
-
-    /* val response = client.newCall(request).execute() */
+    //84ab417584msh7f427ba81894f50p137679jsn46005b4710f3
     client.newCall(request).execute().use { response ->
         val myResponse = response.body!!.string()
         testArr = JSONArray(myResponse)
@@ -134,28 +135,19 @@ private fun GetEsercizi(){
             testArr2 = jsonObject1.getJSONArray("secondaryMuscles")
             testArr3 = jsonObject1.getJSONArray("instructions")
             for (j in 0 until testArr2.length()){
-                // var jsonObject2: JSONObject
-               // jsonObject2 = testArr2.getJSONObject(j)
                 var muscoliSecondari: String = ""
-//                muscoliSecondari = testArr2.getString(j)
                 Log.d("error3", "${response.body} ---------------------------------------")
                 muscoliSecondari += testArr2.getString(j)
                 secondaryMuscles = muscoliSecondari
             }
             for (k in 0 until testArr3.length()){
-               // var jsonObject3: JSONObject
-                //jsonObject3 = testArr3.getJSONObject(k)
-                //instructions += jsonObject3.optString(k.toString()) + "\n"
                 var istruzioni: String = ""
                 istruzioni += testArr3.getString(k)
                 instructions = istruzioni
             }
-            var id: String = jsonObject1.optString("id")
-            var nome: String = jsonObject1.optString("name")
-            var parti: String = jsonObject1.optString("bodyPart")
-            Log.d("Errore json", "$secondaryMuscles, $instructions, $id, $nome, $parti  ----------------------------------------------------------------------------")
+            val id: String = jsonObject1.optString("id")
+
             val esercizio = Esercizio(
-                jsonObject1.optString("id"),
                 jsonObject1.optString("name"),
                 jsonObject1.optString("bodyPart"),
                 jsonObject1.optString("equipment"),
@@ -167,10 +159,18 @@ private fun GetEsercizi(){
 
 
             listaEsercizi.add(esercizio)
-            if (firestore.collection("Esercizi").whereEqualTo("name", esercizio.name).get().isSuccessful){
-                Log.d("Esercizi", "Esercizio Gia Presente----------------------------------------------------------------------------------------------------------------------------------------------------------------------")
-            }else {
-                firestore.collection("Esercizi").add(esercizio)
+            val dbRef = firestore.collection(getString(R.string.collectionEsercizi)).document(id)
+            dbRef.get().addOnSuccessListener {
+                if (it != null) {
+                    Log.d(
+                        "Esercizi",
+                        "Esercizio $id Gia Presente----------------------------------------------------------------------------------------------------------------------------------------------------------------------"
+                    )
+                }else{
+                    dbRef.set(esercizio)
+                }
+            }.addOnFailureListener {
+                dbRef.set(esercizio)
             }
         }
     }
@@ -181,18 +181,4 @@ private fun GetEsercizi(){
         super.onDestroyView()
         _binding = null
     }
-
-    /*suspend fun listAll(){
-        val db =  initializeDatabase()
-        db.listAll()
-
-    }
-     fun initializeDatabase(): DatabaseService{
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://mygym-c1d3c-default-rtdb.europe-west1.firebasedatabase.app/")
-            .build()
-
-        val databaseService = retrofit.create(DatabaseService::class.java)
-        return databaseService
-    }*/
 }

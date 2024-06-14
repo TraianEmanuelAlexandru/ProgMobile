@@ -6,9 +6,12 @@
 
     <string name="label_menu_calendario_corsi">Calendario Corsi</string>
     <string name="label_admin_menu_lista_utenti">Lista Utenti</string>
-    <string name="label_admin_menu_lista_esercizi">Lista Esercizi Per Utente</string>
+    <string name="label_admin_menu_lista_giorni">Lista Giorni</string>
+    <string name="label_admin_menu_lista_esercizi">Lista Esercizi</string>
+    <string name="label_admin_menu_nuova_giornata">Genera Nuova Giornata</string>
     <string name="label_admin_menu_signup">Signup</string>
-    <string name="label_user_menu_lista_esercizi">Scheda Esercizi</string>
+
+    <string name="label_user_menu_lista_giorni">Scheda Giornate</string>
     <string name="label_user_menu_entry_card">Entry Card</string>
     <string name="argomento_lista_utente_to_esercizi">argomentListaEsercizi</string>
 

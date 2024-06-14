@@ -50,18 +50,12 @@
     </androidx.cardview.widget.CardView>
 
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewListaUtenti"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="1dp"
+        android:layout_height="wrap_content"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewEmail" />
+        app:layout_constraintTop_toBottomOf="@id/cardViewEmail" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,7 @@ package com.example.mygym
 import org.json.JSONArray
 
 data class Esercizio(
-    var id: String,
+    //var id: String,
     var name: String,
     var bodyPart: String,
     var equipment: String,
@@ -12,4 +12,3 @@ data class Esercizio(
     var secondaryMuscles: String,
     var instructions: String
 )
-

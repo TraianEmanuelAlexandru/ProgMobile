@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/fragment_scheda_esercizi"
         android:name="com.example.mygym.ui.schedaEsercizi.ListaUtentiFragment"
-        android:label="@string/label_user_menu_lista_esercizi"/>
+        android:label="@string/label_user_menu_lista_giorni"/>
 
     <fragment
         android:id="@+id/fragment_calendario"

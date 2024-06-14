@@ -113,9 +113,35 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
+                            <option name="x" value="489" />
+                            <option name="y" value="309" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="fragment_lista_giorni">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
                             <option name="x" value="256" />
                             <option name="y" value="12" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_fragment_lista_giorni_to_fragment_lista_esercizi">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_fragment_lista_giorni_to_fragment_nuova_giornata">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -127,6 +153,27 @@
                           <Point>
                             <option name="x" value="12" />
                             <option name="y" value="12" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_fragment_lista_utenti_to_fragment_lista_giorni">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="fragment_nuova_giornata">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="478" />
+                            <option name="y" value="-279" />
                           </Point>
                         </option>
                       </LayoutPositions>

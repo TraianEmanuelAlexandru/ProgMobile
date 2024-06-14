@@ -5,10 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.mygym.R
 import com.example.mygym.Utente
+import com.example.mygym.databinding.FragmentHomeAdminBinding
 import com.example.mygym.databinding.FragmentSignupBinding
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
@@ -23,6 +27,7 @@ class SignupFragment : Fragment() {
     private var _binding: FragmentSignupBinding? = null
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
+    private lateinit var callback: OnBackPressedCallback
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -36,7 +41,6 @@ class SignupFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         firebaseAuth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
@@ -44,65 +48,70 @@ class SignupFragment : Fragment() {
             val email = binding.signupEmail.text.toString()
             val password = binding.signupPassword.text.toString()
             val rb = binding.radioGroup.checkedRadioButtonId
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                if (rb != -1){
-                    if (email.contains("@gmail") || email.contains("@hotmail") || email.contains("@libero") || email.contains("@mail")) {
-                        var durataIscrizione = buttonChoice(rb)
-                        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    Toast.makeText(
-                                        context,
-                                        "Utente aggiunto correttamente",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                    val dataFineIscrizione = LocalDate.now().atStartOfDay().plusMonths(durataIscrizione.toLong()).toInstant(ZoneOffset.UTC)
-                                    val utente = Utente(
-                                        email,
-                                        Timestamp.now(),
-                                        Timestamp(dataFineIscrizione),
-                                        false
-                                    )
-                                    firestore.collection(getString(R.string.collectionUtenti)).document(email).set(utente)
-                                    binding.signupEmail.text.clear()
-                                    binding.signupPassword.text.clear()
-                                    binding.radioGroup.clearCheck()
-                                } else {
-                                    Toast.makeText(
-                                        context,
-                                        "Errore nell'aggiunta utente",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                            }
-                    } else {
-                        Toast.makeText(context, "Email non valida", Toast.LENGTH_SHORT).show()
-                    }
-                } else {
-                    Toast.makeText(context, "Scegli la durata dell'iscrizione!", Toast.LENGTH_SHORT).show()
-                }
-            } else {
-                Toast.makeText(context, "Inserisci email e password", Toast.LENGTH_SHORT)
-                    .show()
-            }
+            insertUtente(email, password, rb)
         }
     }
 
 
 //funzione per la gestione del radio group che ritorna la durata dell'iscrizione
-fun buttonChoice(radiobuttonId: Int): Int{
-    var result: Int
-    var rb_3month = binding.rb3month.id
-    var rb_4month = binding.rb4month.id
-    var rb_6month = binding.rb6month.id
-    when(radiobuttonId){
-        rb_3month-> result = 3
-        rb_4month-> result = 4
-        rb_6month-> result = 6
-        else-> result= 12
+    fun buttonChoice(radiobuttonId: Int): Int{
+        var result: Int
+        var rb_3month = binding.rb3month.id
+        var rb_4month = binding.rb4month.id
+        var rb_6month = binding.rb6month.id
+        when(radiobuttonId){
+            rb_3month-> result = 3
+            rb_4month-> result = 4
+            rb_6month-> result = 6
+            else-> result= 12
+        }
+        return result
     }
-    return result
-}
+
+    fun insertUtente(email: String, password: String, rb: Int){
+        if (email.isNotEmpty() && password.isNotEmpty()) {
+            if (rb != -1){
+                if (email.contains("@gmail") || email.contains("@hotmail") || email.contains("@libero") || email.contains("@mail")) {
+                    var durataIscrizione = buttonChoice(rb)
+                    firebaseAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Toast.makeText(
+                                    context,
+                                    "Utente aggiunto correttamente",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                val dataFineIscrizione = LocalDate.now().atStartOfDay().plusMonths(durataIscrizione.toLong()).toInstant(ZoneOffset.UTC)
+                                val utente = Utente(
+                                    email,
+                                    Timestamp.now(),
+                                    Timestamp(dataFineIscrizione),
+                                    false
+                                )
+                                firestore.collection(getString(R.string.collectionUtenti)).document(email).set(utente)
+                                binding.signupEmail.text.clear()
+                                binding.signupPassword.text.clear()
+                                binding.radioGroup.clearCheck()
+                            } else {
+                                Toast.makeText(
+                                    context,
+                                    "Errore nell'aggiunta utente",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                } else {
+                    Toast.makeText(context, "Email non valida", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(context, "Scegli la durata dell'iscrizione!", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(context, "Inserisci email e password", Toast.LENGTH_SHORT)
+                .show()
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

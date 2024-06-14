@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
 import androidx.core.content.ContextCompat.checkSelfPermission
@@ -20,6 +21,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
+import android.net.http.CallbackException
+import androidx.activity.addCallback
 
 class HomeAdminFragment : Fragment()  {
     private var _binding: FragmentHomeAdminBinding? = null
@@ -53,59 +56,65 @@ class HomeAdminFragment : Fragment()  {
             if (checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED ){
                 val intent = Intent("com.google.zxing.client.android.SCAN")
                 firestore = FirebaseFirestore.getInstance()
-               register.launch(intent)
+                register.launch(intent)
             }else{
                 richiestaPermessoCamera()
             }
         }
 
+
         return root
     }
     val register = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         val verifyEmail = it.data?.getStringExtra("SCAN_RESULT")
-        //Prendo l'utente dal database
-        firestore.collection(getString(R.string.collectionUtenti)).document(verifyEmail.toString()).get()
-            .addOnSuccessListener { document ->
-                val scadenza = document.getDate("dataScadenza")
-                val presente = document.getBoolean("presente")!!
-                if (scadenza!!.before(Timestamp.now().toDate())) {
-                    Log.d("QRCODESCANNER", "utente fuori")
+        if (verifyEmail != null) {
+            //Prendo l'utente dal database
+            firestore.collection(getString(R.string.collectionUtenti))
+                .document(verifyEmail.toString()).get()
+                .addOnSuccessListener { document ->
+                    val scadenza = document.getDate("dataScadenza")
+                    val presente = document.getBoolean("presente")!!
+                    if (scadenza!!.before(Timestamp.now().toDate())) {
+                        Log.d("QRCODESCANNER", "utente fuori")
+                        Snackbar.make(
+                            binding.root,
+                            "ACCESSO NEGATO - ISCRIZIONE SCADUTA",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+                    /// Terza verifica----Utente non già all'interno della palestra
+                    else if (presente) {
+                        Log.d("QRCODESCANNER", "utente in uscita")
+
+                        Snackbar.make(
+                            binding.root,
+                            "USCITA CONSENTITA - GRAZIE E ARRIVEDERCI",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                        //Quarta verifica---- Accesso Consentito e segnalazione presenza
+                        firestore.collection("Utenti").document(verifyEmail.toString())
+                            .update("presente", false)
+                    } else {
+                        Log.d("QRCODESCANNER", "utente dentro")
+
+                        Snackbar.make(
+                            binding.root,
+                            "ACCESSO CONSENTITO - ISCRIZIONE VALIDA",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                        firestore.collection("Utenti").document(verifyEmail.toString())
+                            .update("presente", true)
+                    }
+                }.addOnFailureListener {
                     Snackbar.make(
                         binding.root,
-                        "ACCESSO NEGATO - ISCRIZIONE SCADUTA",
+                        "ACCESSO NEGATO - EMAIL NON VALIDA",
                         Snackbar.LENGTH_LONG
                     ).show()
                 }
-                /// Terza verifica----Utente non già all'interno della palestra
-                else if (presente) {
-                    Log.d("QRCODESCANNER", "utente in uscita")
-
-                    Snackbar.make(
-                        binding.root,
-                        "USCITA CONSENTITA - GRAZIE E ARRIVEDERCI",
-                        Snackbar.LENGTH_LONG
-                    ).show()
-                    //Quarta verifica---- Accesso Consentito e segnalazione presenza
-                    firestore.collection("Utenti").document(verifyEmail.toString())
-                        .update("presente", false)
-                } else {
-                    Log.d("QRCODESCANNER", "utente dentro")
-
-                    Snackbar.make(
-                        binding.root,
-                        "ACCESSO CONSENTITO - ISCRIZIONE VALIDA",
-                        Snackbar.LENGTH_LONG
-                    ).show()
-                    firestore.collection("Utenti").document(verifyEmail.toString())
-                        .update("presente", true)
-                }
-            }.addOnFailureListener {
-                Snackbar.make(
-                    binding.root,
-                    "ACCESSO NEGATO - EMAIL NON VALIDA",
-                    Snackbar.LENGTH_LONG
-                ).show()
-            }
+        }else{
+            Toast.makeText(requireContext(), "Nessuna Email Trovata", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private val requestPermissionLauncher =
