@@ -8,7 +8,7 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/buttonAggiungiGiornata"
+        android:id="@+id/buttonAggiungiEsercizi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"
@@ -16,7 +16,7 @@
         android:background="@color/red"
         android:backgroundTint="@color/red"
         android:clickable="true"
-        android:contentDescription="Aggiungi Giornata"
+        android:contentDescription="Aggiungi Esercizi"
         android:src="@drawable/ic_action_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

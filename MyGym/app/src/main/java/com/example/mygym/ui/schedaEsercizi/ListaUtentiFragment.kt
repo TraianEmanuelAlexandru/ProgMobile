@@ -90,7 +90,7 @@ class ListaUtentiFragment : Fragment() {
         }
 
 
-        binding.buttonAggiungiGiornata.setOnClickListener{
+        binding.buttonAggiungiEsercizi.setOnClickListener{
             /*db.collection("Esercizio")
                 .add(esercizio)
                 .addOnCompleteListener {
