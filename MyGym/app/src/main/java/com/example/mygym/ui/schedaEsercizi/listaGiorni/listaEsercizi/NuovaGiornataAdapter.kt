@@ -24,12 +24,10 @@ import com.google.firebase.firestore.SetOptions
 import java.lang.Character.UnicodeBlock
 import java.lang.Character.UnicodeScript
 
-class NuovaGiornataAdapter(val data: List<Esercizio>): RecyclerView.Adapter<NuovaGiornataAdapter.NuovaGiornataViewHolder>() {
+class NuovaGiornataAdapter(val data: List<Esercizio>, val listaEserciziPerUtente: MutableList<EsercizioPerUtente>): RecyclerView.Adapter<NuovaGiornataAdapter.NuovaGiornataViewHolder>() {
 
     private val textAggiunto = "Aggiunto ✔"
     private val textDaAggiungere = "Aggiungere?"
-    val listaEserciziPerUtente = mutableListOf<EsercizioPerUtente>()
-    var posizione = 0
 
     class NuovaGiornataViewHolder(val row: View) : RecyclerView.ViewHolder(row) {
         val itemTextNomeEsercizio :TextView = row.findViewById(R.id.itemTextNomeEsercizio)
@@ -40,10 +38,13 @@ class NuovaGiornataAdapter(val data: List<Esercizio>): RecyclerView.Adapter<Nuov
         val itemTextInstructions : TextView = row.findViewById(R.id.itemTextInstructions)
         val itemDefinitiveTextEquipment : TextView = row.findViewById(R.id.itemDefinitiveTextEquipment)
         val itemTextEquipment : TextView = row.findViewById(R.id.itemTextEquipment)
+        val itemDefinitiveTextSecondaryMuscles : TextView = row.findViewById(R.id.itemDefinitiveTextSecondaryMuscles)
+        val itemTextSecondaryMuscles : TextView = row.findViewById(R.id.itemTextSecondaryMuscles)
         val itemEditTextSerieNumber : TextView = row.findViewById(R.id.itemEditTextSerieNumber)
         val itemEditTextRepNumber : TextView = row.findViewById(R.id.itemEditTextRepNumber)
         val itemEditTextKgNumber : TextView = row.findViewById(R.id.itemEditTextKgNumber)
         val itemButtonAggiungiEsercizio : Button = row.findViewById(R.id.itemButtonAggiungiEsercizio)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NuovaGiornataViewHolder {
@@ -61,12 +62,16 @@ class NuovaGiornataAdapter(val data: List<Esercizio>): RecyclerView.Adapter<Nuov
                 holder.itemTextInstructions.visibility = View.GONE
                 holder.itemDefinitiveTextEquipment.visibility = View.GONE
                 holder.itemTextEquipment.visibility = View.GONE
+                holder.itemDefinitiveTextSecondaryMuscles.visibility = View.GONE
+                holder.itemTextSecondaryMuscles.visibility = View.GONE
                 click = false
             }else {
                 holder.itemDefinitiveTextInstructions.visibility = View.VISIBLE
                 holder.itemTextInstructions.visibility = View.VISIBLE
                 holder.itemDefinitiveTextEquipment.visibility = View.VISIBLE
                 holder.itemTextEquipment.visibility = View.VISIBLE
+                holder.itemDefinitiveTextSecondaryMuscles.visibility = View.VISIBLE
+                holder.itemTextSecondaryMuscles.visibility = View.VISIBLE
                 click = true
 
             }
@@ -74,7 +79,7 @@ class NuovaGiornataAdapter(val data: List<Esercizio>): RecyclerView.Adapter<Nuov
         }
         holder.itemButtonAggiungiEsercizio.setOnClickListener{
             val esercizioPerUtente = EsercizioPerUtente(
-                data.get(posizione),
+                data.get(holder.adapterPosition),
                 holder.itemEditTextSerieNumber.text.toString(),
                 holder.itemEditTextRepNumber.text.toString(),
                 holder.itemEditTextKgNumber.text.toString()
@@ -83,21 +88,6 @@ class NuovaGiornataAdapter(val data: List<Esercizio>): RecyclerView.Adapter<Nuov
                 if (holder.itemEditTextRepNumber.text.isNotEmpty() && holder.itemEditTextSerieNumber.text.isNotEmpty() && holder.itemEditTextKgNumber.text.isNotEmpty()) {
                     listaEserciziPerUtente.add(esercizioPerUtente)
                     holder.itemButtonAggiungiEsercizio.text = textAggiunto
-                    /*
-                    dbRef.document(giorno)
-                        .set(esercizio).addOnCompleteListener {
-                            if (it.isSuccessful) {
-
-                            } else {
-                                Toast.makeText(
-                                    parent.context,
-                                    "An Error Occurred",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        }
-
-                     */
                 } else {
                     Toast.makeText(
                         parent.context,
@@ -120,7 +110,7 @@ class NuovaGiornataAdapter(val data: List<Esercizio>): RecyclerView.Adapter<Nuov
         holder.webView.loadUrl(data.get(position).gifUrl)
         holder.itemTextInstructions.text = data.get(position).instructions
         holder.itemTextEquipment.text = data.get(position).equipment
-        posizione = position
+        holder.itemTextSecondaryMuscles.text = data.get(position).secondaryMuscles
     }
 
 

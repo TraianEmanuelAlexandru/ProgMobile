@@ -1,15 +1,16 @@
 package com.example.mygym.ui.schedaEsercizi.listaGiorni.listaEsercizi
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.mygym.Esercizio
 import com.example.mygym.EsercizioPerUtente
 import com.example.mygym.R
@@ -17,15 +18,16 @@ import com.example.mygym.databinding.FragmentNuovaGiornataBinding
 import com.google.firebase.firestore.Filter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import java.util.HashMap
 
 class NuovaGiornataFragment : Fragment() {
     private var _binding: FragmentNuovaGiornataBinding? = null
     private val binding get() = _binding!!
     private lateinit var firestore: FirebaseFirestore
-    val argomentoListaToNuovaGiornata: NuovaGiornataFragmentArgs by navArgs()
-    private lateinit var listaEsercizi : MutableList<Esercizio>
-    private lateinit var listaEserciziPerUtente :MutableList<EsercizioPerUtente>
+    val argomentoListaGiorniToNuovaGiornata: NuovaGiornataFragmentArgs by navArgs()
     private lateinit var filter: Filter
+    private lateinit var mappaEsercizio : HashMap<String, Any>
+    private lateinit var listaEserciziPerGiorno: HashMap<String,Any>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,13 +35,15 @@ class NuovaGiornataFragment : Fragment() {
         _binding = FragmentNuovaGiornataBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val emailUtente = argomentoListaToNuovaGiornata.argomentoEmailDaListaGiorniToNuovaGiornata
-        val giorno = argomentoListaToNuovaGiornata.argomentoGiornoDaListaGiorniToNuovaGiornata.toString()
+        val emailUtente = argomentoListaGiorniToNuovaGiornata.argomentoEmailDaListaGiorniToNuovaGiornata
+        val giorno = argomentoListaGiorniToNuovaGiornata.argomentoGiornoDaListaGiorniToNuovaGiornata.toString()
         firestore = FirebaseFirestore.getInstance()
-        val db = firestore.collection(getString(R.string.collectionEsercizi))
+        val dbRefEsercizi = firestore.collection(getString(R.string.collectionEsercizi))
+        val dbRefUtente = firestore.collection(getString(R.string.collectionUtenti)).document(emailUtente)
 
         val recyclerView = binding.recyclerViewListaEsercizi
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        val listaEserciziPerUtente  = mutableListOf<EsercizioPerUtente>()
 
         binding.buttonAvviaFiltro.setOnClickListener{
             val nomeEsercizio = binding.editTextFiltroNomeEsercizio.text.toString()
@@ -47,19 +51,46 @@ class NuovaGiornataFragment : Fragment() {
             val targetEsercizio = binding.editTextFiltroTargetEsercizio.text.toString()
             filter = setFilter(nomeEsercizio,bodyEsercizio, targetEsercizio)
 
-            db.where(filter).get().addOnSuccessListener {
+            dbRefEsercizi.where(filter).get().addOnSuccessListener {
                 documents->
-                listaEsercizi = setListaEsercizi(documents)
-                recyclerView.adapter = NuovaGiornataAdapter(listaEsercizi)
+                var listaEsercizi = setListaEsercizi(documents)
+                recyclerView.adapter = NuovaGiornataAdapter(listaEsercizi, listaEserciziPerUtente)
             }.addOnFailureListener {
                 Toast.makeText(requireContext(), "Exception $it occurred", Toast.LENGTH_SHORT).show()
             }
         }
         binding.buttonConfermaListaEsercizi.setOnClickListener{
-            if (listaEserciziPerUtente.isEmpty()){
-                Toast.makeText(requireContext(), "Aggiungere degli esercizi per poter Salvare la Giornata", Toast.LENGTH_SHORT).show()
+            if (listaEserciziPerUtente.isNotEmpty()){
+                val lista = mutableListOf<HashMap<String,Any>>()
+                for (esercizio in listaEserciziPerUtente) {
+                    mappaEsercizio = hashMapOf(
+                        "esercizio" to esercizio.esercizio,
+                        "serie" to esercizio.serie,
+                        "peso" to esercizio.peso,
+                        "rep" to esercizio.rep
+                    )
+                    lista.add(mappaEsercizio)
+                }
+                listaEserciziPerGiorno = hashMapOf(
+                    "listaEsercizi" to lista
+                )
+
+                dbRefUtente.collection(getString(R.string.collectionEserciziPerGiorno))
+                    .document(giorno)
+                    .set(listaEserciziPerGiorno).addOnSuccessListener {
+                        Log.d(
+                            "DB",
+                            "Giorno $giorno per utente $emailUtente-------------------------------------------------------------------"
+                        )
+                    }.addOnFailureListener {
+                        Log.d(
+                            "TAG",
+                            "Exception $it occurred-------------------------------------------------------------------------------------------"
+                        )
+                    }
             }else{
-                listaEserciziPerUtente = NuovaGiornataAdapter(listaEsercizi).listaEserciziPerUtente
+                Toast.makeText(requireContext(), "Aggiungere degli esercizi per poter Salvare la Giornata", Toast.LENGTH_SHORT).show()
+
             }
 
         }

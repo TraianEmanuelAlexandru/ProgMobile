@@ -12,13 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mygym.Esercizio
 import com.example.mygym.R
 import com.example.mygym.databinding.FragmentListaUtentiBinding
-import com.example.mygym.ui.schedaEsercizi.ListaUtentiFragmentDirections
 import com.google.firebase.firestore.FirebaseFirestore
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
 import org.json.JSONObject
-import java.lang.Exception
+import androidx.work.Worker
 
 
 class ListaUtentiFragment : Fragment() {
@@ -30,10 +29,8 @@ class ListaUtentiFragment : Fragment() {
     lateinit var testArr3: JSONArray
     private lateinit var secondaryMuscles: String
     private lateinit var instructions: String
-    private lateinit var listaEsercizi: MutableList<Esercizio>
     private val binding get() = _binding!!
 
-    //val database = initializeDatabase()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,42 +60,10 @@ class ListaUtentiFragment : Fragment() {
 
 
         binding.editTextInserireEmail.setOnClickListener{
-        /*   val email = binding.editTextInserireEmail.text.toString()
-            if (email != null) {
-                val listaGiorni = db.collection("scheda_utente")
-                    .document(email)
-                    .get()as List<Giorno>
-                for(G in listaGiorni){
-                    //G.esercizi.
-                    val listaEsercizi = db.collection("Giorno")
-                        .document(G.toString())
-                        .get()as List<Giorno>
-                    for (E in listaEsercizi){
-                       // E.
-                    }
-
-                }
-                /*val idEsercizio = dbRef.push().key!!
-                val esercizio = Esercizio(idEsercizio,"leg_press", 3, 12, 30, email)
-                dbRef.child(idEsercizio).setValue(esercizio)
-                    .addOnCompleteListener{
-                        Toast.makeText(activity, "Esercizio Inserito con successo", Toast.LENGTH_SHORT).show()
-                    }.addOnFailureListener{err->
-                        Toast.makeText(activity, "Error ${err.message}", Toast.LENGTH_SHORT).show()
-                    }*/
-            }   */
         }
 
 
         binding.buttonAggiungiEsercizi.setOnClickListener{
-            /*db.collection("Esercizio")
-                .add(esercizio)
-                .addOnCompleteListener {
-                    if (it.isSuccessful)
-                        Toast.makeText(activity, "Esercizio Inserito con successo", Toast.LENGTH_SHORT).show()
-                    else
-                        Toast.makeText(activity, "Esercizio Non Inserito", Toast.LENGTH_SHORT).show()
-                }*/
             val runnable = Worker()
             val thread = Thread(runnable)
             thread.start()
@@ -111,42 +76,39 @@ class ListaUtentiFragment : Fragment() {
 
     inner class Worker: Runnable {
         override fun run(){
-                GetEsercizi()
+         //       getEsercizi()
         }
     }
 
-private fun GetEsercizi(){
-    listaEsercizi = mutableListOf()
+private fun getEsercizi(){
     val client = OkHttpClient()
 
     val request = Request.Builder()
-        .url("https://exercisedb.p.rapidapi.com/exercises?limit=10000")
+        .url("https://exercisedb.p.rapidapi.com/exercises?limit=100&offset=100")
         .get()
         .addHeader("X-RapidAPI-Key", "875aca7181msh5f520c9bfd79637p160357jsn0ddae58e07e1")
         .addHeader("X-RapidAPI-Host", "exercisedb.p.rapidapi.com")
         .build()
-    //84ab417584msh7f427ba81894f50p137679jsn46005b4710f3
+    //84ab417584msh7f427ba81894f50p137679jsn46005b4710f3            875aca7181msh5f520c9bfd79637p160357jsn0ddae58e07e1
     client.newCall(request).execute().use { response ->
         val myResponse = response.body!!.string()
         testArr = JSONArray(myResponse)
         for (i in 0 until testArr.length()) {
-            var jsonObject1: JSONObject
-            jsonObject1 = testArr.getJSONObject(i)
+            val jsonObject1 = testArr.getJSONObject(i)
             testArr2 = jsonObject1.getJSONArray("secondaryMuscles")
             testArr3 = jsonObject1.getJSONArray("instructions")
-            for (j in 0 until testArr2.length()){
-                var muscoliSecondari: String = ""
-                Log.d("error3", "${response.body} ---------------------------------------")
-                muscoliSecondari += testArr2.getString(j)
-                secondaryMuscles = muscoliSecondari
+            secondaryMuscles =""
+            for (j in 0 until testArr2.length()) {
+                var muscoliSecondari : String = ""
+                muscoliSecondari = testArr2.getString(j)
+                secondaryMuscles += ("$muscoliSecondari ")
             }
-            for (k in 0 until testArr3.length()){
+            instructions = ""
+            for (k in 0 until testArr3.length()) {
                 var istruzioni: String = ""
-                istruzioni += testArr3.getString(k)
-                instructions = istruzioni
+                istruzioni = testArr3.getString(k)
+                instructions += istruzioni
             }
-            val id: String = jsonObject1.optString("id")
-
             val esercizio = Esercizio(
                 jsonObject1.optString("name"),
                 jsonObject1.optString("bodyPart"),
@@ -156,12 +118,12 @@ private fun GetEsercizi(){
                 secondaryMuscles,
                 instructions
             )
+            val id: String = jsonObject1.getString("id")
+            val dbRef = firestore.collection(getString(R.string.collectionEsercizi))
+                .document(id)
 
-
-            listaEsercizi.add(esercizio)
-            val dbRef = firestore.collection(getString(R.string.collectionEsercizi)).document(id)
             dbRef.get().addOnSuccessListener {
-                if (it != null) {
+                if (it.exists()) {
                     Log.d(
                         "Esercizi",
                         "Esercizio $id Gia Presente----------------------------------------------------------------------------------------------------------------------------------------------------------------------"
@@ -170,8 +132,9 @@ private fun GetEsercizi(){
                     dbRef.set(esercizio)
                 }
             }.addOnFailureListener {
-                dbRef.set(esercizio)
+                Log.d("ErrorCatchingDatabase", "Error Catching document($id) from DB: Exception $it occurred")
             }
+
         }
     }
 

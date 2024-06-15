@@ -28,20 +28,32 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
-            android:id="@+id/itemTextBodyPart"
-            android:layout_width="167dp"
+            android:id="@+id/itemDefinitiveTextBodyPart"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:gravity="center"
-            android:text="ParteDelCorpoCoinvolta"
+            android:text="BodyPart"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemTextNomeEsercizio" />
+
+        <TextView
+            android:id="@+id/itemTextBodyPart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:gravity="start"
+            android:text="ParteDelCorpo"
             android:textColor="@android:color/holo_orange_dark"
             android:textSize="16dp"
             android:textStyle="italic"
             app:layout_constraintEnd_toStartOf="@id/webView"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/itemDefinitiveTextBodyPart"
             app:layout_constraintTop_toBottomOf="@id/itemTextNomeEsercizio" />
 
         <TextView
@@ -103,17 +115,16 @@
 
         <TextView
             android:id="@+id/itemTextTarget"
-            android:layout_width="125dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
-            android:gravity="center"
+            android:gravity="start"
             android:text="MuscoloCoinvolto"
             android:textColor="@color/blu"
             android:textSize="16dp"
             android:textStyle="italic"
             app:layout_constraintEnd_toStartOf="@id/webView"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/itemDefinitiveTextTarget"
             app:layout_constraintTop_toBottomOf="@id/itemTextBodyPart" />
 
@@ -219,6 +230,34 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/itemDefinitiveTextEquipment"
             app:layout_constraintTop_toBottomOf="@id/itemTextInstructions" />
+
+        <TextView
+            android:id="@+id/itemDefinitiveTextSecondaryMuscles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="SecondaryMuscles"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="italic"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/itemDefinitiveTextEquipment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemTextEquipment" />
+
+        <TextView
+            android:id="@+id/itemTextSecondaryMuscles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="Equipaggiamento necessario  sfhvuishu fihviu oafidvafu udi hvuifahu ihuhuhaihuuihaviiauvba"
+            android:textSize="16dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/itemDefinitiveTextSecondaryMuscles"
+            app:layout_constraintTop_toBottomOf="@id/itemTextEquipment" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

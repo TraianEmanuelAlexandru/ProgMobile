@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
@@ -12,27 +13,63 @@
     app:contentPadding="5dp"
     app:strokeColor="@color/black"
     app:strokeWidth="2dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/itemTextNumeroGiorno"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:gravity="center"
-        android:text="1"
-        android:textColor="@color/white"
-        android:textSize="24dp"
-        android:textStyle="italic" />
+        <TextView
+            android:id="@+id/itemDefinitiveTextNumeroGiornata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="Giornata: "
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/itemTextNumeroGiornata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/itemDefinitiveTextNumeroGiornata"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/itemDefinitiveTextNumeroEsercizi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:gravity="center"
+            android:text="Nº Esercizi: "
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/itemTextNumeroGiornata"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/itemTextNumeroEsercizi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/itemDefinitiveTextNumeroEsercizi"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/itemTextNomeGiornata"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:gravity="center"
-        android:text="NomeGiornata"
-        android:textColor="@color/white"
-        android:textSize="24dp"
-        android:textStyle="italic" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

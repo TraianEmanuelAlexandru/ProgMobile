@@ -9,12 +9,12 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mygym.R
 
-class ListaGiorniAdapter(val data: List<String>): RecyclerView.Adapter<ListaGiorniAdapter.ListaGiorniViewHolder>() {
+class ListaGiorniAdapter(val data: List<String>, val emailUtente: String): RecyclerView.Adapter<ListaGiorniAdapter.ListaGiorniViewHolder>() {
 
 
     class ListaGiorniViewHolder(val row: View) : RecyclerView.ViewHolder(row) {
-        val itemTextNomeGiornata :TextView = row.findViewById(R.id.itemTextNomeGiornata)
-        val itemTextNumeroGiorno : TextView = row.findViewById(R.id.itemTextNumeroGiorno)
+        //val itemTextNumeroEsercizi :TextView = row.findViewById(R.id.itemTextNumeroEsercizi)
+        val itemTextNumeroGiornata : TextView = row.findViewById(R.id.itemTextNumeroGiornata)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListaGiorniViewHolder {
@@ -23,20 +23,19 @@ class ListaGiorniAdapter(val data: List<String>): RecyclerView.Adapter<ListaGior
         val holder = ListaGiorniViewHolder(layout)
 
         holder.row.setOnClickListener{
-            /*
-            val argomento = holder.itemTextNumeroGiorno.text.toString()
-            val action = ListaGiorniFragmentDirections.actionFragmentListaGiorniToFragmentListaEsercizi(argomento)
-            it.findNavController().navigate(action)
-            Toast.makeText(parent.context, "Hai cliccato $argomento ", Toast.LENGTH_SHORT).show()
 
-             */
+            val giorno = holder.itemTextNumeroGiornata.text.toString()
+            val action = ListaGiorniFragmentDirections.actionFragmentListaGiorniToFragmentListaEsercizi(giorno, emailUtente)
+            it.findNavController().navigate(action)
+            Toast.makeText(parent.context, "Hai cliccato $giorno ", Toast.LENGTH_SHORT).show()
+
+
         }
         return holder
     }
 
     override fun onBindViewHolder(holder: ListaGiorniViewHolder, position: Int) {
-        holder.itemTextNomeGiornata.text = data.get(position)
-        holder.itemTextNumeroGiorno.text = position.toString()
+        holder.itemTextNumeroGiornata.text = data.get(position)
     }
 
 

@@ -17,17 +17,17 @@ import com.google.firebase.firestore.FirebaseFirestore
 class ListaGiorniFragment : Fragment() {
     private var _binding: FragmentListaGiorniBinding? = null
     private val binding get() = _binding!!
-    val argomentoListaToGiorni: ListaGiorniFragmentArgs by navArgs()
+    val argomentoListaUtentiToListaGiorni: ListaGiorniFragmentArgs by navArgs()
     private lateinit var firestore: FirebaseFirestore
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentListaGiorniBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         firestore = FirebaseFirestore.getInstance()
-        val emailUtente = argomentoListaToGiorni.argomentoDaListaUtentiToListaGiorni
+        val emailUtente = argomentoListaUtentiToListaGiorni.argomentoDaListaUtentiToListaGiorni
         val recyclerView = binding.recyclerViewListaGiorni
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -45,7 +45,7 @@ class ListaGiorniFragment : Fragment() {
                     for (document in documents) {
                         listaGiorni.add(document.id)
                     }
-                    recyclerView.adapter = ListaGiorniAdapter(listaGiorni)
+                    recyclerView.adapter = ListaGiorniAdapter(listaGiorni, emailUtente)
                 }
             }
             .addOnFailureListener {

@@ -60,7 +60,10 @@
             app:popUpTo="@id/fragment_lista_giorni"
             app:popUpToInclusive="true">
             <argument
-                android:name="ArgomentoDaListaGiorniToListaEsercizi"
+                android:name="ArgomentoEmailDaListaGiorniToListaEsercizi"
+                app:argType="string"/>
+            <argument
+                android:name="ArgomentoGiornoDaListaGiorniToListaEsercizi"
                 app:argType="string"/>
         </action>
         <action
@@ -83,7 +86,11 @@
         android:label="@string/label_admin_menu_lista_esercizi"
         tools:layout="@layout/fragment_lista_esercizi" >
         <argument
-            android:name="ArgomentoDaListaGiorniToListaEsercizi"
+            android:name="ArgomentoEmailDaListaGiorniToListaEsercizi"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="ArgomentoGiornoDaListaGiorniToListaEsercizi"
             app:argType="string"
             android:defaultValue=""/>
     </fragment>
