@@ -9,9 +9,10 @@
     <string name="label_admin_menu_lista_giorni">Lista Giorni</string>
     <string name="label_admin_menu_lista_esercizi">Lista Esercizi</string>
     <string name="label_admin_menu_nuova_giornata">Genera Nuova Giornata</string>
+
     <string name="label_admin_menu_signup">Signup</string>
 
-    <string name="label_user_menu_lista_giorni">Scheda Giornate</string>
+    <string name="label_user_menu_schede_utente">Schede Utente</string>
     <string name="label_user_menu_entry_card">Entry Card</string>
     <string name="argomento_lista_utente_to_esercizi">argomentListaEsercizi</string>
 
@@ -21,8 +22,11 @@
     <string name="collectionEserciziPerUtente">EserciziPerUtente</string>
     <string name="collectionEserciziPerGiorno">EserciziPerGiorno</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="camera_access_required">Accesso alla fotocamera necessario per scannerizzare i QrCode</string>
     <string name="ok">Conferma</string>
+    <string name="rimuovere_giornata">Rimuovere Giornata?</string>
+    <string name="label_user_menu_lista_giorni_utente">Lista Giorni Utente</string>
+    <string name="valuta_giornata">Valuta giornata</string>
+    <string name="collectionValutazioniGiornate">ValutazioniGiornate</string>
 </resources>

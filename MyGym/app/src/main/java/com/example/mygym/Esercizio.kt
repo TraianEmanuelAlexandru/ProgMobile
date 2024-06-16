@@ -1,9 +1,12 @@
 package com.example.mygym
 
-import org.json.JSONArray
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity (tableName = "Esercizi")
 data class Esercizio(
-    var name: String = "",
+    @PrimaryKey var name: String = "",
     var bodyPart: String = "",
     var equipment: String = "",
     var gifUrl: String = "",
@@ -11,8 +14,9 @@ data class Esercizio(
     var secondaryMuscles : String = "",
     var instructions: String = ""
 )
+@Entity(tableName = "EserciziPerUtente")
 data class EsercizioPerUtente(
-    var esercizio: Esercizio = Esercizio(),
+    @Embedded @PrimaryKey var esercizio: Esercizio = Esercizio(),
     var serie: String = "",
     var rep: String = "",
     var peso: String = ""

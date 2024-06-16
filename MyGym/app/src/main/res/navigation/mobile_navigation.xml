@@ -14,13 +14,8 @@
             android:id="@+id/action_fragment_home_to_fragment_entryCard"
             app:destination="@id/fragment_entryCard"
             app:popUpTo="@id/fragment_home"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
-
-    <fragment
-        android:id="@+id/fragment_scheda_esercizi"
-        android:name="com.example.mygym.ui.schedaEsercizi.ListaUtentiFragment"
-        android:label="@string/label_user_menu_lista_giorni"/>
 
     <fragment
         android:id="@+id/fragment_calendario"
@@ -35,4 +30,57 @@
         android:label="@string/label_user_menu_entry_card"
         tools:layout="@layout/fragment_entrycard" />
 
+    <fragment
+        android:id="@+id/fragment_schede_utente"
+        android:name="com.example.mygym.ui.schedaEsercizi.SchedeUtenteFragment"
+        android:label="@string/label_user_menu_schede_utente"
+        tools:layout="@layout/fragment_schede_utente" >
+        <action
+            android:id="@+id/action_fragment_schede_utente_to_fragment_lista_giorni"
+            app:destination="@id/fragment_lista_giorni_utente"
+            app:popUpTo="@id/fragment_schede_utente"
+            app:popUpToInclusive="false">
+            <argument
+                android:name="ArgomentoDaSchedeUtenteToListaGiorniUtente"
+                app:argType="boolean"
+                />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_lista_giorni_utente"
+        android:name="com.example.mygym.ui.schedaEsercizi.listaGiorni.ListaGiorniUtenteFragment"
+        android:label="@string/label_user_menu_lista_giorni_utente"
+        tools:layout="@layout/fragment_lista_giorni_utente">
+        <argument
+            android:name="ArgomentoDaSchedeUtenteToListaGiorniUtente"
+            app:argType="boolean"
+            android:defaultValue="false"
+            />
+        <action
+            android:id="@+id/action_fragment_lista_giorni_utente_to_fragment_lista_esercizi"
+            app:destination="@id/fragment_lista_esercizi"
+            app:popUpTo="@id/fragment_lista_giorni"
+            app:popUpToInclusive="false">
+            <argument
+                android:name="ArgomentoEmailDaListaGiorniToListaEsercizi"
+                app:argType="string"/>
+            <argument
+                android:name="ArgomentoGiornoDaListaGiorniToListaEsercizi"
+                app:argType="string"/>
+        </action>
+    </fragment>
+    <fragment
+        android:id="@id/fragment_lista_esercizi"
+        android:name="com.example.mygym.ui.schedaEsercizi.listaGiorni.listaEsercizi.ListaEserciziFragment"
+        android:label="@string/label_admin_menu_lista_esercizi"
+        tools:layout="@layout/fragment_lista_esercizi">
+        <argument
+            android:name="ArgomentoEmailDaListaGiorniToListaEsercizi"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="ArgomentoGiornoDaListaGiorniToListaEsercizi"
+            app:argType="string"
+            android:defaultValue=""/>
+    </fragment>
 </navigation>

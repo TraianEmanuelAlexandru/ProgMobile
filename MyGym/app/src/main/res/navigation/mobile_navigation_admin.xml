@@ -20,7 +20,7 @@
             android:id="@+id/action_navigation_home_admin_to_signupFragment"
             app:destination="@id/fragment_signup"
             app:popUpTo="@id/fragment_home_admin"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/fragment_signup"
@@ -38,7 +38,7 @@
             android:id="@+id/action_fragment_lista_utenti_to_fragment_lista_giorni"
             app:destination="@id/fragment_lista_giorni"
             app:popUpTo="@id/fragment_lista_utenti"
-            app:popUpToInclusive="true">
+            app:popUpToInclusive="false">
             <argument
                 android:name="ArgomentoDaListaUtentiToListaGiorni"
                 app:argType="string"/>
@@ -58,7 +58,7 @@
             android:id="@+id/action_fragment_lista_giorni_to_fragment_lista_esercizi"
             app:destination="@id/fragment_lista_esercizi"
             app:popUpTo="@id/fragment_lista_giorni"
-            app:popUpToInclusive="true">
+            app:popUpToInclusive="false">
             <argument
                 android:name="ArgomentoEmailDaListaGiorniToListaEsercizi"
                 app:argType="string"/>
@@ -70,13 +70,10 @@
             android:id="@+id/action_fragment_lista_giorni_to_fragment_nuova_giornata"
             app:destination="@id/fragment_nuova_giornata"
             app:popUpTo="@id/fragment_lista_giorni"
-            app:popUpToInclusive="true">
+            app:popUpToInclusive="false">
             <argument
                 android:name="ArgomentoEmailDaListaGiorniToNuovaGiornata"
                 app:argType="string"/>
-            <argument
-                android:name="ArgomentoGiornoDaListaGiorniToNuovaGiornata"
-                app:argType="integer"/>
         </action>
     </fragment>
 
@@ -103,10 +100,6 @@
             android:name="ArgomentoEmailDaListaGiorniToNuovaGiornata"
             app:argType="string"
             android:defaultValue=""/>
-        <argument
-            android:name="ArgomentoGiornoDaListaGiorniToNuovaGiornata"
-            app:argType="integer"
-            android:defaultValue="0"/>
     </fragment>
 </navigation>
 

@@ -18,6 +18,7 @@ import okhttp3.Request
 import org.json.JSONArray
 import org.json.JSONObject
 import androidx.work.Worker
+import com.google.firebase.firestore.Filter
 
 
 class ListaUtentiFragment : Fragment() {
@@ -76,7 +77,7 @@ class ListaUtentiFragment : Fragment() {
 
     inner class Worker: Runnable {
         override fun run(){
-         //       getEsercizi()
+            getEsercizi()
         }
     }
 
@@ -84,7 +85,7 @@ private fun getEsercizi(){
     val client = OkHttpClient()
 
     val request = Request.Builder()
-        .url("https://exercisedb.p.rapidapi.com/exercises?limit=100&offset=100")
+        .url("https://exercisedb.p.rapidapi.com/exercises?limit=0")
         .get()
         .addHeader("X-RapidAPI-Key", "875aca7181msh5f520c9bfd79637p160357jsn0ddae58e07e1")
         .addHeader("X-RapidAPI-Host", "exercisedb.p.rapidapi.com")
@@ -109,6 +110,8 @@ private fun getEsercizi(){
                 istruzioni = testArr3.getString(k)
                 instructions += istruzioni
             }
+            val nomeEsercizio = jsonObject1.optString("name")
+            val gifUrl = jsonObject1.optString("gifUrl")
             val esercizio = Esercizio(
                 jsonObject1.optString("name"),
                 jsonObject1.optString("bodyPart"),
@@ -119,17 +122,45 @@ private fun getEsercizi(){
                 instructions
             )
             val id: String = jsonObject1.getString("id")
-            val dbRef = firestore.collection(getString(R.string.collectionEsercizi))
+            val dbRefEsercizio = firestore.collection(getString(R.string.collectionEsercizi))
                 .document(id)
 
-            dbRef.get().addOnSuccessListener {
+            //val dbRef = firestore.collection(getString(R.string.collectionUtenti))
+
+
+
+
+            dbRefEsercizio.get().addOnSuccessListener {
                 if (it.exists()) {
-                    Log.d(
-                        "Esercizi",
-                        "Esercizio $id Gia Presente----------------------------------------------------------------------------------------------------------------------------------------------------------------------"
-                    )
+                    //modifico il valore nel mio db degli esercizi
+                    dbRefEsercizio.update("gifUrl", gifUrl)
+                    //modifico il valore per tutti gli utenti che hanno quella gif nella propria scheda
+                    /*
+                    dbRef.get().addOnSuccessListener{
+                            documents->
+                        //prendo per ogni utente che abbiano una scheda i documenti che hanna il val
+                        for (document in documents) {
+                            dbRef.document(document.id)
+                                .collection(getString(R.string.collectionEserciziPerGiorno))
+                                .where(
+                                    Filter.arrayContains("esercizio", esercizio)
+                                )
+                                .get()
+                                .addOnSuccessListener {
+                                        docs->
+                                    for (doc in docs.documents){
+                                        doc.reference.update("gifUrl", gifUrl)
+                                    }
+                                }.addOnFailureListener {
+                                    Log.d("EserciziPerGiornoDATABASE", "EXception $it occurred")
+                                }
+                        }
+                    }
+
+                     */
+
                 }else{
-                    dbRef.set(esercizio)
+                    dbRefEsercizio.set(esercizio)
                 }
             }.addOnFailureListener {
                 Log.d("ErrorCatchingDatabase", "Error Catching document($id) from DB: Exception $it occurred")

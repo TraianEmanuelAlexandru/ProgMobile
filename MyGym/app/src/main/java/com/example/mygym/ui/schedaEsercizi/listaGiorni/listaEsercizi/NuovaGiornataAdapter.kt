@@ -3,9 +3,11 @@ package com.example.mygym.ui.schedaEsercizi.listaGiorni.listaEsercizi
 import android.app.AlertDialog
 import android.content.ContentResolver
 import android.provider.Settings.Global.getString
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Button
@@ -22,13 +24,19 @@ import com.google.android.material.button.MaterialButton
 import com.google.firebase.firestore.Filter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import org.json.JSONArray
+import org.json.JSONObject
 import java.lang.Character.UnicodeBlock
 import java.lang.Character.UnicodeScript
+import kotlin.concurrent.thread
 
 class NuovaGiornataAdapter(val data: List<Esercizio>, val listaEserciziPerUtente: MutableList<EsercizioPerUtente>): RecyclerView.Adapter<NuovaGiornataAdapter.NuovaGiornataViewHolder>() {
 
     private val textAggiunto = "Aggiunto ✔"
     private val textDaAggiungere = "Aggiungere?"
+
 
     class NuovaGiornataViewHolder(val row: View) : RecyclerView.ViewHolder(row) {
         val itemTextNomeEsercizio :TextView = row.findViewById(R.id.itemTextNomeEsercizio)
@@ -80,6 +88,7 @@ class NuovaGiornataAdapter(val data: List<Esercizio>, val listaEserciziPerUtente
             true
         }
         holder.itemButtonAggiungiEsercizio.setOnClickListener{
+
             if (holder.itemEditTextRepNumber.text.isNotEmpty() && holder.itemEditTextSerieNumber.text.isNotEmpty()) {
                 val esercizioPerUtente = EsercizioPerUtente(
                     data.get(holder.adapterPosition),
@@ -118,6 +127,8 @@ class NuovaGiornataAdapter(val data: List<Esercizio>, val listaEserciziPerUtente
         holder.itemTextInstructions.text = data.get(position).instructions
         holder.itemTextEquipment.text = data.get(position).equipment
         holder.itemTextSecondaryMuscles.text = data.get(position).secondaryMuscles
+
+
         for (esercizioPerUtente in listaEserciziPerUtente) {
             if (esercizioPerUtente.esercizio.equals(data.get(position))) {
                 holder.itemButtonAggiungiEsercizio.text = textAggiunto

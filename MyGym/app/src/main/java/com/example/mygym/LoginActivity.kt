@@ -31,8 +31,8 @@ class LoginActivity : AppCompatActivity() {
         val sharedPref = applicationContext.getSharedPreferences(getString(R.string.profile_key), MODE_PRIVATE)
         val editor = sharedPref.edit()
 
-        var savedEmail: String? = sharedPref.getString("email", null)
-        var savedPassword: String? = sharedPref.getString("password", null)
+        val savedEmail: String? = sharedPref.getString("email", null)
+        val savedPassword: String? = sharedPref.getString("password", null)
         //applicationContext.deleteSharedPreferences(getString(R.string.profile_key))
         if (savedEmail != null && savedPassword != null){
             binding.loginEmail.setText(savedEmail)

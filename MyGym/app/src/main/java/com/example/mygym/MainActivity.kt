@@ -12,8 +12,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var _binding: AdminActivityMainBinding
 
+    //lateinit var esercizioRoomDatabase: EsercizioRoomDatabase
+    //lateinit var esercizioDao: EsercizioDao
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         var email = intent.getStringExtra("email")
 
@@ -21,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             _binding = AdminActivityMainBinding.inflate(layoutInflater)
             setContentView(_binding.root)
             val navView: BottomNavigationView = _binding.navViewAdmin
-            val navController = findNavController(R.id.nav_host_fragment_activity_main_admin)
+            val navController = findNavController(R.id.nav_host_fragment_activity_main_admin)//R.id.nav_host_fragment_activity_main_admin)
             /*val appBarConfiguration = AppBarConfiguration(
                 setOf(
                     R.id.fragment_home_admin, R.id.navigation_dashboard, R.id.navigation_notifications
@@ -30,11 +34,13 @@ class MainActivity : AppCompatActivity() {
             setupActionBarWithNavController(navController, appBarConfiguration)*/
             navView.selectedItemId = R.id.fragment_home_admin
             navView.setupWithNavController(navController)
+
         } else  {
             binding = ActivityMainBinding.inflate(layoutInflater)
             setContentView(binding.root)
             val navView: BottomNavigationView = binding.navView
             val navController = findNavController(R.id.nav_host_fragment_activity_main)
+
             /*val appBarConfiguration = AppBarConfiguration(
                 setOf(
                     R.id.fragment_home, R.id.navigation_dashboard, R.id.navigation_notifications

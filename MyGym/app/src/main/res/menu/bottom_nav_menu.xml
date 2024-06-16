@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/fragment_scheda_esercizi"
+        android:id="@+id/fragment_schede_utente"
         android:icon="@drawable/ic_scheda_esercizi"
-        android:title="@string/label_user_menu_lista_giorni" />
+        android:title="@string/label_user_menu_schede_utente" />
 
     <item
         android:id="@+id/fragment_home"

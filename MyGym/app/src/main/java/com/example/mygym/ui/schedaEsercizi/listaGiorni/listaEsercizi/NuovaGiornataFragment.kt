@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mygym.Esercizio
 import com.example.mygym.EsercizioPerUtente
 import com.example.mygym.R
 import com.example.mygym.databinding.FragmentNuovaGiornataBinding
+import com.example.mygym.ui.schedaEsercizi.listaGiorni.listaEsercizi.NuovaGiornataFragmentArgs
 import com.google.firebase.firestore.Filter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
@@ -33,7 +36,6 @@ class NuovaGiornataFragment : Fragment() {
         val root: View = binding.root
 
         val emailUtente = argomentoListaGiorniToNuovaGiornata.argomentoEmailDaListaGiorniToNuovaGiornata
-        val giorno = argomentoListaGiorniToNuovaGiornata.argomentoGiornoDaListaGiorniToNuovaGiornata.toString()
         firestore = FirebaseFirestore.getInstance()
         val dbRefEsercizi = firestore.collection(getString(R.string.collectionEsercizi))
         val dbRefUtente = firestore.collection(getString(R.string.collectionUtenti)).document(emailUtente)
@@ -70,11 +72,11 @@ class NuovaGiornataFragment : Fragment() {
                 //listaEserciziPerGiorno = hashMapOf("listaEsercizi" to lista)
 
                 dbRefUtente.collection(getString(R.string.collectionEserciziPerGiorno))
-                    .document(giorno)
-                    .set(listaEserciziPerGiorno).addOnSuccessListener {
+                    .add(listaEserciziPerGiorno)
+                    .addOnSuccessListener {
                         Log.d(
                             "DB",
-                            "Giorno $giorno per utente $emailUtente-------------------------------------------------------------------"
+                            "Giorno inserito per utente $emailUtente-------------------------------------------------------------------"
                         )
                     }.addOnFailureListener {
                         Log.d(
@@ -82,6 +84,7 @@ class NuovaGiornataFragment : Fragment() {
                             "Exception $it occurred-------------------------------------------------------------------------------------------"
                         )
                     }
+                it.findNavController().popBackStack()
             }else{
                 Toast.makeText(requireContext(), "Aggiungere degli esercizi per poter Salvare la Giornata", Toast.LENGTH_SHORT).show()
 
