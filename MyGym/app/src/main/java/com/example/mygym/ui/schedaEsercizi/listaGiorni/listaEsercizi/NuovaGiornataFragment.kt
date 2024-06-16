@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mygym.Esercizio
@@ -26,8 +24,7 @@ class NuovaGiornataFragment : Fragment() {
     private lateinit var firestore: FirebaseFirestore
     val argomentoListaGiorniToNuovaGiornata: NuovaGiornataFragmentArgs by navArgs()
     private lateinit var filter: Filter
-    private lateinit var mappaEsercizio : HashMap<String, Any>
-    private lateinit var listaEserciziPerGiorno: HashMap<String,Any>
+    private lateinit var listaEserciziPerGiorno: HashMap<String,EsercizioPerUtente>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,19 +58,16 @@ class NuovaGiornataFragment : Fragment() {
         }
         binding.buttonConfermaListaEsercizi.setOnClickListener{
             if (listaEserciziPerUtente.isNotEmpty()){
-                val lista = mutableListOf<HashMap<String,Any>>()
+                //val lista = mutableListOf<HashMap<String,Any>>()
+                var i = 0
+                listaEserciziPerGiorno = hashMapOf()
                 for (esercizio in listaEserciziPerUtente) {
-                    mappaEsercizio = hashMapOf(
-                        "esercizio" to esercizio.esercizio,
-                        "serie" to esercizio.serie,
-                        "peso" to esercizio.peso,
-                        "rep" to esercizio.rep
+                    i++
+                    listaEserciziPerGiorno.put(
+                      "$i", esercizio
                     )
-                    lista.add(mappaEsercizio)
                 }
-                listaEserciziPerGiorno = hashMapOf(
-                    "listaEsercizi" to lista
-                )
+                //listaEserciziPerGiorno = hashMapOf("listaEsercizi" to lista)
 
                 dbRefUtente.collection(getString(R.string.collectionEserciziPerGiorno))
                     .document(giorno)

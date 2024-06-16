@@ -18,6 +18,7 @@ import com.example.mygym.EsercizioPerUtente
 import com.example.mygym.R
 import com.example.mygym.databinding.ItemViewEsercizioBinding
 import com.example.mygym.ui.schedaEsercizi.listaGiorni.ListaGiorniFragmentArgs
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.firestore.Filter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -43,7 +44,7 @@ class NuovaGiornataAdapter(val data: List<Esercizio>, val listaEserciziPerUtente
         val itemEditTextSerieNumber : TextView = row.findViewById(R.id.itemEditTextSerieNumber)
         val itemEditTextRepNumber : TextView = row.findViewById(R.id.itemEditTextRepNumber)
         val itemEditTextKgNumber : TextView = row.findViewById(R.id.itemEditTextKgNumber)
-        val itemButtonAggiungiEsercizio : Button = row.findViewById(R.id.itemButtonAggiungiEsercizio)
+        val itemButtonAggiungiEsercizio : MaterialButton = row.findViewById(R.id.itemButtonAggiungiEsercizio)
 
     }
 
@@ -51,6 +52,7 @@ class NuovaGiornataAdapter(val data: List<Esercizio>, val listaEserciziPerUtente
         val layout = LayoutInflater.from(parent.context).
             inflate(R.layout.item_view_esercizio, parent, false)
         val holder = NuovaGiornataViewHolder(layout)
+        val bottoneCliccato = holder.itemButtonAggiungiEsercizio.text.toString()
         var click = false
         holder.webView.webViewClient
         holder.webView.settings.useWideViewPort = true
@@ -78,26 +80,31 @@ class NuovaGiornataAdapter(val data: List<Esercizio>, val listaEserciziPerUtente
             true
         }
         holder.itemButtonAggiungiEsercizio.setOnClickListener{
-            val esercizioPerUtente = EsercizioPerUtente(
-                data.get(holder.adapterPosition),
-                holder.itemEditTextSerieNumber.text.toString(),
-                holder.itemEditTextRepNumber.text.toString(),
-                holder.itemEditTextKgNumber.text.toString()
-            )
-            if (holder.itemButtonAggiungiEsercizio.text != textAggiunto) {
-                if (holder.itemEditTextRepNumber.text.isNotEmpty() && holder.itemEditTextSerieNumber.text.isNotEmpty() && holder.itemEditTextKgNumber.text.isNotEmpty()) {
+            if (holder.itemEditTextRepNumber.text.isNotEmpty() && holder.itemEditTextSerieNumber.text.isNotEmpty()) {
+                val esercizioPerUtente = EsercizioPerUtente(
+                    data.get(holder.adapterPosition),
+                    holder.itemEditTextSerieNumber.text.toString(),
+                    holder.itemEditTextRepNumber.text.toString(),
+                    holder.itemEditTextKgNumber.text.toString()
+                )
+                if (holder.itemButtonAggiungiEsercizio.isChecked == true) {
                     listaEserciziPerUtente.add(esercizioPerUtente)
+                    //holder.itemButtonAggiungiEsercizio.isChecked = false
                     holder.itemButtonAggiungiEsercizio.text = textAggiunto
-                } else {
-                    Toast.makeText(
-                        parent.context,
-                        "Inserire valori per le ripetizioni, serie e Kg",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }else{
-                listaEserciziPerUtente.remove(esercizioPerUtente)
-                holder.itemButtonAggiungiEsercizio.text = textDaAggiungere
+
+                    } else {
+                        if(listaEserciziPerUtente.remove(esercizioPerUtente)){
+                            Toast.makeText(parent.context, "Elemento Tolto dalla Lista Correttamante", Toast.LENGTH_SHORT).show()
+                            holder.itemButtonAggiungiEsercizio.text = textDaAggiungere
+                            //holder.itemButtonAggiungiEsercizio.isChecked = true
+                        }
+                    }
+            }else {
+                Toast.makeText(
+                    parent.context,
+                    "Inserire valori per le ripetizioni, serie e Kg",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
         return holder
@@ -111,6 +118,20 @@ class NuovaGiornataAdapter(val data: List<Esercizio>, val listaEserciziPerUtente
         holder.itemTextInstructions.text = data.get(position).instructions
         holder.itemTextEquipment.text = data.get(position).equipment
         holder.itemTextSecondaryMuscles.text = data.get(position).secondaryMuscles
+        for (esercizioPerUtente in listaEserciziPerUtente) {
+            if (esercizioPerUtente.esercizio.equals(data.get(position))) {
+                holder.itemButtonAggiungiEsercizio.text = textAggiunto
+                holder.itemEditTextSerieNumber.text = esercizioPerUtente.serie
+                holder.itemEditTextRepNumber.text = esercizioPerUtente.rep
+                holder.itemEditTextKgNumber.text = esercizioPerUtente.peso
+                break
+            } else {
+                holder.itemButtonAggiungiEsercizio.text = textDaAggiungere
+                holder.itemEditTextSerieNumber.text = ""
+                holder.itemEditTextRepNumber.text = ""
+                holder.itemEditTextKgNumber.text = ""
+            }
+        }
     }
 
 

@@ -136,7 +136,7 @@
             android:layout_marginTop="4dp"
             android:background="@color/zxing_transparent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemTextNomeEsercizio" />
+            app:layout_constraintTop_toBottomOf="@id/itemTextNomeEsercizio" />
 
         <EditText
             android:id="@+id/itemEditTextSerieNumber"
@@ -145,7 +145,7 @@
             android:ems="2"
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="@id/itemDefinitiveTextSeries"
-            app:layout_constraintStart_toStartOf="@+id/itemDefinitiveTextSeries"
+            app:layout_constraintStart_toStartOf="@id/itemDefinitiveTextSeries"
             app:layout_constraintTop_toBottomOf="@id/itemDefinitiveTextSeries" />
 
         <EditText
@@ -168,17 +168,35 @@
             app:layout_constraintStart_toStartOf="@id/itemDefinitiveTextKg"
             app:layout_constraintTop_toBottomOf="@id/itemDefinitiveTextKg" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/itemButtonAggiungiEsercizio"
+        <TextView
+            android:id="@+id/itemDefinitiveTextRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:checkable="true"
-            android:text="Aggiungere?"
-            app:layout_constraintEnd_toStartOf="@+id/webView"
-            app:layout_constraintHorizontal_bias="0.42"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="Valuta l'Esercizio"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="italic"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemEditTextRepNumber" />
+            app:layout_constraintEnd_toStartOf="@id/webView"
+            app:layout_constraintTop_toBottomOf="@id/itemEditTextRepNumber" />
+
+
+        <RatingBar
+            android:id="@+id/itemEditRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:numStars="5"
+            android:progressTint="@color/red"
+            android:stepSize="0.1"
+            app:layout_constraintEnd_toStartOf="@id/webView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemDefinitiveTextRating" />
+
 
         <TextView
             android:id="@+id/itemDefinitiveTextInstructions"
@@ -261,6 +279,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/itemDefinitiveTextSecondaryMuscles"
             app:layout_constraintTop_toBottomOf="@id/itemTextEquipment" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

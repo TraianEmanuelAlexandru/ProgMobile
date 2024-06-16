@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.mygym.R
 import com.example.mygym.databinding.FragmentListaGiorniBinding
 import com.google.firebase.firestore.FirebaseFirestore

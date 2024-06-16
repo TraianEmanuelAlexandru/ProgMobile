@@ -43,11 +43,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/itemDefinitiveTextNumeroGiornata"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/itemDefinitiveTextNumeroEsercizi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="16dp"
             android:gravity="center"
             android:text="Nº Esercizi: "
             android:textColor="@color/white"
@@ -62,13 +63,25 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:gravity="center"
-            android:text="1"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="24dp"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/itemDefinitiveTextNumeroEsercizi"
             app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+            android:id="@+id/itemButtonModificaGiornata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/white"
+
+            android:background="@drawable/ic_more"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
