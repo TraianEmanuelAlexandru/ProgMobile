@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.gms.google-services")
     id("androidx.navigation.safeargs")
+    id("kotlin-kapt")
 }
 
 android {
@@ -11,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.mygym"
-        minSdk = 33
+        minSdk = 32
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -68,4 +69,5 @@ dependencies {
     implementation(libs.core)
     implementation(libs.zxing.android.embedded)
     implementation(libs.okhttp)
+    kapt("androidx.room:room-compiler:2.6.1")
 }

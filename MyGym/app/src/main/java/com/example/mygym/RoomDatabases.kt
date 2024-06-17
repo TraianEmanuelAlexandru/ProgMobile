@@ -6,11 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
-@Database(entities = [EsercizioPerUtente::class], version = 1)
+@Database(entities = [EsercizioPerUtente::class, Giorno::class], version = 1)
 abstract class EsercizioRoomDatabase : RoomDatabase() {
-    abstract fun esercizioDao(): EsercizioDao
+    abstract fun esercizioPerUtenteDao(): EsercizioPerUtenteDao
+    abstract fun giornoDao(): GiornoDao
 
     private class EsercizioDatabaseCallback(
         private val scope: CoroutineScope
@@ -42,3 +42,31 @@ abstract class EsercizioRoomDatabase : RoomDatabase() {
         }
     }
 }
+
+/*
+@Database(entities = [Giorno::class], version = 1)
+abstract class GiorniRoomDatabase : RoomDatabase() {
+    abstract fun giorniDao(): GiorniDao
+
+    companion object {
+        @Volatile
+        private var INSTANCE: GiorniRoomDatabase? = null
+
+        fun getInstance(
+            context: Context
+        ): GiorniRoomDatabase {
+            return INSTANCE ?: synchronized(this) {
+                INSTANCE ?: Room.databaseBuilder(
+                    context.applicationContext,
+                    GiorniRoomDatabase::class.java,
+                    "giorni_database"
+                ).allowMainThreadQueries()
+                    .fallbackToDestructiveMigration()
+                    .build()
+                    .also { INSTANCE = it }
+            }
+        }
+    }
+}
+
+ */

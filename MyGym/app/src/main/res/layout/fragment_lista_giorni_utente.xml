@@ -5,11 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.schedaEsercizi.listaGiorni.ListaGiorniFragment">
+    tools:context=".ui.schedaEsercizi.listaGiorni.ListaGiorniUtenteFragment">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewListaGiorniUtente"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonAggiungiGiornataPersonaleUtente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@color/red"
+        android:backgroundTint="@color/red"
+        android:clickable="true"
+        android:contentDescription="Aggiungi Giornata Personale"
+        android:src="@drawable/ic_action_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

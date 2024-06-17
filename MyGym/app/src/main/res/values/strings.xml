@@ -29,4 +29,6 @@
     <string name="label_user_menu_lista_giorni_utente">Lista Giorni Utente</string>
     <string name="valuta_giornata">Valuta giornata</string>
     <string name="collectionValutazioniGiornate">ValutazioniGiornate</string>
+    <string name="rimuovi_giornata">Rimuovere Giornata?</string>
+    <string name="label_user_menu_lista_esercizi_utente">Lista Esercizi Utente</string>
 </resources>

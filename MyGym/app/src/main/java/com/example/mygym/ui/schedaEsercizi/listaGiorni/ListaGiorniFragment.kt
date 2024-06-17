@@ -10,11 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mygym.EsercizioDao
-import com.example.mygym.EsercizioRoomDatabase
-import com.example.mygym.MainActivity
 import com.example.mygym.R
-import com.example.mygym.adminsList
 import com.example.mygym.databinding.FragmentListaGiorniBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -57,7 +53,7 @@ class ListaGiorniFragment : Fragment() {
             }
 
         binding.buttonAggiungiGiornata.setOnClickListener{
-            val action = ListaGiorniFragmentDirections.actionFragmentListaGiorniToFragmentNuovaGiornata(emailUtente)
+            val action = ListaGiorniFragmentDirections.actionFragmentListaGiorniToFragmentNuovaGiornata(emailUtente, "")
             it.findNavController().navigate(action)
         }
 

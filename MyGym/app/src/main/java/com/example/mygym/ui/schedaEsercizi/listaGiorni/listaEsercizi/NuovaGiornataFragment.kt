@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mygym.Esercizio
 import com.example.mygym.EsercizioPerUtente
+import com.example.mygym.EsercizioRoomDatabase
 import com.example.mygym.R
 import com.example.mygym.databinding.FragmentNuovaGiornataBinding
 import com.example.mygym.ui.schedaEsercizi.listaGiorni.listaEsercizi.NuovaGiornataFragmentArgs
@@ -28,22 +29,38 @@ class NuovaGiornataFragment : Fragment() {
     val argomentoListaGiorniToNuovaGiornata: NuovaGiornataFragmentArgs by navArgs()
     private lateinit var filter: Filter
     private lateinit var listaEserciziPerGiorno: HashMap<String,EsercizioPerUtente>
+    private lateinit var listaEsercizi: MutableList<Esercizio>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentNuovaGiornataBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val emailUtente = argomentoListaGiorniToNuovaGiornata.argomentoEmailDaListaGiorniToNuovaGiornata
+        val giorno = argomentoListaGiorniToNuovaGiornata.argomentoGiornoDaListaGiorniToNuovaGiornata
         firestore = FirebaseFirestore.getInstance()
         val dbRefEsercizi = firestore.collection(getString(R.string.collectionEsercizi))
         val dbRefUtente = firestore.collection(getString(R.string.collectionUtenti)).document(emailUtente)
 
         val recyclerView = binding.recyclerViewListaEsercizi
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        val listaEserciziPerUtente  = mutableListOf<EsercizioPerUtente>()
+        listaEsercizi = mutableListOf()
+        var listaEserciziPerUtente  = mutableListOf<EsercizioPerUtente>()
 
+        if (giorno!= ""){
+            dbRefUtente.collection(getString(R.string.collectionEserciziPerGiorno))
+                .document(giorno).get().addOnSuccessListener {
+                    document->
+                    listaEserciziPerUtente = ListaEserciziFragment().setListaEsercizi(document)
+                    for (esercizioPerUtente in listaEserciziPerUtente){
+                        listaEsercizi.add(esercizioPerUtente.esercizio)
+                    }
+                    recyclerView.adapter = NuovaGiornataAdapter(listaEsercizi, listaEserciziPerUtente)
+                }.addOnFailureListener {
+                    Toast.makeText(requireContext(), "Exception $it occurred", Toast.LENGTH_SHORT).show()
+                }
+        }
         binding.buttonAvviaFiltro.setOnClickListener{
             val nomeEsercizio = binding.editTextFiltroNomeEsercizio.text.toString()
             val bodyEsercizio = binding.editTextFiltroCorpoEsercizio.text.toString()
@@ -52,12 +69,13 @@ class NuovaGiornataFragment : Fragment() {
 
             dbRefEsercizi.where(filter).get().addOnSuccessListener {
                 documents->
-                var listaEsercizi = setListaEsercizi(documents)
+                listaEsercizi = setListaEsercizi(documents)
                 recyclerView.adapter = NuovaGiornataAdapter(listaEsercizi, listaEserciziPerUtente)
             }.addOnFailureListener {
                 Toast.makeText(requireContext(), "Exception $it occurred", Toast.LENGTH_SHORT).show()
             }
         }
+
         binding.buttonConfermaListaEsercizi.setOnClickListener{
             if (listaEserciziPerUtente.isNotEmpty()){
                 //val lista = mutableListOf<HashMap<String,Any>>()
@@ -66,24 +84,40 @@ class NuovaGiornataFragment : Fragment() {
                 for (esercizio in listaEserciziPerUtente) {
                     i++
                     listaEserciziPerGiorno.put(
-                      "$i", esercizio
+                        "$i", esercizio
                     )
                 }
                 //listaEserciziPerGiorno = hashMapOf("listaEsercizi" to lista)
-
-                dbRefUtente.collection(getString(R.string.collectionEserciziPerGiorno))
-                    .add(listaEserciziPerGiorno)
-                    .addOnSuccessListener {
-                        Log.d(
-                            "DB",
-                            "Giorno inserito per utente $emailUtente-------------------------------------------------------------------"
-                        )
-                    }.addOnFailureListener {
-                        Log.d(
-                            "TAG",
-                            "Exception $it occurred-------------------------------------------------------------------------------------------"
-                        )
-                    }
+                if (giorno == "") {
+                    dbRefUtente.collection(getString(R.string.collectionEserciziPerGiorno))
+                        .add(listaEserciziPerGiorno)
+                        .addOnSuccessListener {
+                            Log.d(
+                                "DB",
+                                "Giorno inserito per utente $emailUtente-------------------------------------------------------------------"
+                            )
+                        }.addOnFailureListener {
+                            Log.d(
+                                "TAG",
+                                "Exception $it occurred-------------------------------------------------------------------------------------------"
+                            )
+                        }
+                } else {
+                    dbRefUtente.collection(getString(R.string.collectionEserciziPerGiorno))
+                        .document(giorno)
+                        .set(listaEserciziPerGiorno)
+                        .addOnSuccessListener {
+                            Log.d(
+                                "DB",
+                                "Giorno inserito per utente $emailUtente-------------------------------------------------------------------"
+                            )
+                        }.addOnFailureListener {
+                            Log.d(
+                                "TAG",
+                                "Exception $it occurred-------------------------------------------------------------------------------------------"
+                            )
+                        }
+                }
                 it.findNavController().popBackStack()
             }else{
                 Toast.makeText(requireContext(), "Aggiungere degli esercizi per poter Salvare la Giornata", Toast.LENGTH_SHORT).show()
@@ -94,7 +128,7 @@ class NuovaGiornataFragment : Fragment() {
         return root
     }
 
-    private fun setFilter(nomeEsercizio: String, bodyEsercizio: String, targetEsercizio: String) : Filter {
+    fun setFilter(nomeEsercizio: String, bodyEsercizio: String, targetEsercizio: String) : Filter {
         if (nomeEsercizio.isEmpty()){
             if(bodyEsercizio.isEmpty()) {
                 if (targetEsercizio.isEmpty()) {
@@ -161,7 +195,7 @@ class NuovaGiornataFragment : Fragment() {
         return filter
     }
 
-    private fun setListaEsercizi(documents: QuerySnapshot?): MutableList<Esercizio> {
+    fun setListaEsercizi(documents: QuerySnapshot?): MutableList<Esercizio> {
         val listaEsercizi = mutableListOf<Esercizio>()
         for (document in documents!!){
             val id = document.data

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mygym.EsercizioRoomDatabase
 import com.example.mygym.R
 import com.example.mygym.databinding.FragmentListaGiorniUtenteBinding
 import com.example.mygym.ui.schedaEsercizi.SchedeUtenteFragmentDirections
@@ -19,7 +20,8 @@ class ListaGiorniUtenteFragment : Fragment() {
     private var _binding: FragmentListaGiorniUtenteBinding? = null
     private val binding get() = _binding!!
     private lateinit var firestore: FirebaseFirestore
-    val fromOnline : ListaGiorniUtenteFragmentArgs by navArgs()
+
+    val argomentoFromOnline : ListaGiorniUtenteFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,36 +31,51 @@ class ListaGiorniUtenteFragment : Fragment() {
 
         val sharedPref = this.activity?.getSharedPreferences(getString(R.string.profile_key), Context.MODE_PRIVATE)
         val myEmail = sharedPref!!.getString("email", "")
-        val fromOnlineState = fromOnline.argomentoDaSchedeUtenteToListaGiorniUtente
+        val fromOnlineState = argomentoFromOnline.argomentoDaSchedeUtenteToListaGiorniUtente
 
         firestore = FirebaseFirestore.getInstance()
         val recyclerView = binding.recyclerViewListaGiorniUtente
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        var listaGiorni = mutableListOf<String>()
+        val giornoDao = EsercizioRoomDatabase.getInstance(requireContext()).giornoDao()
 
-        val listaGiorni = mutableListOf<String>()
 
-        firestore.collection(getString(R.string.collectionUtenti))
-            .document(myEmail!!)
-            .collection(getString(R.string.collectionEserciziPerGiorno))
-            .get()
-            .addOnSuccessListener { documents ->
-                if (documents.isEmpty) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Nessun Giorno trovato per questo Utente",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    for (document in documents) {
-                        listaGiorni.add(document.id)
+        if (fromOnlineState) {
+            binding.buttonAggiungiGiornataPersonaleUtente.visibility = View.GONE
+            firestore.collection(getString(R.string.collectionUtenti))
+                .document(myEmail!!)
+                .collection(getString(R.string.collectionEserciziPerGiorno))
+                .get()
+                .addOnSuccessListener { documents ->
+                    if (documents.isEmpty) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Nessun Giorno trovato per questo Utente",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        for (document in documents) {
+                            listaGiorni.add(document.id)
+                        }
+                        recyclerView.adapter =
+                            ListaGiorniAdapter(listaGiorni, myEmail, fromUser = true)
                     }
-                    recyclerView.adapter = ListaGiorniAdapter(listaGiorni, myEmail, fromUser = true)
                 }
-            }
-            .addOnFailureListener {
-                Toast.makeText(requireContext(), "Exception $it occurred", Toast.LENGTH_SHORT)
-                    .show()
-            }
+                .addOnFailureListener {
+                    Toast.makeText(requireContext(), "Exception $it occurred", Toast.LENGTH_SHORT)
+                        .show()
+                }
+        }else{
+            binding.buttonAggiungiGiornataPersonaleUtente.visibility = View.VISIBLE
+
+            val listaGiornate = giornoDao.getListaGiorni()
+
+            recyclerView.adapter = ListaGiorniUtenteAdapter(listaGiornate)
+        }
+
+        binding.buttonAggiungiGiornataPersonaleUtente.setOnClickListener {
+            it.findNavController().navigate(R.id.fragment_nuova_giornata_utente)
+        }
         return root
     }
 }

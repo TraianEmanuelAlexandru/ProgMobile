@@ -8,12 +8,19 @@ import android.webkit.WebView
 import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getString
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mygym.EsercizioPerUtente
 import com.example.mygym.R
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 
-class ListaEserciziAdapter(val data: List<EsercizioPerUtente>): RecyclerView.Adapter<ListaEserciziAdapter.ListaEserciziViewHolder>() {
+class ListaEserciziAdapter(
+    val data: List<EsercizioPerUtente>,
+    val dbRefEserciziPerGiorno: DocumentReference
+): RecyclerView.Adapter<ListaEserciziAdapter.ListaEserciziViewHolder>() {
 
     //private val textRimuovi = "Rimuovere?"
 
@@ -32,7 +39,6 @@ class ListaEserciziAdapter(val data: List<EsercizioPerUtente>): RecyclerView.Ada
         val itemEditTextRepNumber : TextView = row.findViewById(R.id.itemEditTextRepNumber)
         val itemEditTextKgNumber : TextView = row.findViewById(R.id.itemEditTextKgNumber)
         val itemEditRatingBar : RatingBar = row.findViewById(R.id.itemEditRatingBar)
-        //val itemButtonRimuoviEsercizio : Button = row.findViewById(R.id.itemButtonAggiungiEsercizio)
 
     }
 
@@ -67,8 +73,16 @@ class ListaEserciziAdapter(val data: List<EsercizioPerUtente>): RecyclerView.Ada
             true
         }
 
+        /*
+        holder.itemEditTextKgNumber.setOnClickListener{
+            if (holder.itemEditTextKgNumber.text != "") {
+            }
+        }
+
+         */
+
         holder.itemEditRatingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
-            val firestore = FirebaseFirestore.getInstance()
+            val firestore  = FirebaseFirestore.getInstance()
             val valutazioneEsercizio = hashMapOf(
                 "valutazione" to rating,
                 "esercizio" to data.get(holder.adapterPosition)

@@ -36,7 +36,7 @@
         android:label="@string/label_user_menu_schede_utente"
         tools:layout="@layout/fragment_schede_utente" >
         <action
-            android:id="@+id/action_fragment_schede_utente_to_fragment_lista_giorni"
+            android:id="@+id/action_fragment_schede_utente_to_fragment_lista_giorni_utente"
             app:destination="@id/fragment_lista_giorni_utente"
             app:popUpTo="@id/fragment_schede_utente"
             app:popUpToInclusive="false">
@@ -57,30 +57,67 @@
             android:defaultValue="false"
             />
         <action
-            android:id="@+id/action_fragment_lista_giorni_utente_to_fragment_lista_esercizi"
-            app:destination="@id/fragment_lista_esercizi"
-            app:popUpTo="@id/fragment_lista_giorni"
+            android:id="@+id/action_fragment_lista_giorni_utente_to_fragment_lista_esercizi_utente"
+            app:destination="@id/fragment_lista_esercizi_utente"
+            app:popUpTo="@id/fragment_lista_giorni_utente"
             app:popUpToInclusive="false">
             <argument
-                android:name="ArgomentoEmailDaListaGiorniToListaEsercizi"
-                app:argType="string"/>
+                android:name="ArgomentoDaListaGiorniUtenteToListaEserciziUtente"
+                app:argType="integer"
+                />
+        </action>
+        <action
+            android:id="@+id/action_fragment_lista_giorni_utente_to_fragment_nuova_giornata_utente"
+            app:destination="@id/fragment_nuova_giornata_utente"
+            app:popUpTo="@id/fragment_lista_giorni_utente"
+            app:popUpToInclusive="false">
+        </action>
+        <action
+            android:id="@+id/action_fragment_lista_giorni_utente_to_fragment_lista_esercizi"
+            app:destination="@id/fragment_lista_esercizi"
+            app:popUpTo="@id/fragment_lista_giorni_utente"
+            app:popUpToInclusive="false">
             <argument
-                android:name="ArgomentoGiornoDaListaGiorniToListaEsercizi"
-                app:argType="string"/>
+                android:name="ArgomentoEmailDaListaGiorniUtenteToListaEsercizi"
+                app:argType="string" />
+            <argument
+                android:name="ArgomentoGiornoDaListaGiorniUtenteToListaEsercizi"
+                app:argType="string"
+                />
+
         </action>
     </fragment>
+
     <fragment
-        android:id="@id/fragment_lista_esercizi"
+        android:id="@+id/fragment_nuova_giornata_utente"
+        android:name="com.example.mygym.ui.schedaEsercizi.listaGiorni.listaEsercizi.NuovaGiornataUtenteFragment"
+        android:label="@string/label_admin_menu_nuova_giornata"
+        tools:layout="@layout/fragment_nuova_giornata_utente">
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_lista_esercizi_utente"
+        android:name="com.example.mygym.ui.schedaEsercizi.listaGiorni.listaEsercizi.ListaEserciziUtenteFragment"
+        android:label="@string/label_user_menu_lista_esercizi_utente"
+        tools:layout="@layout/fragment_lista_esercizi_utente" >
+        <argument
+            android:name="ArgomentoDaListaGiorniUtenteToListaEserciziUtente"
+            app:argType="integer"
+            android:defaultValue="0"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_lista_esercizi"
         android:name="com.example.mygym.ui.schedaEsercizi.listaGiorni.listaEsercizi.ListaEserciziFragment"
         android:label="@string/label_admin_menu_lista_esercizi"
         tools:layout="@layout/fragment_lista_esercizi">
         <argument
-            android:name="ArgomentoEmailDaListaGiorniToListaEsercizi"
+            android:name="ArgomentoEmailDaListaGiorniUtenteToListaEsercizi"
             app:argType="string"
             android:defaultValue=""/>
         <argument
-            android:name="ArgomentoGiornoDaListaGiorniToListaEsercizi"
+            android:name="ArgomentoGiornoDaListaGiorniUtenteToListaEsercizi"
             app:argType="string"
-            android:defaultValue=""/>
+            android:defaultValue=""
+            />
     </fragment>
 </navigation>

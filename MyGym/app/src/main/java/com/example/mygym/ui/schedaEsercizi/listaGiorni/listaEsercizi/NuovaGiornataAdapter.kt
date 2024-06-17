@@ -88,7 +88,6 @@ class NuovaGiornataAdapter(val data: List<Esercizio>, val listaEserciziPerUtente
             true
         }
         holder.itemButtonAggiungiEsercizio.setOnClickListener{
-
             if (holder.itemEditTextRepNumber.text.isNotEmpty() && holder.itemEditTextSerieNumber.text.isNotEmpty()) {
                 val esercizioPerUtente = EsercizioPerUtente(
                     data.get(holder.adapterPosition),
@@ -96,18 +95,20 @@ class NuovaGiornataAdapter(val data: List<Esercizio>, val listaEserciziPerUtente
                     holder.itemEditTextRepNumber.text.toString(),
                     holder.itemEditTextKgNumber.text.toString()
                 )
-                if (holder.itemButtonAggiungiEsercizio.isChecked == true) {
+
+                if (holder.itemButtonAggiungiEsercizio.text == textDaAggiungere) {
                     listaEserciziPerUtente.add(esercizioPerUtente)
-                    //holder.itemButtonAggiungiEsercizio.isChecked = false
                     holder.itemButtonAggiungiEsercizio.text = textAggiunto
 
-                    } else {
-                        if(listaEserciziPerUtente.remove(esercizioPerUtente)){
-                            Toast.makeText(parent.context, "Elemento Tolto dalla Lista Correttamante", Toast.LENGTH_SHORT).show()
-                            holder.itemButtonAggiungiEsercizio.text = textDaAggiungere
-                            //holder.itemButtonAggiungiEsercizio.isChecked = true
-                        }
+                } else {
+                    if(listaEserciziPerUtente.remove(esercizioPerUtente)){
+                        Toast.makeText(parent.context, "Conferma per salvare le modifiche", Toast.LENGTH_SHORT).show()
+                        holder.itemButtonAggiungiEsercizio.text = textDaAggiungere
+                        holder.itemEditTextSerieNumber.text = ""
+                        holder.itemEditTextRepNumber.text = ""
+                        holder.itemEditTextKgNumber.text = ""
                     }
+                }
             }else {
                 Toast.makeText(
                     parent.context,
@@ -130,7 +131,7 @@ class NuovaGiornataAdapter(val data: List<Esercizio>, val listaEserciziPerUtente
 
 
         for (esercizioPerUtente in listaEserciziPerUtente) {
-            if (esercizioPerUtente.esercizio.equals(data.get(position))) {
+            if (esercizioPerUtente.esercizio.name.equals(data.get(position).name)) {
                 holder.itemButtonAggiungiEsercizio.text = textAggiunto
                 holder.itemEditTextSerieNumber.text = esercizioPerUtente.serie
                 holder.itemEditTextRepNumber.text = esercizioPerUtente.rep

@@ -70,7 +70,7 @@ class HomeAdminFragment : Fragment()  {
         if (verifyEmail != null) {
             //Prendo l'utente dal database
             firestore.collection(getString(R.string.collectionUtenti))
-                .document(verifyEmail.toString()).get()
+                .document(verifyEmail).get()
                 .addOnSuccessListener { document ->
                     val scadenza = document.getDate("dataScadenza")
                     val presente = document.getBoolean("presente")!!
@@ -92,7 +92,7 @@ class HomeAdminFragment : Fragment()  {
                             Snackbar.LENGTH_LONG
                         ).show()
                         //Quarta verifica---- Accesso Consentito e segnalazione presenza
-                        firestore.collection("Utenti").document(verifyEmail.toString())
+                        firestore.collection("Utenti").document(verifyEmail)
                             .update("presente", false)
                     } else {
                         Log.d("QRCODESCANNER", "utente dentro")
@@ -102,7 +102,7 @@ class HomeAdminFragment : Fragment()  {
                             "ACCESSO CONSENTITO - ISCRIZIONE VALIDA",
                             Snackbar.LENGTH_LONG
                         ).show()
-                        firestore.collection("Utenti").document(verifyEmail.toString())
+                        firestore.collection("Utenti").document(verifyEmail)
                             .update("presente", true)
                     }
                 }.addOnFailureListener {

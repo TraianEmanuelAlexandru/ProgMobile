@@ -15,12 +15,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mygym.EsercizioRoomDatabase
 import com.example.mygym.R
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.NonDisposableHandle.parent
 
-class ListaGiorniAdapter(val data: List<String>, val emailUtente: String, var fromUser: Boolean = false): RecyclerView.Adapter<ListaGiorniAdapter.ListaGiorniViewHolder>() {
+class ListaGiorniAdapter(val data: List<String>, val emailUtente: String , var fromUser: Boolean = false): RecyclerView.Adapter<ListaGiorniAdapter.ListaGiorniViewHolder>() {
     private lateinit var firestore : FirebaseFirestore
     private lateinit var dbRef: CollectionReference
 
@@ -43,7 +44,7 @@ class ListaGiorniAdapter(val data: List<String>, val emailUtente: String, var fr
             val giorno = data.get(holder.adapterPosition)
             if (!fromUser) {
                 val action =
-                    ListaGiorniFragmentDirections.actionFragmentListaGiorniToFragmentListaEsercizi(
+                    ListaGiorniFragmentDirections.actionFragmentListaGiorniToFragmentNuovaGiornata(
                         emailUtente,
                         giorno
                     )
@@ -119,10 +120,11 @@ class ListaGiorniAdapter(val data: List<String>, val emailUtente: String, var fr
     override fun onBindViewHolder(holder: ListaGiorniViewHolder, position: Int) {
         val numGiorno = position+1
         holder.itemTextNumeroGiornata.text = numGiorno.toString()
-        dbRef.document(data.get(position)).get().addOnSuccessListener {
-                document->
-            holder.itemTextNumeroEsercizi.text =  document.data!!.size.toString()
-        }
+            dbRef.document(data.get(position)).get().addOnSuccessListener { document ->
+                holder.itemTextNumeroEsercizi.text = document.data!!.size.toString()
+            }.addOnFailureListener {
+                holder.itemTextNumeroEsercizi.text = ""
+            }
 
     }
 

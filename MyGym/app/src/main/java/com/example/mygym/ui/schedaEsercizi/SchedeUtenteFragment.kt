@@ -27,7 +27,12 @@ class SchedeUtenteFragment : Fragment() {
 
         binding.buttonSchedaOnline.setOnClickListener {
             val fromOnline = true
-            val action = SchedeUtenteFragmentDirections.actionFragmentSchedeUtenteToFragmentListaGiorni(fromOnline)
+            val action = SchedeUtenteFragmentDirections.actionFragmentSchedeUtenteToFragmentListaGiorniUtente(fromOnline)
+            it.findNavController().navigate(action)
+        }
+        binding.buttonSchedaPersonale.setOnClickListener {
+            val fromOnline = false
+            val action = SchedeUtenteFragmentDirections.actionFragmentSchedeUtenteToFragmentListaGiorniUtente(fromOnline)
             it.findNavController().navigate(action)
         }
         return root

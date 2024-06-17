@@ -30,9 +30,9 @@ class ListaEserciziFragment : Fragment() {
 
         firestore = FirebaseFirestore.getInstance()
         val emailUtente =
-            argomentoListaGiorniToListaEsercizi.argomentoEmailDaListaGiorniToListaEsercizi
+            argomentoListaGiorniToListaEsercizi.argomentoEmailDaListaGiorniUtenteToListaEsercizi
         val giorno =
-            argomentoListaGiorniToListaEsercizi.argomentoGiornoDaListaGiorniToListaEsercizi
+            argomentoListaGiorniToListaEsercizi.argomentoGiornoDaListaGiorniUtenteToListaEsercizi
 
         val recyclerView = binding.recyclerViewListaEsercizi
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -46,7 +46,7 @@ class ListaEserciziFragment : Fragment() {
             .addOnSuccessListener { document ->
                 val listaEsercizi = setListaEsercizi(document)
 
-                recyclerView.adapter = ListaEserciziAdapter(listaEsercizi)
+                recyclerView.adapter = ListaEserciziAdapter(listaEsercizi, dbRefEserciziPerGiorno)
             }.addOnFailureListener {
                 Log.d(
                     "ERRORE",
@@ -57,7 +57,7 @@ class ListaEserciziFragment : Fragment() {
         return root
     }
 
-    private fun setListaEsercizi(document: DocumentSnapshot): MutableList<EsercizioPerUtente> {
+    fun setListaEsercizi(document: DocumentSnapshot): MutableList<EsercizioPerUtente> {
         val chiavi = document.data!!.keys
         val listaEserciziPerUtente = mutableListOf<EsercizioPerUtente>()
 
