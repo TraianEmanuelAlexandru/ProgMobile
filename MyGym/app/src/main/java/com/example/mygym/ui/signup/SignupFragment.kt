@@ -27,7 +27,6 @@ class SignupFragment : Fragment() {
     private var _binding: FragmentSignupBinding? = null
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
-    private lateinit var callback: OnBackPressedCallback
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -55,15 +54,15 @@ class SignupFragment : Fragment() {
 
 //funzione per la gestione del radio group che ritorna la durata dell'iscrizione
     fun buttonChoice(radiobuttonId: Int): Int{
-        var result: Int
-        var rb_3month = binding.rb3month.id
-        var rb_4month = binding.rb4month.id
-        var rb_6month = binding.rb6month.id
-        when(radiobuttonId){
-            rb_3month-> result = 3
-            rb_4month-> result = 4
-            rb_6month-> result = 6
-            else-> result= 12
+        val result: Int
+        val rb_3month = binding.rb3month.id
+        val rb_4month = binding.rb4month.id
+        val rb_6month = binding.rb6month.id
+        result = when(radiobuttonId){
+            rb_3month-> 3
+            rb_4month-> 4
+            rb_6month-> 6
+            else-> 12
         }
         return result
     }
@@ -72,7 +71,7 @@ class SignupFragment : Fragment() {
         if (email.isNotEmpty() && password.isNotEmpty()) {
             if (rb != -1){
                 if (email.contains("@gmail") || email.contains("@hotmail") || email.contains("@libero") || email.contains("@mail")) {
-                    var durataIscrizione = buttonChoice(rb)
+                    val durataIscrizione = buttonChoice(rb)
                     firebaseAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {

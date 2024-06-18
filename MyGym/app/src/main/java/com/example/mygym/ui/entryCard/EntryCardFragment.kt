@@ -25,11 +25,7 @@ class EntryCardFragment : Fragment() {
     ): View? {
         _binding = FragmentEntrycardBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        return root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         val viewModel : EntryCardViewModel by viewModels()
         val sharedPref = this.activity?.getSharedPreferences(getString(R.string.profile_key), MODE_PRIVATE)
         val data = sharedPref?.getString("email", "")
@@ -42,6 +38,8 @@ class EntryCardFragment : Fragment() {
             binding.QrCode.setImageBitmap(newValue)
         }
         viewModel.imageBitMap.observe(viewLifecycleOwner, imageBitMap_Observer)
+        return root
     }
+
 }
 

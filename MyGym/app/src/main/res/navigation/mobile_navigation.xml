@@ -15,6 +15,12 @@
             app:destination="@id/fragment_entryCard"
             app:popUpTo="@id/fragment_home"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_schede_utente"
+            app:destination="@id/fragment_schede_utente" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_calendario"
+            app:destination="@id/fragment_calendario" />
     </fragment>
 
     <fragment
@@ -120,4 +126,10 @@
             android:defaultValue=""
             />
     </fragment>
+    <fragment
+        android:id="@+id/fragment_impostazioni_utente"
+        android:name="com.example.mygym.ImpostazioniUtenteFragment"
+        android:label="fragment_impostazioni_utente"
+        tools:layout="@layout/fragment_impostazioni_utente" />
+
 </navigation>

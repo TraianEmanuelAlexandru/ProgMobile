@@ -31,4 +31,6 @@
     <string name="collectionValutazioniGiornate">ValutazioniGiornate</string>
     <string name="rimuovi_giornata">Rimuovere Giornata?</string>
     <string name="label_user_menu_lista_esercizi_utente">Lista Esercizi Utente</string>
+    <string name="Disconnetti">USCIRE?</string>
+    <string name="Anagrafica">Anagrafica</string>
 </resources>

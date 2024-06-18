@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ImpostazioniUtenteFragment">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center|top"
+        android:text="accedi per cambiare \n le tue credenziali"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/vecchiaEmail"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext_border_signup"
+        android:hint="Inserire email corrente"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:textColor="@color/red"
+        android:textColorHint="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/nuovaEmail"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext_border_signup"
+        android:hint="Inserire nuova email"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:textColor="@color/red"
+        android:textColorHint="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vecchiaPassword" />
+
+    <EditText
+        android:id="@+id/vecchiaPassword"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext_border_signup"
+        android:hint="Inserire Password corrente"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:textColor="@color/red"
+        android:textColorHint="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vecchiaEmail" />
+
+    <EditText
+        android:id="@+id/nuovaPassword"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/edittext_border_signup"
+        android:hint="Nuova Password"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:textColor="@color/red"
+        android:textColorHint="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nuovaEmail" />
+
+
+    <Button
+        android:id="@+id/cambiaCredenzialiButton"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/black"
+        android:text="modifica"
+        android:textColor="@color/red"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nuovaPassword" />
+
+    <TextView
+        android:id="@+id/textDataIscrizione"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        android:text="Data Iscrizione: "
+        android:textColor="@color/blu"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/textDataScadenza"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cambiaCredenzialiButton" />
+
+    <TextView
+        android:id="@+id/dataIscrizione"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        android:text="Data/.../...."
+        android:textColor="@color/blu"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/dataScadenza"
+        app:layout_constraintStart_toEndOf="@+id/textDataIscrizione"
+        app:layout_constraintTop_toBottomOf="@+id/cambiaCredenzialiButton" />
+
+    <TextView
+        android:id="@+id/textDataScadenza"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
+        android:gravity="center_vertical"
+        android:text="Data Scadenza: "
+        android:textColor="@color/blu"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/dataScadenza"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="32dp"
+        android:gravity="center_vertical"
+        android:text="Data/.../...."
+        android:textColor="@color/blu"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textDataIscrizione" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

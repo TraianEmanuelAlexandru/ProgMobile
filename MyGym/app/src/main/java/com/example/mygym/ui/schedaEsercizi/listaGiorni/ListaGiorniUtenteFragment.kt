@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mygym.EsercizioRoomDatabase
+import com.example.mygym.Giorno
 import com.example.mygym.R
 import com.example.mygym.databinding.FragmentListaGiorniUtenteBinding
 import com.example.mygym.ui.schedaEsercizi.SchedeUtenteFragmentDirections
@@ -20,6 +21,7 @@ class ListaGiorniUtenteFragment : Fragment() {
     private var _binding: FragmentListaGiorniUtenteBinding? = null
     private val binding get() = _binding!!
     private lateinit var firestore: FirebaseFirestore
+    private lateinit var listaGiornate: List<Giorno>
 
     val argomentoFromOnline : ListaGiorniUtenteFragmentArgs by navArgs()
     override fun onCreateView(
@@ -68,13 +70,13 @@ class ListaGiorniUtenteFragment : Fragment() {
         }else{
             binding.buttonAggiungiGiornataPersonaleUtente.visibility = View.VISIBLE
 
-            val listaGiornate = giornoDao.getListaGiorni()
+            listaGiornate = giornoDao.getListaGiorni()
 
             recyclerView.adapter = ListaGiorniUtenteAdapter(listaGiornate)
         }
 
         binding.buttonAggiungiGiornataPersonaleUtente.setOnClickListener {
-            it.findNavController().navigate(R.id.fragment_nuova_giornata_utente)
+            it.findNavController().navigate(R.id.action_fragment_lista_giorni_utente_to_fragment_nuova_giornata_utente)
         }
         return root
     }

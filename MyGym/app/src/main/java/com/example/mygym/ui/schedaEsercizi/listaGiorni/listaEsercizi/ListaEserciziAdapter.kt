@@ -19,7 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class ListaEserciziAdapter(
     val data: List<EsercizioPerUtente>,
-    val dbRefEserciziPerGiorno: DocumentReference
+    val fromOnline: Boolean
 ): RecyclerView.Adapter<ListaEserciziAdapter.ListaEserciziViewHolder>() {
 
     //private val textRimuovi = "Rimuovere?"
@@ -38,6 +38,7 @@ class ListaEserciziAdapter(
         val itemEditTextSerieNumber : TextView = row.findViewById(R.id.itemEditTextSerieNumber)
         val itemEditTextRepNumber : TextView = row.findViewById(R.id.itemEditTextRepNumber)
         val itemEditTextKgNumber : TextView = row.findViewById(R.id.itemEditTextKgNumber)
+        val itemDefinitiveTextRating : TextView = row.findViewById(R.id.itemDefinitiveTextRating)
         val itemEditRatingBar : RatingBar = row.findViewById(R.id.itemEditRatingBar)
 
     }
@@ -50,6 +51,7 @@ class ListaEserciziAdapter(
         holder.webView.webViewClient
         holder.webView.settings.useWideViewPort = true
         holder.webView.settings.loadWithOverviewMode = true
+
 
         holder.webView.setOnLongClickListener{
             if (click == true){
@@ -109,6 +111,10 @@ class ListaEserciziAdapter(
         holder.itemEditTextSerieNumber.text = data.get(position).serie
         holder.itemEditTextRepNumber.text = data.get(position).rep
         holder.itemEditTextKgNumber.text = data.get(position).peso
+        if (!fromOnline){
+            holder.itemEditRatingBar.visibility = View.GONE
+            holder.itemDefinitiveTextRating.visibility = View.GONE
+        }
     }
 
 

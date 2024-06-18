@@ -46,7 +46,7 @@ class ListaEserciziFragment : Fragment() {
             .addOnSuccessListener { document ->
                 val listaEsercizi = setListaEsercizi(document)
 
-                recyclerView.adapter = ListaEserciziAdapter(listaEsercizi, dbRefEserciziPerGiorno)
+                recyclerView.adapter = ListaEserciziAdapter(listaEsercizi, true)
             }.addOnFailureListener {
                 Log.d(
                     "ERRORE",

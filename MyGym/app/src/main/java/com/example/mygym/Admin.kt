@@ -1,7 +1,7 @@
 package com.example.mygym
 
-data class Admin(val username: String, val email: String)
+data class Admin(val email: String)
 val adminsList = mutableListOf(
-    Admin("Emanuel", "emanuel.traian@gmail.com"),
-    Admin("Enzo", "enzo.cingoli@gmail.com")
+    Admin("emanuel.traian@gmail.com"),
+    Admin( "enzo.cingoli@gmail.com")
 )

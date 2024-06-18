@@ -36,7 +36,8 @@ data class EsercizioPerUtente(
 */
 @Entity(tableName = "Giorni")
 data class Giorno(
-    @PrimaryKey  var idGiorno: Int = -1,
     @ColumnInfo("numero_giorno") var numeroGiorno : Int,
     @Embedded var esercizioPerUtente: EsercizioPerUtente
-)
+){
+    @PrimaryKey (autoGenerate = true) var idGiorno: Int? = null
+}

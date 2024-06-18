@@ -1,11 +1,14 @@
 package com.example.mygym.ui.home
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.mygym.R
@@ -27,16 +30,20 @@ class HomeFragment : Fragment() {
     ): View {
 
         
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        val homeViewModel : HomeViewModel by viewModels()
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        homeViewModel.verificaNumPersone()
+
+        val progBar_Observer = Observer<Int>{ newValue->
+            binding.progressBar.progress = newValue
+            binding.numeroPersonePresenti.text = newValue.toString()
         }
+        homeViewModel.progBar.observe(viewLifecycleOwner, progBar_Observer)
+
+
         val floatingActionButtonQRcode : FloatingActionButton = binding.floatingActionButtonQRcode
         floatingActionButtonQRcode.setOnClickListener{
             view?.findNavController()!!.navigate(R.id.action_fragment_home_to_fragment_entryCard)

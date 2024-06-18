@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 
 @Database(entities = [EsercizioPerUtente::class, Giorno::class], version = 1)
 abstract class EsercizioRoomDatabase : RoomDatabase() {
-    abstract fun esercizioPerUtenteDao(): EsercizioPerUtenteDao
+    //abstract fun esercizioPerUtenteDao(): EsercizioPerUtenteDao
     abstract fun giornoDao(): GiornoDao
 
     private class EsercizioDatabaseCallback(

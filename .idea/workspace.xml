@@ -45,6 +45,16 @@
           <theme>@style/Theme.MyGym</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_impostazioni.xml">
+        <config>
+          <theme>@style/Theme.MyGym</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_impostazioni_utente.xml">
+        <config>
+          <theme>@style/Theme.MyGym</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_lista_esercizi.xml">
         <config>
           <theme>@style/Theme.MyGym</theme>
@@ -140,6 +150,11 @@
           <theme>@style/Theme.MyGym</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/MyGym/app/src/main/res/menu/popup_menu_impostazioni.xml">
+        <config>
+          <theme>@style/Theme.MyGym</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/MyGym/app/src/main/res/menu/toolbar_menu.xml">
         <config>
           <theme>@style/Theme.MyGym</theme>
@@ -161,26 +176,28 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caa5223b-da2f-4502-9e70-8974861e3a26" name="Changes" comment="implementazione Scheda Online utenti  e possibiilità di recensire giornate e singoli esercizi">
+    <list default="true" id="caa5223b-da2f-4502-9e70-8974861e3a26" name="Changes" comment="implementazione database lato utente">
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/navEditor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/navEditor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/Esercizio.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/DataClasses.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/EsercizioDatabase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/DaoInterfaces.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/EsercizioRoomDatabase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/RoomDatabases.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/Giorno.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/home/HomeAdminFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/home/HomeAdminFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedeUtenteFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/SchedeUtenteFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/ListaGiorniAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/ListaGiorniAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/ListaGiorniFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/ListaGiorniFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/Admin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/Admin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/DaoInterfaces.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/DaoInterfaces.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/DataClasses.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/DataClasses.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/RoomDatabases.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/RoomDatabases.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/entryCard/EntryCardFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/entryCard/EntryCardFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/home/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/home/HomeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/home/HomeViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/home/HomeViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/ListaGiorniUtenteAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/ListaGiorniUtenteAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/ListaGiorniUtenteFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/ListaGiorniUtenteFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/ListaEserciziAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/ListaEserciziAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/ListaEserciziFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/ListaEserciziFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/NuovaGiornataAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/NuovaGiornataAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/NuovaGiornataFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/NuovaGiornataFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_lista_giorni_utente.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_lista_giorni_utente.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/item_user_view_esercizio.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/item_user_view_esercizio.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/item_view_giorno.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/item_view_giorno.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/ListaEserciziUtenteFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/ListaEserciziUtenteFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/NuovaGiornataUtenteFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/NuovaGiornataUtenteFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/signup/SignupFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/signup/SignupFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_nuova_giornata_utente.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/layout/fragment_nuova_giornata_utente.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/menu/toolbar_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/menu/toolbar_menu.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/navigation/mobile_navigation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/navigation/mobile_navigation.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/navigation/mobile_navigation_admin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/navigation/mobile_navigation_admin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyGym/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MyGym/app/src/main/res/values/strings.xml" afterDir="false" />
@@ -262,6 +279,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "PROJECT_TRUSTED_KEY": "true",
     "ResourceManagerPrefKey.ResourceType": "LAYOUT",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -660,7 +678,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718581991030</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="implementazione database lato utente">
+      <option name="closed" value="true" />
+      <created>1718662341532</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1718662341532</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -675,7 +701,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modifica colore hint del login per renderlo più visibile" />
     <MESSAGE value="Modifica icone e titoli schede" />
     <MESSAGE value="Modifica icone" />
     <MESSAGE value="Rimozione ActionBar e inserimento ToolBar" />
@@ -700,7 +725,8 @@
     <MESSAGE value="Salvataggio Esercizi in Giornate e visibilità giornatw" />
     <MESSAGE value="implementazione SchedaEsercizi Per Utente e listaGiornate per utente" />
     <MESSAGE value="implementazione Scheda Online utenti  e possibiilità di recensire giornate e singoli esercizi" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementazione Scheda Online utenti  e possibiilità di recensire giornate e singoli esercizi" />
+    <MESSAGE value="implementazione database lato utente" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementazione database lato utente" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -751,59 +777,69 @@
           <option name="timeStamp" value="351" />
         </line-breakpoint>
         <line-breakpoint type="kotlin-line">
-          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/ListaGiorniUtenteFragment.kt</url>
-          <line>68</line>
-          <option name="timeStamp" value="355" />
-        </line-breakpoint>
-        <line-breakpoint type="kotlin-line">
           <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/NuovaGiornataFragment.kt</url>
           <line>48</line>
           <option name="timeStamp" value="356" />
         </line-breakpoint>
         <line-breakpoint type="kotlin-line">
           <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/NuovaGiornataUtenteFragment.kt</url>
-          <line>61</line>
-          <option name="timeStamp" value="359" />
-        </line-breakpoint>
-        <line-breakpoint type="kotlin-line">
-          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/NuovaGiornataUtenteFragment.kt</url>
-          <line>67</line>
-          <option name="timeStamp" value="360" />
-        </line-breakpoint>
-        <line-breakpoint type="kotlin-line">
-          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/NuovaGiornataUtenteFragment.kt</url>
-          <line>72</line>
-          <option name="timeStamp" value="361" />
-        </line-breakpoint>
-        <line-breakpoint type="kotlin-line">
-          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/NuovaGiornataUtenteFragment.kt</url>
-          <line>26</line>
+          <line>31</line>
           <option name="timeStamp" value="371" />
         </line-breakpoint>
         <line-breakpoint type="kotlin-line">
           <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/NuovaGiornataUtenteFragment.kt</url>
-          <line>33</line>
+          <line>38</line>
           <option name="timeStamp" value="372" />
         </line-breakpoint>
         <line-breakpoint type="kotlin-line">
-          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/ListaGiorniUtenteFragment.kt</url>
-          <line>43</line>
-          <option name="timeStamp" value="373" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/NuovaGiornataUtenteFragment.kt</url>
-          <line>63</line>
-          <option name="timeStamp" value="374" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/ListaGiorniUtenteFragment.kt</url>
-          <line>70</line>
-          <option name="timeStamp" value="375" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/ListaGiorniAdapter.kt</url>
           <line>39</line>
           <option name="timeStamp" value="376" />
+        </line-breakpoint>
+        <line-breakpoint type="kotlin-line">
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/ListaGiorniUtenteFragment.kt</url>
+          <line>41</line>
+          <option name="timeStamp" value="379" />
+        </line-breakpoint>
+        <line-breakpoint type="kotlin-line">
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/ListaEserciziUtenteFragment.kt</url>
+          <line>30</line>
+          <option name="timeStamp" value="383" />
+        </line-breakpoint>
+        <line-breakpoint type="kotlin-line">
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/ListaEserciziUtenteFragment.kt</url>
+          <line>22</line>
+          <option name="timeStamp" value="384" />
+        </line-breakpoint>
+        <line-breakpoint type="kotlin-line">
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/ListaEserciziUtenteFragment.kt</url>
+          <line>19</line>
+          <option name="timeStamp" value="385" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/MainActivity.kt</url>
+          <line>37</line>
+          <option name="timeStamp" value="422" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/MainActivity.kt</url>
+          <line>33</line>
+          <option name="timeStamp" value="423" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/MainActivity.kt</url>
+          <line>34</line>
+          <option name="timeStamp" value="424" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/MainActivity.kt</url>
+          <line>32</line>
+          <option name="timeStamp" value="426" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/MainActivity.kt</url>
+          <line>36</line>
+          <option name="timeStamp" value="428" />
         </line-breakpoint>
         <line-breakpoint type="kotlin-function">
           <url>file://$PROJECT_DIR$/MyGym/app/src/main/java/com/example/mygym/ui/schedaEsercizi/listaGiorni/listaEsercizi/NuovaGiornataFragment.kt</url>

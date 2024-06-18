@@ -66,13 +66,12 @@
                 app:layout_constraintTop_toBottomOf="@id/editTextFiltroCorpoEsercizio" />
 
             <ImageButton
-                android:id="@+id/buttonAvviaFiltro"
+                android:id="@+id/buttonAvviaFiltroUtente"
                 android:layout_width="80dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
                 android:backgroundTint="@color/black"
-
                 android:background="@drawable/ic_search"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +90,7 @@
         app:layout_constraintTop_toBottomOf="@id/cardViewRicercaEsercizio" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/buttonConfermaListaEsercizi"
+        android:id="@+id/buttonConfermaListaEserciziUtente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"

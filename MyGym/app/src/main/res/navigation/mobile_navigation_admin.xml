@@ -21,6 +21,12 @@
             app:destination="@id/fragment_signup"
             app:popUpTo="@id/fragment_home_admin"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_fragment_home_admin_to_impostazioniFragment"
+            app:destination="@id/fragment_impostazioni"
+            app:popUpTo="@id/fragment_home_admin"
+            app:popUpToInclusive="false" >
+        </action>
     </fragment>
     <fragment
         android:id="@+id/fragment_signup"
@@ -92,6 +98,12 @@
             android:name="ArgomentoGiornoDaListaGiorniToNuovaGiornata"
             app:argType="string"
             android:defaultValue=""/>
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_impostazioni"
+        android:name="com.example.mygym.ImpostazioniFragment"
+        android:label="fragment_impostazioni"
+        tools:layout="@layout/fragment_impostazioni">
     </fragment>
 </navigation>
 

@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 
+/*
 @Dao
 interface EsercizioPerUtenteDao {
     @Query("SELECT * FROM esercizi")
@@ -40,17 +41,25 @@ interface EsercizioPerUtenteDao {
 
 }
 
+ */
+
 
 @Dao
 interface GiornoDao {
-    @Query("SELECT * FROM giorni")
+    @Query("SELECT * FROM giorni  GROUP BY numero_giorno")
     fun getListaGiorni(): List<Giorno>
+
+    @Query("SELECT DISTINCT * FROM giorni WHERE numero_giorno = :numero")
+    fun getGiorno(numero: Int): Giorno
+
+    @Query("SELECT * FROM giorni WHERE numero_giorno = :numero")
+    fun getListaEserciziPerGiorno(numero: Int): List<Giorno>
     @Update
     fun updateGiorno(vararg giorno: Giorno )
     @Insert
     fun insertGiorno(vararg giorno: Giorno)
 
     @Delete
-    fun deleteEsercizio(giorno: Giorno)
+    fun deleteGiorno(giorno: Giorno)
 
 }
