@@ -2,6 +2,7 @@ package com.example.mygym
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -17,9 +18,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         var email = intent.getStringExtra("email")!!
+        var inSettings = false
 
         if (adminsList.any { it.email == email }) {
             _binding = AdminActivityMainBinding.inflate(layoutInflater)
@@ -32,7 +32,13 @@ class MainActivity : AppCompatActivity() {
                     item: MenuItem? ->
                 when (item!!.itemId) {
                     R.id.popupMenuAnagrafica -> {
-                        navController.navigate(R.id.fragment_impostazioni)
+                        if (!inSettings) {
+                            navController.navigate(R.id.fragment_impostazioni)
+                            inSettings = true
+                        }else{
+                            navController.popBackStack()
+                            inSettings = false
+                        }
                     }
                     R.id.popupMenuDisconnect->{
                         deleteSharedPreferences(getString(R.string.profile_key))
@@ -53,7 +59,13 @@ class MainActivity : AppCompatActivity() {
                     item: MenuItem? ->
                 when (item!!.itemId) {
                     R.id.popupMenuAnagrafica -> {
-                        navController.navigate(R.id.fragment_impostazioni_utente)
+                        if (!inSettings){
+                            navController.navigate(R.id.fragment_impostazioni_utente)
+                            inSettings = true
+                        }else{
+                            navController.popBackStack()
+                            inSettings = false
+                        }
                     }
                     R.id.popupMenuDisconnect->{
                         deleteSharedPreferences(getString(R.string.profile_key))

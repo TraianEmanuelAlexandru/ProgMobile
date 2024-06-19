@@ -1,24 +1,23 @@
 package com.example.mygym.ui.schedaEsercizi
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mygym.Esercizio
 import com.example.mygym.R
 import com.example.mygym.databinding.FragmentListaUtentiBinding
+import com.google.firebase.firestore.Filter
 import com.google.firebase.firestore.FirebaseFirestore
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
-import org.json.JSONObject
-import androidx.work.Worker
-import com.google.firebase.firestore.Filter
 
 
 class ListaUtentiFragment : Fragment() {
@@ -38,30 +37,38 @@ class ListaUtentiFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val listaUtentiViewModel : ListaUtentiViewModel by viewModels()
         _binding = FragmentListaUtentiBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         firestore = FirebaseFirestore.getInstance()
 
-        val listaUtenti = mutableListOf<String>()
+
         val recyclerView = binding.recyclerViewListaUtenti
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        firestore.collection(getString(R.string.collectionUtenti)).get()
-                .addOnSuccessListener { documents ->
-                    for (document in documents) {
-                        listaUtenti.add(document.id)
+        val textWatcher: TextWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+                val email = binding.editTextInserireEmail.text.toString()
+                firestore.collection(getString(R.string.collectionUtenti)).where(Filter.and(
+                    Filter.greaterThanOrEqualTo("emailUtente", email),
+                    Filter.lessThan("emailUtente", email +"z")
+                )).get().addOnSuccessListener {
+                        documents->
+                    val listaUtenti = mutableListOf<String>()
+                    for (doc in documents){
+                        listaUtenti.add(doc.id)
                     }
                     recyclerView.adapter = ListaUtentiAdapter(listaUtenti)
                 }.addOnFailureListener {
-                Toast.makeText(requireContext(), "DataBase Non raggiungibile", Toast.LENGTH_SHORT)
-                    .show()
+                    Log.d("UTENTIDB", "Errore $it ")
+                }
             }
-
-
-        binding.editTextInserireEmail.setOnClickListener{
         }
+
+
+        binding.editTextInserireEmail.addTextChangedListener(textWatcher)
+
 
 
         binding.buttonAggiungiEsercizi.setOnClickListener{
@@ -100,17 +107,16 @@ private fun getEsercizi(){
             testArr3 = jsonObject1.getJSONArray("instructions")
             secondaryMuscles =""
             for (j in 0 until testArr2.length()) {
-                var muscoliSecondari : String = ""
+                var muscoliSecondari  = ""
                 muscoliSecondari = testArr2.getString(j)
                 secondaryMuscles += ("$muscoliSecondari ")
             }
             instructions = ""
             for (k in 0 until testArr3.length()) {
-                var istruzioni: String = ""
+                var istruzioni = ""
                 istruzioni = testArr3.getString(k)
                 instructions += istruzioni
             }
-            val nomeEsercizio = jsonObject1.optString("name")
             val gifUrl = jsonObject1.optString("gifUrl")
             val esercizio = Esercizio(
                 jsonObject1.optString("name"),

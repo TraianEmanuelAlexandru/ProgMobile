@@ -13,8 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="25dp"
-        android:background="@color/red"
-        android:backgroundTint="@color/red"
         android:clickable="true"
         android:contentDescription="Aggiungi Esercizi"
         android:src="@drawable/ic_action_name"
@@ -43,7 +41,7 @@
             android:ems="10"
             android:hint="Inserire email utente"
             android:inputType="textEmailAddress"
-            android:textColorHint="@color/material_dynamic_neutral80"
+            android:textColorHint="?attr/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

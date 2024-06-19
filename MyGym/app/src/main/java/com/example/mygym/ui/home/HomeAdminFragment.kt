@@ -23,6 +23,9 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import android.net.http.CallbackException
 import androidx.activity.addCallback
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.mygym.Valutazione
 
 class HomeAdminFragment : Fragment()  {
     private var _binding: FragmentHomeAdminBinding? = null
@@ -34,16 +37,31 @@ class HomeAdminFragment : Fragment()  {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeAdminViewModel =
-            ViewModelProvider(this).get(HomeAdminViewModel::class.java)
-
         _binding = FragmentHomeAdminBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        firestore = FirebaseFirestore.getInstance()
+        val recyclerView = binding.recyclerViewValutazioniGiornate
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val textView: TextView = binding.textHomeAdmin
-        homeAdminViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+
+        val listaValutazioni = mutableListOf<Valutazione>()
+
+        firestore.collection(getString(R.string.collectionValutazioniGiornate)).get().addOnSuccessListener {
+            documents->
+            for (doc in documents){
+                val numGiornata = doc.data.get("giornata").toString().toInt()
+                val valutazione = doc.data.get("rating").toString().toFloat()
+                val value = Valutazione(
+                    email = doc.data.get("utente").toString() ,
+                    giornata = numGiornata + 1,
+                    recensione = doc.data.get("recensione").toString(),
+                    valutazione = valutazione
+                )
+                listaValutazioni.add(value)
+            }
+            recyclerView.adapter = ListaValutazioniAdapter(listaValutazioni as List<Valutazione>)
         }
+
         val floatingActionButton: FloatingActionButton = binding.floatingActionButton
         floatingActionButton.setOnClickListener {
 
@@ -55,7 +73,6 @@ class HomeAdminFragment : Fragment()  {
         qrCodeScanButton.setOnClickListener{
             if (checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED ){
                 val intent = Intent("com.google.zxing.client.android.SCAN")
-                firestore = FirebaseFirestore.getInstance()
                 register.launch(intent)
             }else{
                 richiestaPermessoCamera()

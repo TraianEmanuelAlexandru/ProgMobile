@@ -22,16 +22,9 @@ class CalendarioFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val calendarioViewModel =
-            ViewModelProvider(this).get(CalendarioViewModel::class.java)
-
         _binding = FragmentCalendarioBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        calendarioViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
     }
 

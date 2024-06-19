@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_fragment_home_to_fragment_calendario"
             app:destination="@id/fragment_calendario" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_impostazioni_utente"
+            app:destination="@id/fragment_impostazioni_utente" />
     </fragment>
 
     <fragment

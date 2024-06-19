@@ -60,7 +60,7 @@
                 android:inputType="text"
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
-                app:layout_constraintEnd_toStartOf="@id/buttonAvviaFiltro"
+                app:layout_constraintEnd_toStartOf="@id/buttonAvviaFiltroUtente"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/editTextFiltroCorpoEsercizio" />
@@ -71,7 +71,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
-                android:backgroundTint="@color/black"
+                android:backgroundTint = "?attr/colorPrimary"
                 android:background="@drawable/ic_search"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

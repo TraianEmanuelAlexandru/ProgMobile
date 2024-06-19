@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="3dp"
+    app:cardElevation="10dp"
+    app:cardPreventCornerOverlap="true"
+    app:contentPadding="3dp"
+    app:strokeColor="@color/black"
+    app:strokeWidth="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/itemTextNomeUtente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Nome   Utente"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="32dp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/itemDefinitiveTextGiornata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="Giornata:"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemTextNomeUtente" />
+
+        <TextView
+            android:id="@+id/itemTextGiornata"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:gravity="start"
+            android:text="1"
+            android:textColor="?attr/colorSecondary"
+            android:textSize="24dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@id/itemDefinitiveTextGiornata"
+            app:layout_constraintTop_toBottomOf="@id/itemTextNomeUtente" />
+
+
+        <RatingBar
+            android:id="@+id/itemRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:numStars="5"
+            android:progressTint="@color/red"
+            android:isIndicator="true"
+            android:stepSize="0.1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/itemTextGiornata"
+            app:layout_constraintTop_toBottomOf="@id/itemTextNomeUtente" />
+
+        <TextView
+            android:id="@+id/itemDefinitiveTextRecensione"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="Recensione:"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemRatingBar" />
+
+        <TextView
+            android:id="@+id/itemTextRecensione"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:gravity="start"
+            android:text="prebviubiuhvrewiubirfhuqhfiuhiuhriwhrhfiwiurhiwreuhwiuwhwifhuhwriehiuwhrwhpu"
+            android:textColor="?attr/colorSecondary"
+            android:textSize="24dp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/itemDefinitiveTextRecensione"
+            app:layout_constraintTop_toBottomOf="@id/itemRatingBar" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

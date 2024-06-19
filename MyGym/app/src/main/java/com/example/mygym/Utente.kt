@@ -10,3 +10,10 @@ data class Utente(
     var presente: Boolean
 )
 
+data class Valutazione(
+    var email: String,
+    var giornata: Int,
+    var recensione: String,
+    var valutazione: Float
+)
+

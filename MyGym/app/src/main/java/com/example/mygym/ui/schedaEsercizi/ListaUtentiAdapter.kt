@@ -31,8 +31,9 @@ class ListaUtentiAdapter(val data: List<String>): RecyclerView.Adapter<ListaUten
     }
 
     override fun onBindViewHolder(holder: ListaUtentiViewHolder, position: Int) {
+        val posizione = position+1
         holder.itemTextUtente.text = data.get(position)
-        holder.itemTextNumeroUtente.text = position.toString()
+        holder.itemTextNumeroUtente.text = posizione.toString()
     }
 
 

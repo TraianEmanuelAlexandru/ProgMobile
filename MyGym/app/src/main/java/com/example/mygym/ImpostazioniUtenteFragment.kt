@@ -66,6 +66,8 @@ class ImpostazioniUtenteFragment : Fragment() {
                             firebaseAuth.currentUser!!.verifyBeforeUpdateEmail(nuovaEmail)
                             firebaseAuth.currentUser!!.updatePassword(nuovaPassword)
                             dbRefUtente.update("emailUtente", nuovaEmail)
+                            Toast.makeText(requireContext(), "Credenziali cambiate correttamente", Toast.LENGTH_SHORT)
+                                .show()
                         } else {
                             Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT)
                                 .show()
