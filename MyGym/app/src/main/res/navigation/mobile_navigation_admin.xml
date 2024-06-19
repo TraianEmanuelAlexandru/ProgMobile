@@ -64,18 +64,6 @@
                 app:argType="string"
                 android:defaultValue="" />
         <action
-            android:id="@+id/action_fragment_lista_giorni_to_fragment_lista_esercizi"
-            app:destination="@id/fragment_lista_esercizi"
-            app:popUpTo="@id/fragment_lista_giorni"
-            app:popUpToInclusive="false">
-            <argument
-                android:name="ArgomentoEmailDaListaGiorniToListaEsercizi"
-                app:argType="string"/>
-            <argument
-                android:name="ArgomentoGiornoDaListaGiorniToListaEsercizi"
-                app:argType="string"/>
-        </action>
-        <action
             android:id="@+id/action_fragment_lista_giorni_to_fragment_nuova_giornata"
             app:destination="@id/fragment_nuova_giornata"
             app:popUpTo="@id/fragment_lista_giorni"
