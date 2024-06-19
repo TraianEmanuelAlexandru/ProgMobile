@@ -27,6 +27,9 @@
             app:popUpTo="@id/fragment_home_admin"
             app:popUpToInclusive="false" >
         </action>
+        <action
+            android:id="@+id/action_fragment_home_admin_to_fragment_lista_utenti"
+            app:destination="@id/fragment_lista_utenti" />
     </fragment>
     <fragment
         android:id="@+id/fragment_signup"

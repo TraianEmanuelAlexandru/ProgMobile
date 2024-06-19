@@ -72,6 +72,7 @@ class ListaUtentiFragment : Fragment() {
 
 
         binding.buttonAggiungiEsercizi.setOnClickListener{
+            Toast.makeText(requireContext(),"Aggiornamento gif Url degli Esercizi nella lista", Toast.LENGTH_SHORT).show()
             val runnable = Worker()
             val thread = Thread(runnable)
             thread.start()

@@ -98,7 +98,7 @@ class ListaGiorniAdapter(val data: List<String>, val emailUtente: String , var f
                 popup.show()
             }else{
                 val popup = PopupMenu(parent.context, holder.itemButtonModificaGiornata)
-                popup.inflate(R.menu.popup_menu_giorno_utente)
+                popup.inflate(R.menu.popup_menu_giorno)
 
                 popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item: MenuItem? ->
 

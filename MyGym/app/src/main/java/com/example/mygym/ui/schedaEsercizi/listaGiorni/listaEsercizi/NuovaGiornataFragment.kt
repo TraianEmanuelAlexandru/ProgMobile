@@ -66,6 +66,7 @@ class NuovaGiornataFragment : Fragment() {
             val bodyEsercizio = binding.editTextFiltroCorpoEsercizio.text.toString()
             val targetEsercizio = binding.editTextFiltroTargetEsercizio.text.toString()
             filter = setFilter(nomeEsercizio,bodyEsercizio, targetEsercizio)
+            Toast.makeText(requireContext(),"Caricamento dati in corso...\nAttendere prego", Toast.LENGTH_SHORT).show()
 
             dbRefEsercizi.where(filter).get().addOnSuccessListener {
                 documents->

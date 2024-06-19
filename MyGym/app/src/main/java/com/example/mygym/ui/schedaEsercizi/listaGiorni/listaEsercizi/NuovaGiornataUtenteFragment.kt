@@ -53,7 +53,7 @@ class NuovaGiornataUtenteFragment : Fragment() {
             val bodyEsercizio = binding.editTextFiltroCorpoEsercizio.text.toString()
             val targetEsercizio = binding.editTextFiltroTargetEsercizio.text.toString()
             filter = NuovaGiornataFragment().setFilter(nomeEsercizio,bodyEsercizio, targetEsercizio)
-
+            Toast.makeText(requireContext(),"Caricamento dati in corso...\nAttendere prego", Toast.LENGTH_SHORT).show()
             dbRefEsercizi.where(filter).get().addOnSuccessListener {
                     documents->
                 listaEsercizi = NuovaGiornataFragment().setListaEsercizi(documents)
@@ -75,10 +75,9 @@ class NuovaGiornataUtenteFragment : Fragment() {
                             numeroGiorno = numGiorno,
                             esercizioPerUtente = esercizio
                         )
-
-                            giornoDao.insertGiorno(giorno)
-
+                        giornoDao.insertGiorno(giorno)
                     }
+
                     it.findNavController().popBackStack()
                 }else{
                     Toast.makeText(requireContext(),"Riprova", Toast.LENGTH_SHORT).show()
